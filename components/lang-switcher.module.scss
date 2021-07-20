@@ -1,0 +1,75 @@
+@use '../styles/vars';
+
+$lang-link-color: vars.$third-color;
+$lang-hover-link-color: vars.$third-light-color;
+$lang-active-link-color: vars.$on-third-dark-text-color;
+$lang-active-hover-link-color: vars.$on-third-dark-text-color;
+
+.langSwitcher {
+    background-color: vars.$primary-color;
+    border: 2px solid $lang-link-color;
+    border-radius: 10px 0 0 10px;
+    border-right: 0;
+    display: flex;    
+    position: fixed;
+    top: 60px;
+    right: -130px;
+    padding: 1rem 0 1rem 1rem;
+    transition-property: right, order;
+    transition-duration: 1s;
+    z-index: 999;
+
+    &:hover,
+    &:focus {
+        right: 0;
+    }
+
+    &__elem {
+        margin-right: 1rem;
+
+        &--active {
+            order: -1;
+        }
+    }
+
+    @media (min-width: 1280px){
+        background-color: initial;
+        border: 0;
+        right: 5vw;
+        transition: none;
+
+        &:hover,
+        &:focus {
+            right: 5vw;
+        }
+    }
+
+    &__link {
+        border: 2px solid $lang-link-color;
+        border-radius: 10px;
+        color: $lang-link-color;
+        display: block;
+        font-size: clamp(16px, 6vw, 20px);
+        font-weight: 500;
+        padding: 8px 10px;
+        text-transform: uppercase;
+        transition-property: color, border-color;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-in-out;
+
+        &:hover {
+            border-color: $lang-hover-link-color;
+            color: $lang-hover-link-color;
+        }
+    }
+
+    &__link--active {
+        border-color: $lang-active-link-color;
+        color: $lang-active-link-color;
+
+        &:hover {
+            border-color: $lang-active-hover-link-color;
+            color: $lang-active-hover-link-color;
+        }
+    }
+}

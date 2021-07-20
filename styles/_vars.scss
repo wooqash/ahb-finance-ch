@@ -1,0 +1,61 @@
+$color-gunmetal: #143640;
+$color-deep-space-sparkle: #3f606b;
+$color-rich-black-fogra-29: #00101a;
+
+$color-brown-sugar: #bb7551;
+$color-light-salmon: #F0A47E;
+$color-russet: #884927;
+
+$color-verdigris: #40b2b6;
+$color-electric-blue: #78E4E8;
+$color-teal: #008286;
+
+$color-midnight-green-eagle-green: #104657;
+$color-copper-rose: #a45f62;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-upsdell-red: #B00020;
+
+$primary-color: $color-gunmetal;
+$primary-light-color: $color-deep-space-sparkle;
+$primary-dark-color: $color-rich-black-fogra-29;
+$on-primary-text-color: $color-white;
+
+$secondary-color: $color-brown-sugar;
+$secondary-light-color: $color-light-salmon;
+$secondary-dark-color: $color-russet;
+$on-secondary-text-color: $color-black;
+$on-secondary-dark-text-color: $color-white;
+
+$third-color: $color-verdigris;
+$third-light-color: $color-electric-blue;
+$third-dark-color: $color-teal;
+$on-third-text-color: $color-black;
+$on-third-dark-text-color: $color-white;
+
+$error-color: $color-upsdell-red;
+
+$bg-top-decor-img: url('../public/decor_top_opt.png');
+$bg-bottom-decor-img: url('../public/decor_down_opt.png');
+$bg-gradient-img: url('../public/circle_gradient_opt.png');
+
+$background-color: $primary-color;
+$main-text-color: $on-primary-text-color;
+
+$main-text-min-font-size: 14px;
+$main-text-max-font-size: 16px;
+
+$headers-font-size: (
+    h1-min-font-size: 40px,
+    h1-max-font-size: 60px,
+    h2-min-font-size: 30px,
+    h2-max-font-size: 40px,
+    h3-min-font-size: 25px,
+    h3-max-font-size: 30px,
+    h4-min-font-size: 20px,
+    h4-max-font-size: 26px,
+    h5-min-font-size: 16px,
+    h5-max-font-size: 22px,
+    h6-min-font-size: 14px,
+    h6-max-font-size: 18px,
+)

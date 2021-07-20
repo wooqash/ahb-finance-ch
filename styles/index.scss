@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.grayscale {
+  filter: grayscale(1);
+}
+
+@import "reset";
+@import "vars";
+@import "global";
+
+// body {
+//   align-items: center;
+//   background-color: $background-color;
+//   background-image: $bg-top-decor-img, $bg-bottom-decor-img, $bg-gradient-img;
+//   background-position: left top, right bottom, center center;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   color: $main-text-color;
+//   display: flex;
+//   font-size: clamp(100%, 10vw, #{$main-text-max-font-size});
+//   font-weight: 400;
+//   justify-content: center;
+//   min-height: 100vh;
+
+//   @media (min-width: 1024px) {
+//     background-size: 80%;
+//   }
+
+//   @media (min-width: 1440px) {
+//     background-size: contain;
+//   }
+// }
