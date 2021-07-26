@@ -20,6 +20,11 @@ body {
   line-height: 1.5;
   min-height: 100vh;
 
+  &.dialog--active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+  }
+
   @media (min-width: 1024px) {
     background-size: 80%;
   }
@@ -47,5 +52,21 @@ body {
 }
 
 blockquote, dl, dd, hr, figure, p, pre {
-  margin: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+button:focus,
+input:focus {
+  outline: 2px solid $third-light-color;
+  outline-offset: 2px;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
