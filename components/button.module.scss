@@ -47,6 +47,12 @@ $btn-text-color: vars.$on-secondary-text-color;
     &[aria-disabled="true"] {
         opacity: 0.5;
         cursor:not-allowed;
+        &:hover::before,
+        &:focus::before {
+            opacity: 0.5;
+            background-color: inherit;
+            background-image: inherit;
+        }
     }
 }
 
