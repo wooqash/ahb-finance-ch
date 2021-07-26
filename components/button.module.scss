@@ -38,8 +38,15 @@ $btn-text-color: vars.$on-secondary-text-color;
         }
     }
 
-    &:hover::before {
+    &:hover::before,
+    &:focus::before {
         opacity: 1;
+    }
+
+    &[disabled],
+    &[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor:not-allowed;
     }
 }
 
