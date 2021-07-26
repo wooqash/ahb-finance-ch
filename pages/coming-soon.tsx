@@ -90,6 +90,7 @@ const ComingSoon:React.FC<ComingSoonProps> = ({ content, preview }) => {
                     ariaDescribedby="DialogDescription"
                     content={dialog}
                     form={form}
+                    logo={mainLogo}
                     ></Dialog>
                 {/* <ShareButtons /> */}
                 </Container>
