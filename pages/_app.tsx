@@ -23,7 +23,7 @@ const MyApp:React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
             router.events.off('routeChangeComplete', handleComplete)
             router.events.off('routeChangeError', handleComplete)
         }
-    })
+    });
     
     return (
       <>
