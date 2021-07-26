@@ -1,9 +1,10 @@
+import { ComingSoonPageData } from "types/coming-soon-page-data";
 import { LocalizationPageData } from "types/localization-page-data";
 
 const API_URL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`;
 
 interface HttpResponse<T> extends Response {
-  parsedBody?: {data?: T, errors?: Array<{message:string}>};
+  parsedBody?: { data?: T; errors?: Array<{ message: string }> };
 }
 
 // async function fetchAPI2<T>(query, { variables } = {}): Promise<T> {
@@ -248,7 +249,9 @@ export async function put<T>(
 //   return data;
 // }
 
-export const getLocalizationPageContent = async (locale: string | undefined) => {
+export const getLocalizationPageContent = async (
+  locale: string | undefined
+) => {
   const data = await post<LocalizationPageData>(API_URL, {
     query: `
   query localizationPage($locale: String){
@@ -313,36 +316,112 @@ export const getLocalizationPageContent = async (locale: string | undefined) => 
   return data?.parsedBody?.data;
 };
 
+export const getComingSoonPageContent = async (locale: string | undefined) => {
+  const data = await post<ComingSoonPageData>(API_URL, {
+    query: `
+  query comingSoon($locale: String){
+  	comingSoon(locale: $locale){
+    	content
+    	openDialogButtonLabel
+    	seo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        cannonicalLink
+        ogImage {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    	dialog {
+        title
+        clause
+        confiramtionReminder
+        offerSummary
+        repeatConfirmationReminder
+      }
+  	}
+    global(locale: $locale) {
+      favicon {
+        mime
+        url
+        width
+        height
+      }
+      siteName
+      defaultSeo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        ogImage {
+          url
+        }
+        cannonicalLink
+      }
+      logo {
+        alternativeText
+        name
+        url
+        width
+        height
+      }
+      form {
+        nameLabel
+        emailLabel
+        subscribeButtonLabel
+        requiredFieldErrorMsg
+        fieldTooShortErrorMsg
+        fieldTooLongErrorMsg
+        invalidEmailFormatErrorMsg
+        namePlaceholderMsg
+        emailPlaceholderMsg
+      }
+    }
+  }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return data?.parsedBody?.data;
+};
+
 // export const getGlobals = async (locale) => {
 //   const data = await fetchAPI(
 //     `
 //     query globals($locale: String){
-      // global(locale: $locale) {
-      //   favicon {
-      //     mime
-      //     url
-      //     width
-      //     height
-      //   }
-      //   siteName
-      //   defaultSeo {
-      //     metaTitle
-      //     metaDescription
-      //     metaKeywords
-      //     preventIndexing
-      //     ogImage {
-      //       url
-      //     }
-      //     cannonicalLink
-      //   }
-      //   logo {
-      //     alternativeText
-      //     name
-      //     url
-      //     width
-      //     height
-      //   }
-      // }
+// global(locale: $locale) {
+//   favicon {
+//     mime
+//     url
+//     width
+//     height
+//   }
+//   siteName
+//   defaultSeo {
+//     metaTitle
+//     metaDescription
+//     metaKeywords
+//     preventIndexing
+//     ogImage {
+//       url
+//     }
+//     cannonicalLink
+//   }
+//   logo {
+//     alternativeText
+//     name
+//     url
+//     width
+//     height
+//   }
+// }
 //     }
 //     `,
 //     {
