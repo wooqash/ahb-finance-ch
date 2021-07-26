@@ -17,7 +17,7 @@ $lang-active-hover-link-color: vars.$on-third-dark-text-color;
     padding: 1rem 0 1rem 1rem;
     transition-property: right, order;
     transition-duration: 1s;
-    z-index: 999;
+    z-index: 10;
 
     &:hover,
     &:focus {
