@@ -77,7 +77,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
           return (
               <Form
                 onSubmit={handleSubmit}
-                className="w-8/12 mx-auto flex flex-col text-left"
+                className="lg:w-8/12 mx-auto flex flex-col text-left"
               >
                 <label htmlFor="name" className={`block mx-4 mt-4 ${(touched.name && errors.name ? `text-error-color` : `text-white`)}`}>
                   {nameLabel}

@@ -27,10 +27,10 @@ const Dialog:React.FC<DialogProps> = ({ariaLabelledby, ariaDescribedby, logo, id
         return (
         <div data-open={isOpen || null} id={id} aria-labelledby={ariaLabelledby} aria-describedby={ariaDescribedby} className={(isOpen ? ' opacity-100 pointer-events-auto ' : '') + 'fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 opacity-0 pointer-events-none'} onTransitionEnd={onTransitionEnd} onKeyDown={onKeyDown}>
             <div className="absolute w-full h-full bg-gray-900 opacity-50" onClick={onClose}></div>
-            <div className="max-w-full md:max-w-2xl xl:max-w-screen-lg flex flex-col max-h-90 bg-primary rounded border-white border border-solid shadow-lg z-50 overflow-y-auto my-10">
-                <div className="pt-12 pb-8 px-6 text-center relative">
+            <div className="max-w-full md:max-w-2xl xl:max-w-screen-lg flex flex-col max-h-90 bg-midnight-green-eagle-green rounded border-white border border-solid shadow-lg z-50 overflow-y-auto my-10">
+                <div className="pt-12 pb-6 px-12 w-10/12 mx-auto text-center relative">
                      {content.title && <DialogTitle className="my-0">{content.title}</DialogTitle>}
-                     <div className="absolute top-4 right-6">
+                     <div className="absolute top-9 sm:top-10 -right-4 sm:-right-8 xl:-right-14">
                         <Button ariaLabel="close" name="DialogCloseButton" onClick={onClose} variant="contained" className="">
                             <CloseIcon />
                         </Button>
