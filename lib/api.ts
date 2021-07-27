@@ -3,6 +3,7 @@ import { LocalizationPageData } from "types/localization-page-data";
 import { ThankYouPageData } from "types/thank-you-page-data";
 import { FinalThankYouPageData } from "types/final-thank-you-page-data";
 import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
+import { Custom404PageData } from "types/custom-404-error-page-data";
 
 const API_URL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`;
 
@@ -541,6 +542,82 @@ export const getPrivacyPolicyPageContent = async (
         }
       }
     }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return data?.parsedBody?.data;
+};
+
+export const getCustom404PageContent = async (locale: string | undefined) => {
+  const data = await post<Custom404PageData>(API_URL, {
+    query: `
+  query custom404Page($locale: String){
+  	custom404Page(locale: $locale){
+    	content
+    	openDialogButtonLabel
+    	seo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        cannonicalLink
+        ogImage {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    	dialog {
+        title
+        clause
+        confiramtionReminder
+        offerSummary
+        repeatConfirmationReminder
+      }
+  	}
+    global(locale: $locale) {
+      favicon {
+        mime
+        url
+        width
+        height
+      }
+      siteName
+      defaultSeo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        ogImage {
+          url
+        }
+        cannonicalLink
+      }
+      logo {
+        alternativeText
+        name
+        url
+        width
+        height
+      }
+      form {
+        nameLabel
+        emailLabel
+        subscribeButtonLabel
+        requiredFieldErrorMsg
+        fieldTooShortErrorMsg
+        fieldTooLongErrorMsg
+        invalidEmailFormatErrorMsg
+        namePlaceholderMsg
+        emailPlaceholderMsg
+      }
+    }
+  }
   `,
     variables: {
       locale: locale,
