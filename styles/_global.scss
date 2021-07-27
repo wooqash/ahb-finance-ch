@@ -2,21 +2,13 @@ html {
   font-size: $main-text-min-font-size;
 }
 body {
-  align-items: center;
-  background-color: $background-color;
-  background-image: $bg-top-decor-img, $bg-bottom-decor-img, $bg-gradient-img;
-  background-position: left top, right bottom, center center;
-  background-repeat: no-repeat;
-  background-size: contain;
   color: $main-text-color;
-  display: flex;
   font-size: clamp(
     #{$main-text-min-font-size},
     4vw,
     #{$main-text-max-font-size}
   );
   font-weight: 400;
-  justify-content: center;
   line-height: 1.5;
   min-height: 100vh;
 
@@ -24,14 +16,6 @@ body {
     // overflow-x: hidden;
     // overflow-y: visible !important;
     overflow: hidden;
-  }
-
-  @media (min-width: 1024px) {
-    background-size: 80%;
-  }
-
-  @media (min-width: 1440px) {
-    background-size: contain;
   }
 }
 
@@ -52,9 +36,10 @@ body {
   }
 }
 
-blockquote, dl, dd, hr, figure, p, pre {
-  margin: 0.75rem 0;
-}
+// blockquote, dl, dd, hr, figure, p, pre {
+//   margin: 0.75rem 0;
+// }
+
 
 a:focus,
 button:focus,
