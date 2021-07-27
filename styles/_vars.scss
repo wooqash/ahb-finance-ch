@@ -58,4 +58,7 @@ $headers-font-size: (
     h5-max-font-size: 22px,
     h6-min-font-size: 14px,
     h6-max-font-size: 18px,
-)
+);
+
+$scrollbar-track-color: $primary-light-color;
+$scrollbar-thumb-color: $secondary-color;
