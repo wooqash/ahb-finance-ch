@@ -78,7 +78,7 @@ const ComingSoon:React.FC<ComingSoonProps> = ({ content, preview }) => {
                 <LangSwitcher />
                 {mainLogo && <MainLogo logo={mainLogo} />}
                 <div className="mx-auto my-10 lg:max-w-4xl">
-                    {mainContent && <ReactMarkdown>{mainContent}</ReactMarkdown>}
+                    {mainContent && <ReactMarkdown className={`${rmStyles.markdown}`}>{mainContent}</ReactMarkdown>}
                     {openDialogButtonLabel && <Button onClick={handleOpenDialog} variant="contained" className="my-10">{openDialogButtonLabel}</Button>}
                 </div>
                 <Dialog

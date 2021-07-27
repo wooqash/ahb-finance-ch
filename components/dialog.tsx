@@ -8,6 +8,7 @@ import CloseIcon from "./Icons/CloseIcon";
 import { FormsData } from "types/forms-data";
 import { Media } from "types/media";
 import MainLogo from "./main-logo";
+import rmStyles from '@/components/markdown-styles.module.scss';
 
 type DialogProps = {
     ariaLabelledby?: string;
@@ -39,12 +40,12 @@ const Dialog:React.FC<DialogProps> = ({ariaLabelledby, ariaDescribedby, logo, id
                 <div className="overflow-y-auto p-8 lg:p-10 xl:w-10/12 mx-auto text-center">
                     {logo && <MainLogo logo={logo} />}
                     <div className="lg:w-9/12 mx-auto">
-                        {content.offerSummary && <ReactMarkdown>{content.offerSummary}</ReactMarkdown>}
-                        {content.confirmationReminder && <ReactMarkdown>{content.confirmationReminder}</ReactMarkdown>}
+                        {content.offerSummary && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.offerSummary}</ReactMarkdown>}
+                        {content.confirmationReminder && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.confirmationReminder}</ReactMarkdown>}
                     </div>
                     {form && <NewsletterForm content={form}></NewsletterForm>}
-                    {content.repeatConfirmationReminder && <div className="text-secondary text-xl font-medium"><ReactMarkdown>{content.repeatConfirmationReminder}</ReactMarkdown></div>}
-                    {content.clause && <div className="text-sm"><ReactMarkdown>{content.clause}</ReactMarkdown></div>}
+                    {content.repeatConfirmationReminder && <div className="text-secondary text-xl font-medium"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.repeatConfirmationReminder}</ReactMarkdown></div>}
+                    {content.clause && <div className="text-sm"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.clause}</ReactMarkdown></div>}
                 </div>
             </div>
         </div>
