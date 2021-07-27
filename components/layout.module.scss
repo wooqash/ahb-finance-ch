@@ -1,0 +1,32 @@
+@use '../styles/vars';
+
+.pageWrapper {
+    background-color: vars.$background-color;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
+
+    &--clean {
+        background-image: vars.$bg-top-decor-img, vars.$bg-bottom-decor-img;
+        background-position: left top, right bottom;
+    }
+
+    &--short {
+        background-image: vars.$bg-top-decor-img, vars.$bg-bottom-decor-img, vars.$bg-gradient-img;
+        background-position: left top, right bottom, center center;
+
+        @media (min-width: 1024px) {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+      background-size: 80%;
+    }
+  
+    @media (min-width: 1440px) {
+      background-size: initial;
+    }
+  }

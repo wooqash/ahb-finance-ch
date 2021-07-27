@@ -1,5 +1,5 @@
 import Container from "@/components/container";
-import Layout from "@/components/layout";
+import LayoutShort from "@/components/layout-short";
 import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
 import { getLocalizationPageContent } from "@/lib/api";
@@ -22,7 +22,7 @@ const Index: React.FC<IndexProps> = ({ content, preview }) => {
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
   return (
     <>
-      <Layout preview={preview} globalSettings={content?.global}>
+      <LayoutShort preview={preview} globalSettings={content?.global}>
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
@@ -43,7 +43,7 @@ const Index: React.FC<IndexProps> = ({ content, preview }) => {
           {mainText && chButton && ukButton && <LocalizationPageContent text={mainText} buttons={[chButton, ukButton]} />}
           {/* <ShareButtons /> */}
         </Container>
-      </Layout>
+      </LayoutShort>
     </>
   );
 };

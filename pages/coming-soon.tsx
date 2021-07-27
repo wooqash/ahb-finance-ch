@@ -4,13 +4,14 @@ import { ComingSoonPageData } from "types/coming-soon-page-data";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import Container from "@/components/container";
-import Layout from "@/components/layout";
+import LayoutShort from "@/components/layout-short";
 import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
 import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
 import Dialog from "@/components/dialog";
 import { useState } from "react";
+import rmStyles from '@/components/markdown-styles.module.scss';
 
 import { MouseEvent, TransitionEvent, KeyboardEvent } from "react";
 
@@ -58,7 +59,7 @@ const ComingSoon:React.FC<ComingSoonProps> = ({ content, preview }) => {
 
     return (
         <>
-            <Layout preview={preview} globalSettings={content?.global}>
+            <LayoutShort preview={preview} globalSettings={content?.global}>
                 <Head>
                 {metaTitle && (
                     <title key={metaTitle}>
@@ -94,7 +95,7 @@ const ComingSoon:React.FC<ComingSoonProps> = ({ content, preview }) => {
                     ></Dialog>
                 {/* <ShareButtons /> */}
                 </Container>
-            </Layout>
+            </LayoutShort>
         </>
     );
 }
@@ -102,7 +103,6 @@ const ComingSoon:React.FC<ComingSoonProps> = ({ content, preview }) => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { preview = null, locale } = context;
     const content = await getComingSoonPageContent(locale);
-    console.log(content);
     if (!content) {
       throw new Error("No content");
     }
