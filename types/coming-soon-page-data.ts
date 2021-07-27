@@ -1,13 +1,7 @@
 import { GlobalData } from "./global-data";
-import { NewsletterSubscribeDialogData } from "./newsletter-subscribe-dialog-data";
-import { SeoData } from "./seo-data";
+import { PageWithNewsletterDialogData } from './page-with-newsletter-dialog-data';
 
 export type ComingSoonPageData = {
-  comingSoon: {
-    content: string;
-    openDialogButtonLabel: string;
-    dialog: NewsletterSubscribeDialogData;
-    seo?: SeoData;
-  };
+  comingSoon: PageWithNewsletterDialogData;
   global: GlobalData;
 };
