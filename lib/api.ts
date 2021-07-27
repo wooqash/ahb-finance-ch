@@ -1,31 +1,14 @@
 import { ComingSoonPageData } from "types/coming-soon-page-data";
 import { LocalizationPageData } from "types/localization-page-data";
+import { ThankYouPageData } from "types/thank-you-page-data";
+import { FinalThankYouPageData } from "types/final-thank-you-page-data";
+import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 
 const API_URL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`;
 
 interface HttpResponse<T> extends Response {
   parsedBody?: { data?: T; errors?: Array<{ message: string }> };
 }
-
-// async function fetchAPI2<T>(query, { variables } = {}): Promise<T> {
-//   const res = await fetch(API_URL, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       query,
-//       variables,
-//     }),
-//   });
-
-//   const json = await res.json();
-//   if (json.errors) {
-//     throw new Error("Failed to fetch API");
-//   }
-
-//   return json.data;
-// }
 
 async function fetchAPI<T>(request: RequestInfo): Promise<HttpResponse<T>> {
   const response: HttpResponse<T> = await fetch(request);
@@ -392,44 +375,177 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
   return data?.parsedBody?.data;
 };
 
-// export const getGlobals = async (locale) => {
-//   const data = await fetchAPI(
-//     `
-//     query globals($locale: String){
-// global(locale: $locale) {
-//   favicon {
-//     mime
-//     url
-//     width
-//     height
-//   }
-//   siteName
-//   defaultSeo {
-//     metaTitle
-//     metaDescription
-//     metaKeywords
-//     preventIndexing
-//     ogImage {
-//       url
-//     }
-//     cannonicalLink
-//   }
-//   logo {
-//     alternativeText
-//     name
-//     url
-//     width
-//     height
-//   }
-// }
-//     }
-//     `,
-//     {
-//       variables: {
-//         locale: locale,
-//       },
-//     }
-//   );
-//   console.log(data);
-//   return data?.global;
-// };
+export const getThankYouPageContent = async (locale: string | undefined) => {
+  const data = await post<ThankYouPageData>(API_URL, {
+    query: `
+    query thankYouPage($locale: String){
+      thankYouPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return data?.parsedBody?.data;
+};
+
+export const getFinalThankYouPageContent = async (
+  locale: string | undefined
+) => {
+  const data = await post<FinalThankYouPageData>(API_URL, {
+    query: `
+    query finalThankYouPage($locale: String){
+      finalThankYouPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return data?.parsedBody?.data;
+};
+
+export const getPrivacyPolicyPageContent = async (
+  locale: string | undefined
+) => {
+  const data = await post<PrivacyPolicyPageData>(API_URL, {
+    query: `
+    query privacyPolicyPage($locale: String){
+      privacyPolicyPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return data?.parsedBody?.data;
+};
