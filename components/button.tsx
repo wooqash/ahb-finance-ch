@@ -12,7 +12,7 @@ type ButtonProps = {
     className?: string;
     onClick?: (e: MouseEvent) => void;
     disabled?: true | FormikErrors<any>;
-    ariaDisabled?: boolean;
+    ariaDisabled?: boolean | "true" | "false";
 }
 
 const Button:React.FC<ButtonProps> = ({ariaLabel, ariaDisabled, children, id,  name, type, variant = 'contained', className, onClick}) => {
