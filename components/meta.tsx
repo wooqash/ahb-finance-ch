@@ -4,20 +4,28 @@ import { GlobalData } from "types/global-data";
 
 type MetaProps = {
   globalSettings: GlobalData;
-}
+};
 
-const Meta:React.FC<MetaProps> = ({globalSettings}) => {
+const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
   const { defaultSeo, siteName } = globalSettings;
   const { metaTitle, metaDescription } = defaultSeo;
 
   return (
     <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        rel="preload"
+        as="style"
+        href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
+      />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
-        crossOrigin="crossorigin"
+        crossOrigin=""
       />
 
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
