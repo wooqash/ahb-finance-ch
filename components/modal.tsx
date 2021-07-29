@@ -1,14 +1,10 @@
-import React, { ReactNode, MouseEvent, KeyboardEvent, TransitionEvent } from "react";
+import React, { ReactNode, MouseEvent } from "react";
 import ModalTitle from "./modal-title";
-import NewsletterForm from "./newsletter-form";
 import { NewsletterSubscribeDialogData } from "../types/newsletter-subscribe-dialog-data";
-import ReactMarkdown from "react-markdown";
 import Button from "./button";
 import CloseIcon from "./Icons/CloseIcon";
 import { FormsData } from "types/forms-data";
 import { Media } from "types/media";
-import MainLogo from "./main-logo";
-import rmStyles from '@/components/markdown-styles.module.scss';
 
 type ModalProps = {
     isActive: boolean;
@@ -17,10 +13,10 @@ type ModalProps = {
     content: NewsletterSubscribeDialogData;
     form?: FormsData;
     logo?: Media | null;
-    onClose?: (e: MouseEvent) => void;
+    onClose?: () => void;
 }
 
-const Modal:React.FC<ModalProps> = ({isActive, logo, id, content, form, onClose}) => {
+const Modal:React.FC<ModalProps> = ({isActive, children, id, content, onClose}) => {
         return (
         <div id={id} className={`${isActive ? 'modal--unfoldingIn' : 'modal--unfoldingOut'} fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transform scale-0`}>
             <div className={`absolute w-full h-full bg-gray-900 opacity-75`} onClick={onClose}></div>
@@ -35,14 +31,7 @@ const Modal:React.FC<ModalProps> = ({isActive, logo, id, content, form, onClose}
                 </div>
                 <div className="dialog__content p-8 pt-0 lg:p-10 lg:pt-0 overflow-y-auto">
                     <div className="xl:w-10/12 mx-auto text-center" id="NewsletterDescription">
-                        {logo && <MainLogo logo={logo} />}
-                        <div className="lg:w-9/12 mx-auto">
-                            {content.offerSummary && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.offerSummary}</ReactMarkdown>}
-                            {content.confirmationReminder && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.confirmationReminder}</ReactMarkdown>}
-                        </div>
-                        {form && <NewsletterForm content={form}></NewsletterForm>}
-                        {content.repeatConfirmationReminder && <div className="text-secondary text-xl font-medium"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.repeatConfirmationReminder}</ReactMarkdown></div>}
-                        {content.clause && <div className="text-sm"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.clause}</ReactMarkdown></div>}
+                        {children}
                     </div>
                 </div>
             </div>

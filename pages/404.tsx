@@ -10,7 +10,7 @@ import MainLogo from "@/components/main-logo";
 import ShareButtons from "@/components/share-buttons";
 import AriaModal from "react-aria-modal";
 import Button from "@/components/button";
-import Modal from "@/components/modal";
+import ModalNewsletter from "@/components/modal-newsletter";
 import { useState } from "react";
 import rmStyles from "@/components/markdown-styles.module.scss";
 
@@ -43,7 +43,7 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
       setTimeout(() => {
         setModalActive(false);
         console.log('inside ', modalActive)
-      }, 300);
+      }, 1000);
     })();
   };
 
@@ -91,24 +91,24 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
               </Button>
             )}
           </div>
-          <AriaModal
-            mounted={modalActive}
-            onEnter={onModalEnter}
-            onExit={deactivateModal}
-            titleText={dialog.title}
-            initialFocus="#ModalCloseButton"
-            getApplicationNode={getApplicationNode}
-            includeDefaultStyles={false}
-          >
-            <Modal
-              onClose={deactivateModal}
-              id="Newsletter"
-              content={dialog}
-              form={form}
-              logo={mainLogo}
-              isActive={modalHasEntered}
-            ></Modal>
-          </AriaModal>
+        <AriaModal
+          mounted={modalActive}
+          onEnter={onModalEnter}
+          onExit={deactivateModal}
+          titleText={dialog.title}
+          initialFocus="#ModalCloseButton"
+          getApplicationNode={getApplicationNode}
+          includeDefaultStyles={false}
+        >
+          <ModalNewsletter
+            onClose={deactivateModal}
+            id="Newsletter"
+            content={dialog}
+            form={form}
+            logo={mainLogo}
+            isActive={modalHasEntered}
+          ></ModalNewsletter>
+        </AriaModal>
           {/* <ShareButtons /> */}
         </Container>
       </LayoutShort>

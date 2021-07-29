@@ -9,7 +9,7 @@ import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
 import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
-import Modal from "@/components/modal";
+import ModalNewsletter from "@/components/modal-newsletter";
 import AriaModal from "react-aria-modal";
 import { useState } from "react";
 import rmStyles from "@/components/markdown-styles.module.scss";
@@ -43,8 +43,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
     (() => {
       setTimeout(() => {
         setModalActive(false);
-        console.log('inside ', modalActive)
-      }, 300);
+      }, 1000);
     })();
   };
 
@@ -92,7 +91,6 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
               </Button>
             )}
           </div>
-
             <AriaModal
               mounted={modalActive}
               onEnter={onModalEnter}
@@ -102,28 +100,15 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
               getApplicationNode={getApplicationNode}
               includeDefaultStyles={false}
             >
-              <Modal
+              <ModalNewsletter
                     onClose={deactivateModal}
                     id="Newsletter"
                     content={dialog}
                     form={form}
                     logo={mainLogo}
                     isActive={modalHasEntered}
-                    ></Modal>
+                    ></ModalNewsletter>
             </AriaModal>
-
-          {/* <Dialog
-                    isOpen={openDialog}
-                    onClose={handleCloseDialog}
-                    onTransitionEnd={handleTransitionEnd}
-                    onKeyDown={handleEscButton}
-                    id="Newsletter"
-                    ariaLabelledby="DialogTitle"
-                    ariaDescribedby="DialogDescription"
-                    content={dialog}
-                    form={form}
-                    logo={mainLogo}
-                    ></Dialog> */}
           {/* <ShareButtons /> */}
         </Container>
       </LayoutShort>
