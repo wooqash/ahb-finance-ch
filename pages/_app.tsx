@@ -27,7 +27,7 @@ const MyApp:React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     
     return (
       <>
-        <Component {...pageProps} />
+        <Component id="App" {...pageProps} />
         { loading && (<Spinner />) }
       </>
     );
