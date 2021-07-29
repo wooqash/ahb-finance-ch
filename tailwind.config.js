@@ -50,11 +50,33 @@ module.exports = {
       },
       maxHeight: {
         '90': '90%'
-      }
+      },
+      keyframes: {
+        unfoldIn: {
+          '0%': { transform: 'scaleY(.005) scaleX(0)' },
+          '50%': { transform: 'scaleY(.005) scaleX(1)' },
+          '100%': { transform: 'scaleY(1) scaleX(1)' },
+        },
+        unfoldOut: {
+          '0%': { transform: 'scaleY(1) scaleX(1)' },
+          '50%': { transform: 'scaleY(.005) scaleX(1)' },
+          '100%': { transform: 'scaleY(.005) scaleX(0)' },
+        },
+        zoomIn: {
+          '0%': { transform: 'scale(0)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        zoomOut: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0)' },
+        }
+       },
+       animation: {
+         'unfoldingIn': 'unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards',
+         'unfoldingOut': 'unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards',
+         'zoomingIn': 'zoomIn 1s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards',
+         'zoomingOut': 'zoomOut 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards',
+       },
     },
   },
-  // plugins: {
-  //   tailwindcss: {},
-  //   autoprefixer: {},
-  // },
 }
