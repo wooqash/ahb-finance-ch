@@ -13,12 +13,6 @@ body {
   font-weight: 400;
   line-height: 1.5;
   min-height: 100vh;
-
-  // &.dialog--active {
-  //   // overflow-x: hidden;
-  //   // overflow-y: visible !important;
-  //   overflow: hidden;
-  // }
 }
 
 @for $i from 1 through 6 {
@@ -37,11 +31,6 @@ body {
     margin: 2.5rem 0;
   }
 }
-
-// blockquote, dl, dd, hr, figure, p, pre {
-//   margin: 0.75rem 0;
-// }
-
 
 a:focus,
 button:focus,
