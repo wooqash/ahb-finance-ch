@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import { GlobalData } from "types/global-data";
+import { useRouter } from 'next/router';
 
 type MetaProps = {
   globalSettings: GlobalData;
@@ -10,8 +11,31 @@ const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
   const { defaultSeo, siteName } = globalSettings;
   const { metaTitle, metaDescription } = defaultSeo;
 
+  const router = useRouter();
+  const { locale, locales } = router;
+
+  console.log(`${window.location.protocol}//${window.location.host}/${router.locale}${router.route}`);
+
   return (
     <Head>
+      {locales?.map((loc) => {
+        const href = `${window.location.protocol}//${window.location.host}/${loc}${router.route}`;
+        let hrefLang = '';
+        switch (loc) {
+          case 'pl':
+            hrefLang = 'pl-PL';
+            break;
+          case 'en':
+            hrefLang = 'en-GB';
+            break;
+          default:
+            hrefLang = 'de-CH';
+            break;
+        }
+        return (
+          <link key={loc} rel="alternate" hrefLang={hrefLang} href={href}></link>
+        );
+      })}
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover"

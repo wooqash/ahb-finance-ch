@@ -14,7 +14,6 @@ import AriaModal from "react-aria-modal";
 import { useState } from "react";
 import rmStyles from "@/components/markdown-styles.module.scss";
 
-
 type ComingSoonProps = {
   content: ComingSoonPageData;
   preview: boolean | null;
