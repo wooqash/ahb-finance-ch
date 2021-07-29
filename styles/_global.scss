@@ -14,11 +14,11 @@ body {
   line-height: 1.5;
   min-height: 100vh;
 
-  &.dialog--active {
-    // overflow-x: hidden;
-    // overflow-y: visible !important;
-    overflow: hidden;
-  }
+  // &.dialog--active {
+  //   // overflow-x: hidden;
+  //   // overflow-y: visible !important;
+  //   overflow: hidden;
+  // }
 }
 
 @for $i from 1 through 6 {
@@ -72,7 +72,7 @@ input:focus {
   background-color: $scrollbar-thumb-color;
 }
 
-.dialog__content {  
+.dialog__content {
   &::-webkit-scrollbar-track,
   &::-webkit-scrollbar-thumb {
     border-radius: 100px;
