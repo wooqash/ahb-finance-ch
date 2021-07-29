@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 
-type DialogTitleProps = {
+type ModalTitleProps = {
   id?: string;
   children: ReactNode;
   className?: string;
 };
 
-const DialogTitle: React.FC<DialogTitleProps> = ({
+const ModalTitle: React.FC<ModalTitleProps> = ({
   id,
   children,
   className,
@@ -18,4 +18,4 @@ const DialogTitle: React.FC<DialogTitleProps> = ({
   );
 };
 
-export default DialogTitle;
+export default ModalTitle;
