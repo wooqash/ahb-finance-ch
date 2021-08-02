@@ -2,6 +2,7 @@ import Head from "next/head";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import { GlobalData } from "types/global-data";
 import { useRouter } from 'next/router';
+import { useEffect, useState } from "react";
 
 type MetaProps = {
   globalSettings: GlobalData;
@@ -10,16 +11,19 @@ type MetaProps = {
 const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
   const { defaultSeo, siteName } = globalSettings;
   const { metaTitle, metaDescription } = defaultSeo;
-
+  const [pageUrl, setPageUrl] = useState('');
   const router = useRouter();
-  const { locale, locales } = router;
+  const { locales } = useRouter();
 
-  console.log(`${window.location.protocol}//${window.location.host}/${router.locale}${router.route}`);
-
+  useEffect(() => {
+    if (window) {
+      setPageUrl(`${window.location.protocol}//${window.location.host}`);
+    }
+},[]);
   return (
     <Head>
       {locales?.map((loc) => {
-        const href = `${window.location.protocol}//${window.location.host}/${loc}${router.route}`;
+        const href = router.defaultLocale !== loc ? `${pageUrl}/${loc}${router.route}` : `${pageUrl}${router.route}`;
         let hrefLang = '';
         switch (loc) {
           case 'pl':
