@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/react-aria-modal": "^4.0.3",
+    "@types/react-cookies": "^0.1.0",
     "classnames": "2.2.6",
     "date-fns": "2.14.0",
     "formik": "^2.2.9",
