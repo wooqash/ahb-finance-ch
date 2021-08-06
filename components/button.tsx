@@ -10,7 +10,7 @@ type ButtonProps = {
     type?: 'button' | 'submit' | 'reset';
     variant?: 'contained' | 'outlined' | 'text' | 'icon';
     className?: string;
-    onClick?: (e: MouseEvent) => void;
+    onClick?: (e: MouseEvent<HTMLElement>) => void;
     disabled?: true | FormikErrors<any>;
     ariaDisabled?: boolean | "true" | "false";
 }
