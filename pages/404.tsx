@@ -42,7 +42,6 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
     (() => {
       setTimeout(() => {
         setModalActive(false);
-        console.log('inside ', modalActive)
       }, 1000);
     })();
   };

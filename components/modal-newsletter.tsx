@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { NewsletterSubscribeDialogData } from "types/newsletter-subscribe-dialog-data";
 import MainLogo from "./main-logo";
 import NewsletterForm from "./newsletter-form";

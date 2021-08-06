@@ -10,7 +10,7 @@ type ModalProps = {
     isActive: boolean;
     children?: ReactNode;
     id?: string;
-    content: NewsletterSubscribeDialogData;
+    content: NewsletterSubscribeDialogData | { title: string};
     form?: FormsData;
     logo?: Media | null;
     onClose?: () => void;
