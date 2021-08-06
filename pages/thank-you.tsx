@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { getThankYouPageContent } from "@/lib/api";
 import { GetStaticProps } from "next";
 import { ThankYouPageData } from "types/thank-you-page-data";
@@ -12,9 +13,10 @@ import ShareButtons from "@/components/share-buttons";
 type ThankYouProps = {
   content: ThankYouPageData;
   preview: boolean | null;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const ThankYou: React.FC<ThankYouProps> = ({ content, preview }) => {
+const ThankYou: React.FC<ThankYouProps> = ({ content, preview, showCookiePolicy }) => {
   const { seo } = content?.thankYouPage;
   const mainContent = content?.thankYouPage?.content;
   const { logo, siteName } = content?.global;
@@ -24,7 +26,7 @@ const ThankYou: React.FC<ThankYouProps> = ({ content, preview }) => {
 
   return (
     <>
-      <LayoutShort preview={preview} globalSettings={content?.global}>
+      <LayoutShort preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy}>
         <Head>
           {metaTitle && (
             <title key={metaTitle}>

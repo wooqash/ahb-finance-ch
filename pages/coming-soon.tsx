@@ -11,15 +11,16 @@ import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
 import ModalNewsletter from "@/components/modal-newsletter";
 import AriaModal from "react-aria-modal";
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import rmStyles from "@/components/markdown-styles.module.scss";
 
 type ComingSoonProps = {
   content: ComingSoonPageData;
   preview: boolean | null;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
+const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview, showCookiePolicy }) => {
   const { openDialogButtonLabel, seo, dialog } = content?.comingSoon;
   const mainContent = content?.comingSoon?.content;
   const { logo, siteName, form } = content?.global;
@@ -56,7 +57,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
 
   return (
     <>
-      <LayoutShort preview={preview} globalSettings={content?.global}>
+      <LayoutShort preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy} >
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
@@ -114,6 +115,23 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview }) => {
     </>
   );
 };
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+
+//   // const slugs = ['kommt-bald', 'coming-soon', 'strona-w-budowie'];
+//   // const paths = context.locales?.reduce((acc, curr, idx, arr) => {
+//   //   return {params: { slug: [], locale: acc}}
+//   // });
+
+//   return {
+//     paths: [
+//       { params: { locale: 'de-CH'} },
+//       { params: { locale: 'en'} }, // See the "paths" section below
+//       { params: { locale: 'pl'} } // See the "paths" section below
+//     ],
+//     fallback: false // See the "fallback" section below
+//   };
+// }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { preview = null, locale } = context;

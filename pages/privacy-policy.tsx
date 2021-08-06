@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { getPrivacyPolicyPageContent } from "@/lib/api";
 import { GetStaticProps } from "next";
 import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
@@ -13,9 +14,10 @@ import rmStyles from '@/components/markdown-styles.module.scss';
 type PrivacyPolicyProps = {
   content: PrivacyPolicyPageData;
   preview: boolean | null;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ content, preview }) => {
+const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ content, preview, showCookiePolicy }) => {
   const { seo } = content?.privacyPolicyPage;
   const mainContent = content?.privacyPolicyPage?.content;
   const { logo, siteName } = content?.global;
@@ -25,7 +27,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ content, preview }) => {
 
   return (
     <>
-      <LayoutClean preview={preview} globalSettings={content?.global}>
+      <LayoutClean preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy}>
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
