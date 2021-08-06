@@ -4,8 +4,7 @@ import { ThankYouPageData } from "types/thank-you-page-data";
 import { FinalThankYouPageData } from "types/final-thank-you-page-data";
 import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 import { Custom404PageData } from "types/custom-404-error-page-data";
-
-const API_URL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`;
+import { API_URL } from "@/lib/constants";
 
 interface HttpResponse<T> extends Response {
   parsedBody?: { data?: T; errors?: Array<{ message: string }> };
@@ -365,6 +364,26 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
         namePlaceholderMsg
         emailPlaceholderMsg
       }
+      cookieInfo {
+        cookieBannerText
+        settingsTitle
+        settingsButtonLabel
+        acceptAllCookiesButtonLabel
+        acceptSelectedCookiesButtonLabel
+        acceptNecessaryCookiesButtonLabel
+        acceptButtonLabel
+        tabs {
+          id
+          label
+          description
+        }
+        groups {
+          id
+          groupName
+          title
+          description
+        }
+      }
     }
   }
   `,
@@ -421,6 +440,26 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
           url
           width
           height
+        }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
         }
       }
     }
@@ -481,6 +520,26 @@ export const getFinalThankYouPageContent = async (
           width
           height
         }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
+        }
       }
     }
   `,
@@ -539,6 +598,26 @@ export const getPrivacyPolicyPageContent = async (
           url
           width
           height
+        }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
         }
       }
     }
@@ -615,6 +694,26 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
         invalidEmailFormatErrorMsg
         namePlaceholderMsg
         emailPlaceholderMsg
+      }
+      cookieInfo {
+        cookieBannerText
+        settingsTitle
+        settingsButtonLabel
+        acceptAllCookiesButtonLabel
+        acceptSelectedCookiesButtonLabel
+        acceptNecessaryCookiesButtonLabel
+        acceptButtonLabel
+        tabs {
+          id
+          label
+          description
+        }
+        groups {
+          id
+          groupName
+          title
+          description
+        }
       }
     }
   }
