@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ReactMarkdown from "react-markdown";
 import "react-toggle/style.css";
 import Button from '@/components/button';
-import CookieDetailsRow from "@/components/cookie-details-row";
+import CookieDetailsRow from "@/components/Cookies/cookie-details-row";
 import rmStyles from "@/components/markdown-styles.module.scss";
 import { CookieInfoData } from "types/cookie-info-data";
 

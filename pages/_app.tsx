@@ -12,8 +12,8 @@ import { CookieGroupsFlags } from "types/cookie-groups-flags";
 
 import usePrevious from '@/lib/usePrevious';
 import Spinner from "@/components/spinner";
-import CookieBanner from "@/components/cookie-banner";
-import CookieInfoBox from "@/components/cookie-info-box";
+import CookieBanner from "@/components/Cookies/cookie-banner";
+import CookieInfoBox from "@/components/Cookies/cookie-info-box";
 import Modal from "@/components/modal";
 import dayjs from "dayjs";
 
