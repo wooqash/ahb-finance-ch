@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import { GlobalData } from "types/global-data";
 import Alert from "./alert";
 import Footer from "./footer";
@@ -10,6 +10,7 @@ type LayoutCleanProps = {
   children: ReactNode;
   globalSettings: GlobalData;
   classNames?: string;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
 const LayoutClean: React.FC<LayoutCleanProps> = ({
@@ -17,6 +18,7 @@ const LayoutClean: React.FC<LayoutCleanProps> = ({
   children,
   globalSettings,
   classNames,
+  showCookiePolicy
 }) => {
   return (
     <div className={`${styles.pageWrapper} ${styles['pageWrapper--clean']} ${classNames || ''}`}>
@@ -26,6 +28,7 @@ const LayoutClean: React.FC<LayoutCleanProps> = ({
         <main className="py-40 md:py-56 md:min-h-screen">
           {children}
         </main>
+        <a href="#" onClick={showCookiePolicy}>Cookies policy</a>
       </div>
       {/* <Footer /> */}
     </div>
