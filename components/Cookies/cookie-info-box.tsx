@@ -61,7 +61,7 @@ const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcce
           if (idx === 0) {
             return (
               <TabPanel key={`${tab.id}${idx.toString()}tabpanel`}>
-                <ReactMarkdown className={`p-4 text-left ${rmStyles.markdown}`}>
+                <ReactMarkdown className={`px-8 py-4 text-left ${rmStyles.markdown}`}>
                   {tab.description}
                 </ReactMarkdown>
                 <div>
@@ -74,7 +74,7 @@ const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcce
           } else {
             return (
               <TabPanel key={`${tab.id}${idx.toString()}tabpanel`}>
-                <ReactMarkdown className={`p-4 text-left ${rmStyles.markdown}`}>
+                <ReactMarkdown className={`px-8 p-4 text-left ${rmStyles.markdown}`}>
                   {tab.description}
                 </ReactMarkdown>
               </TabPanel>
@@ -82,10 +82,10 @@ const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcce
           }
         })}
       </Tabs>
-      <div className="my-4 flex">
-        <Button id="AcceptAllCookies" onClick={onAcceptAllCookies} className="mx-4">{acceptAllCookiesButtonLabel}</Button>
-        <Button id="AcceptSelectedCookies" onClick={onAcceptSelectedCookies} className="mx-4">{acceptSelectedCookiesButtonLabel}</Button>
-        <Button id="AcceptNecessaryCookies" onClick={onAcceptNecessaryCookies} className="mx-4">{acceptNecessaryCookiesButtonLabel}</Button>
+      <div className="my-4 flex flex-wrap justify-center">
+        <Button id="AcceptAllCookies" onClick={onAcceptAllCookies} className="m-4">{acceptAllCookiesButtonLabel}</Button>
+        <Button id="AcceptSelectedCookies" onClick={onAcceptSelectedCookies} className="m-4">{acceptSelectedCookiesButtonLabel}</Button>
+        <Button id="AcceptNecessaryCookies" onClick={onAcceptNecessaryCookies} className="m-4">{acceptNecessaryCookiesButtonLabel}</Button>
       </div>
     </>
   );

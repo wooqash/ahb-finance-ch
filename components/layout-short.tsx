@@ -28,7 +28,7 @@ const LayoutShort: React.FC<LayoutShortProps> = ({
         <main className="py-40 md:py-56 md:flex md:items-center md:min-h-screen">
           {children}
         </main>
-        <a href="#" onClick={showCookiePolicy}>Cookies policy</a>
+        <a href="#" onClick={showCookiePolicy} className="fixed left-4 bottom-4">Cookies policy</a>
       </div>
       {/* <Footer /> */}
     </div>
