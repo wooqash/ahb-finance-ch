@@ -82,9 +82,11 @@ const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcce
           }
         })}
       </Tabs>
-      <Button id="AcceptAllCookies" onClick={onAcceptAllCookies}>{acceptAllCookiesButtonLabel}</Button>
-      <Button id="AcceptSelectedCookies" onClick={onAcceptSelectedCookies}>{acceptSelectedCookiesButtonLabel}</Button>
-      <Button id="AcceptNecessaryCookies" onClick={onAcceptNecessaryCookies}>{acceptNecessaryCookiesButtonLabel}</Button>
+      <div className="my-4 flex">
+        <Button id="AcceptAllCookies" onClick={onAcceptAllCookies} className="mx-4">{acceptAllCookiesButtonLabel}</Button>
+        <Button id="AcceptSelectedCookies" onClick={onAcceptSelectedCookies} className="mx-4">{acceptSelectedCookiesButtonLabel}</Button>
+        <Button id="AcceptNecessaryCookies" onClick={onAcceptNecessaryCookies} className="mx-4">{acceptNecessaryCookiesButtonLabel}</Button>
+      </div>
     </>
   );
 };

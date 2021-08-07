@@ -5,7 +5,7 @@ import rmStyles from "@/components/markdown-styles.module.scss";
 import { MouseEvent } from 'react';
 
 type CookieBannerProps = {
-    content: CookieInfoData;
+    content: Pick<CookieInfoData, "cookieBannerText" | "settingsButtonLabel" | "acceptButtonLabel">;
     onAcceptAllCookies?: () => void;
     onActivateModal?: (e: MouseEvent) => void;
 }
