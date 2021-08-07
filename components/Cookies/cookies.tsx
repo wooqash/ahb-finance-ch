@@ -1,28 +1,54 @@
-import { useEffect, useState, ChangeEvent, MouseEvent, Dispatch, SetStateAction } from "react";
+import {
+  useEffect,
+  useState,
+  ChangeEvent,
+  MouseEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { useCookies } from "react-cookie";
 import AriaModal from "react-aria-modal";
 
 import { CookieInfoData } from "types/cookie-info-data";
 import { CookieGroupsFlags } from "types/cookie-groups-flags";
 
+import Button from '@/components/button';
+import Modal from "@/components/Modal/modal";
+import ModalHeader from "@/components/Modal/modal-header";
+import ModalTitle from "@/components/Modal/modal-title";
+import ModalContent from "@/components/Modal/modal-content";
+import ModalFooter from "@/components/Modal/modal-footer";
+import ModalCookieInfo from "@/components/Modal/contents/modal-cookie-info";
 import CookieBanner from "@/components/Cookies/cookie-banner";
-import CookieInfoBox from "@/components/Cookies/cookie-info-box";
-import Modal from "@/components/modal";
 
-import usePrevious from '@/lib/usePrevious';
+import usePrevious from "@/lib/usePrevious";
 import dayjs from "dayjs";
 
 type CookiesProps = {
   content: CookieInfoData;
   isActive: boolean;
   onActivateModal: (e: MouseEvent) => void;
-  setModalActive: Dispatch<SetStateAction<boolean>>
+  setModalActive: Dispatch<SetStateAction<boolean>>;
 };
 
-const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, setModalActive }) => {
-  console.log(isActive);
+const Cookies: React.FC<CookiesProps> = ({
+  content,
+  isActive,
+  onActivateModal,
+  setModalActive,
+}) => {
   const consentPropertyName = "COOKIE_CONSENT";
-  const { settingsTitle, tabs, groups, acceptAllCookiesButtonLabel, acceptSelectedCookiesButtonLabel, acceptNecessaryCookiesButtonLabel, cookieBannerText, settingsButtonLabel, acceptButtonLabel } = content;
+  const {
+    settingsTitle,
+    tabs,
+    groups,
+    acceptAllCookiesButtonLabel,
+    acceptSelectedCookiesButtonLabel,
+    acceptNecessaryCookiesButtonLabel,
+    cookieBannerText,
+    settingsButtonLabel,
+    acceptButtonLabel,
+  } = content;
   const defaultCookieConsents: CookieGroupsFlags = {
     necessary: true,
     preferences: false,
@@ -30,14 +56,15 @@ const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, s
     marketing: false,
     social: false,
     unclassified: false,
-  }
+  };
 
   const [modalHasEntered, setModalHasEntered] = useState(false);
-  const [cookieConsents, setCookieConsents] = useCookies([
-    consentPropertyName,
-  ]);
-  const [cookieGroupConsents, setCookieGroupConsents] = useState<CookieGroupsFlags>(cookieConsents[consentPropertyName] || defaultCookieConsents);
-  const prevCookieGroupConsents = usePrevious({cookieGroupConsents});
+  const [cookieConsents, setCookieConsents] = useCookies([consentPropertyName]);
+  const [cookieGroupConsents, setCookieGroupConsents] =
+    useState<CookieGroupsFlags>(
+      cookieConsents[consentPropertyName] || defaultCookieConsents
+    );
+  const prevCookieGroupConsents = usePrevious({ cookieGroupConsents });
 
   const acceptAllCookies = () => {
     setCookieGroupConsents({
@@ -61,15 +88,18 @@ const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, s
       unclassified: false,
     });
     deactivateModal();
-  }
+  };
 
   const acceptSelectedCookies = () => {
     saveCookieConsent();
     deactivateModal();
-  }
+  };
 
   const changeCookieConsents = (e: ChangeEvent<HTMLInputElement>) => {
-    setCookieGroupConsents({...cookieGroupConsents, [e.target.id]: e.target.checked});
+    setCookieGroupConsents({
+      ...cookieGroupConsents,
+      [e.target.id]: e.target.checked,
+    });
   };
 
   const saveCookieConsent = () => {
@@ -81,7 +111,7 @@ const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, s
         expireDate.date()
       ),
     });
-  }
+  };
 
   const onModalEnter = () => {
     setModalHasEntered(true);
@@ -105,16 +135,19 @@ const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, s
   };
 
   useEffect(() => {
-    if (prevCookieGroupConsents?.cookieGroupConsents && prevCookieGroupConsents?.cookieGroupConsents !== cookieGroupConsents) {
-        saveCookieConsent();
-      }
-  }, [cookieGroupConsents])
+    if (
+      prevCookieGroupConsents?.cookieGroupConsents &&
+      prevCookieGroupConsents?.cookieGroupConsents !== cookieGroupConsents
+    ) {
+      saveCookieConsent();
+    }
+  }, [cookieGroupConsents]);
 
   return (
     <>
       {!cookieConsents[consentPropertyName] && content && (
         <CookieBanner
-          content={{cookieBannerText, settingsButtonLabel, acceptButtonLabel}}
+          content={{ cookieBannerText, settingsButtonLabel, acceptButtonLabel }}
           onAcceptAllCookies={acceptAllCookies}
           onActivateModal={onActivateModal}
         />
@@ -129,25 +162,52 @@ const Cookies: React.FC<CookiesProps> = ({ content, isActive, onActivateModal, s
         includeDefaultStyles={false}
       >
         <Modal
-          content={{ title: settingsTitle }}
           isActive={modalHasEntered}
           id="CookieConsentModal"
           onClose={deactivateModal}
         >
-          <CookieInfoBox
-            content={{
-              tabs,
-              groups,
-              acceptAllCookiesButtonLabel,
-              acceptSelectedCookiesButtonLabel,
-              acceptNecessaryCookiesButtonLabel,
-            }}
-            consents={cookieGroupConsents}
-            onAcceptAllCookies={acceptAllCookies}
-            onAcceptSelectedCookies={acceptSelectedCookies}
-            onAcceptNecessaryCookies={acceptNecessaryCookies}
-            onHandleChange={changeCookieConsents}
-          ></CookieInfoBox>
+          <ModalHeader onClose={deactivateModal}>
+            {settingsTitle && (
+              <ModalTitle className="my-0" id="NewsletterTitle">
+                {settingsTitle}
+              </ModalTitle>
+            )}
+          </ModalHeader>
+          <ModalContent>
+            <ModalCookieInfo
+              content={{
+                tabs,
+                groups,
+              }}
+              consents={cookieGroupConsents}
+              onHandleChange={changeCookieConsents}
+            ></ModalCookieInfo>
+          </ModalContent>
+          <ModalFooter>
+            <div className="flex flex-wrap justify-center">
+              <Button
+                id="AcceptAllCookies"
+                onClick={acceptAllCookies}
+                className="m-4"
+              >
+                {acceptAllCookiesButtonLabel}
+              </Button>
+              <Button
+                id="AcceptSelectedCookies"
+                onClick={acceptSelectedCookies}
+                className="m-4"
+              >
+                {acceptSelectedCookiesButtonLabel}
+              </Button>
+              <Button
+                id="AcceptNecessaryCookies"
+                onClick={acceptNecessaryCookies}
+                className="m-4"
+              >
+                {acceptNecessaryCookiesButtonLabel}
+              </Button>
+            </div>
+          </ModalFooter>
         </Modal>
       </AriaModal>
     </>

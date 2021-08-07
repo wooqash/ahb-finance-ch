@@ -1,17 +1,25 @@
 import { getCustom404PageContent } from "@/lib/api";
 import { GetStaticProps } from "next";
-import { Custom404PageData } from "types/custom-404-error-page-data";
-import ReactMarkdown from "react-markdown";
 import Head from "next/head";
+
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import AriaModal from "react-aria-modal";
+
+import { Custom404PageData } from "types/custom-404-error-page-data";
+
 import Container from "@/components/container";
 import LayoutShort from "@/components/layout-short";
 import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
 import ShareButtons from "@/components/share-buttons";
-import AriaModal from "react-aria-modal";
 import Button from "@/components/button";
-import ModalNewsletter from "@/components/modal-newsletter";
-import { useState } from "react";
+import Modal from "@/components/Modal/modal";
+import ModalHeader from "@/components/Modal/modal-header";
+import ModalTitle from "@/components/Modal/modal-title";
+import ModalContent from "@/components/Modal/modal-content";
+import ModalNewsletter from "@/components/Modal/contents/modal-newsletter";
+
 import rmStyles from "@/components/markdown-styles.module.scss";
 
 type Custom404Props = {
@@ -90,24 +98,36 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
               </Button>
             )}
           </div>
-        <AriaModal
-          mounted={modalActive}
-          onEnter={onModalEnter}
-          onExit={deactivateModal}
-          titleText={dialog.title}
-          initialFocus="#ModalCloseButton"
-          getApplicationNode={getApplicationNode}
-          includeDefaultStyles={false}
-        >
-          <ModalNewsletter
-            onClose={deactivateModal}
-            id="Newsletter"
-            content={dialog}
-            form={form}
-            logo={mainLogo}
-            isActive={modalHasEntered}
-          ></ModalNewsletter>
-        </AriaModal>
+          <AriaModal
+            mounted={modalActive}
+            onEnter={onModalEnter}
+            onExit={deactivateModal}
+            titleText={dialog.title}
+            initialFocus="#ModalCloseButton"
+            getApplicationNode={getApplicationNode}
+            includeDefaultStyles={false}
+          >
+            <Modal
+              isActive={modalHasEntered}
+              id="CookieConsentModal"
+              onClose={deactivateModal}
+            >
+              <ModalHeader onClose={deactivateModal}>
+                {dialog.title && (
+                  <ModalTitle className="my-0" id="NewsletterTitle">
+                    {dialog.title}
+                  </ModalTitle>
+                )}
+              </ModalHeader>
+              <ModalContent>
+                <ModalNewsletter
+                  content={dialog}
+                  form={form}
+                  logo={mainLogo}
+                ></ModalNewsletter>
+              </ModalContent>
+            </Modal>
+          </AriaModal>
           {/* <ShareButtons /> */}
         </Container>
       </LayoutShort>

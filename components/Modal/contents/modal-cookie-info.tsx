@@ -1,14 +1,14 @@
-import { useState, ChangeEvent, MouseEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ReactMarkdown from "react-markdown";
 import "react-toggle/style.css";
-import Button from '@/components/button';
+
 import CookieDetailsRow from "@/components/Cookies/cookie-details-row";
 import rmStyles from "@/components/markdown-styles.module.scss";
 import { CookieInfoData } from "types/cookie-info-data";
 
-type CookieInfoBoxProps = {
-  content: Pick<CookieInfoData, "tabs" | "groups" | "acceptAllCookiesButtonLabel" | "acceptSelectedCookiesButtonLabel" | "acceptNecessaryCookiesButtonLabel">;
+type ModalCookieInfoProps = {
+  content: Pick<CookieInfoData, "tabs" | "groups">;
   consents: {
     necessary: boolean;
     preferences: boolean;
@@ -17,14 +17,11 @@ type CookieInfoBoxProps = {
     social: boolean;
     unclassified: boolean;
   };
-  onAcceptAllCookies?: (e: MouseEvent<HTMLElement>) => void;
-  onAcceptSelectedCookies?: (e: MouseEvent<HTMLElement>) => void;
-  onAcceptNecessaryCookies?: (e: MouseEvent<HTMLElement>) => void;
   onHandleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcceptAllCookies, onAcceptSelectedCookies, onAcceptNecessaryCookies, onHandleChange }) => {
-  const { tabs, groups, acceptAllCookiesButtonLabel, acceptSelectedCookiesButtonLabel, acceptNecessaryCookiesButtonLabel } = content;
+const ModalCookieInfo: React.FC<ModalCookieInfoProps> = ({ content, consents, onHandleChange }) => {
+  const { tabs, groups } = content;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   const handleTabChange = (newValue: number) => {
@@ -82,13 +79,8 @@ const CookieInfoBox: React.FC<CookieInfoBoxProps> = ({ content, consents, onAcce
           }
         })}
       </Tabs>
-      <div className="my-4 flex flex-wrap justify-center">
-        <Button id="AcceptAllCookies" onClick={onAcceptAllCookies} className="m-4">{acceptAllCookiesButtonLabel}</Button>
-        <Button id="AcceptSelectedCookies" onClick={onAcceptSelectedCookies} className="m-4">{acceptSelectedCookiesButtonLabel}</Button>
-        <Button id="AcceptNecessaryCookies" onClick={onAcceptNecessaryCookies} className="m-4">{acceptNecessaryCookiesButtonLabel}</Button>
-      </div>
     </>
   );
 };
 
-export default CookieInfoBox;
+export default ModalCookieInfo;

@@ -12,7 +12,7 @@ const ModalTitle: React.FC<ModalTitleProps> = ({
   className,
 }) => {
   return (
-    <h3 id={id} className={className}>
+    <h3 id={id} className={className || ''}>
       {children}
     </h3>
   );

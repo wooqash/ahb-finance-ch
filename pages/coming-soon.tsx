@@ -1,17 +1,25 @@
 import { getComingSoonPageContent } from "@/lib/api";
 import { GetStaticProps } from "next";
-import { ComingSoonPageData } from "types/coming-soon-page-data";
-import ReactMarkdown from "react-markdown";
 import Head from "next/head";
-import Container from "@/components/container";
+
+import { useState, MouseEvent } from "react";
+import ReactMarkdown from "react-markdown";
+import AriaModal from "react-aria-modal";
+
+import { ComingSoonPageData } from "types/coming-soon-page-data";
+
 import LayoutShort from "@/components/layout-short";
 import LangSwitcher from "@/components/lang-switcher";
+import Container from "@/components/container";
 import MainLogo from "@/components/main-logo";
 import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
-import ModalNewsletter from "@/components/modal-newsletter";
-import AriaModal from "react-aria-modal";
-import { useState, MouseEvent } from "react";
+import Modal from "@/components/Modal/modal";
+import ModalHeader from "@/components/Modal/modal-header";
+import ModalTitle from "@/components/Modal/modal-title";
+import ModalContent from "@/components/Modal/modal-content";
+import ModalNewsletter from "@/components/Modal/contents/modal-newsletter";
+
 import rmStyles from "@/components/markdown-styles.module.scss";
 
 type ComingSoonProps = {
@@ -20,7 +28,11 @@ type ComingSoonProps = {
   showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview, showCookiePolicy }) => {
+const ComingSoon: React.FC<ComingSoonProps> = ({
+  content,
+  preview,
+  showCookiePolicy,
+}) => {
   const { openDialogButtonLabel, seo, dialog } = content?.comingSoon;
   const mainContent = content?.comingSoon?.content;
   const { logo, siteName, form } = content?.global;
@@ -48,16 +60,20 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview, showCookiePol
   };
 
   const getApplicationNode = () => {
-    const app =  document.getElementById("App");
+    const app = document.getElementById("App");
     if (!app) {
-      throw new Error('App not found!');
+      throw new Error("App not found!");
     }
     return app;
   };
 
   return (
     <>
-      <LayoutShort preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy} >
+      <LayoutShort
+        preview={preview}
+        globalSettings={content?.global}
+        showCookiePolicy={showCookiePolicy}
+      >
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
@@ -91,24 +107,36 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ content, preview, showCookiePol
               </Button>
             )}
           </div>
-            <AriaModal
-              mounted={modalActive}
-              onEnter={onModalEnter}
-              onExit={deactivateModal}
-              titleText={dialog.title}
-              initialFocus="#ModalCloseButton"
-              getApplicationNode={getApplicationNode}
-              includeDefaultStyles={false}
+          <AriaModal
+            mounted={modalActive}
+            onEnter={onModalEnter}
+            onExit={deactivateModal}
+            titleText={dialog.title}
+            initialFocus="#ModalCloseButton"
+            getApplicationNode={getApplicationNode}
+            includeDefaultStyles={false}
+          >
+            <Modal
+              isActive={modalHasEntered}
+              id="CookieConsentModal"
+              onClose={deactivateModal}
             >
-              <ModalNewsletter
-                    onClose={deactivateModal}
-                    id="Newsletter"
-                    content={dialog}
-                    form={form}
-                    logo={mainLogo}
-                    isActive={modalHasEntered}
-                    ></ModalNewsletter>
-            </AriaModal>
+              <ModalHeader onClose={deactivateModal}>
+                {dialog.title && (
+                  <ModalTitle className="my-0" id="NewsletterTitle">
+                    {dialog.title}
+                  </ModalTitle>
+                )}
+              </ModalHeader>
+              <ModalContent>
+                <ModalNewsletter
+                  content={dialog}
+                  form={form}
+                  logo={mainLogo}
+                ></ModalNewsletter>
+              </ModalContent>
+            </Modal>
+          </AriaModal>
           {/* <ShareButtons /> */}
         </Container>
       </LayoutShort>
