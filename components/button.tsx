@@ -17,7 +17,7 @@ type ButtonProps = {
 
 const Button:React.FC<ButtonProps> = ({ariaLabel, ariaDisabled, children, id,  name, type, variant = 'contained', className, onClick}) => {
     return (
-        <button type={ type } id={ id || name } name={name} aria-label={ariaLabel} aria-disabled={ariaDisabled} className={`${className} ${styles.button} ${styles[`button--${variant}`]}`} onClick={onClick}>
+        <button type={ type } id={ id || name } name={name} aria-label={ariaLabel} aria-disabled={ariaDisabled} className={`${className || '' } ${styles.button} ${styles[`button--${variant}`]}`} onClick={onClick}>
             {children || null}
         </button>
     );
