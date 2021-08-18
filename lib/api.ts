@@ -4,7 +4,8 @@ import { ThankYouPageData } from "types/thank-you-page-data";
 import { FinalThankYouPageData } from "types/final-thank-you-page-data";
 import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 import { Custom404PageData } from "types/custom-404-error-page-data";
-import { API_URL } from "@/lib/constants";
+import { API_URL, CK_API_KEY, CK_API_URL, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
+import { NewsletterFormValues } from "types/newsletter-form-values";
 
 interface HttpResponse<T> extends Response {
   parsedBody?: { data?: T; errors?: Array<{ message: string }> };
@@ -34,7 +35,7 @@ export async function get<T>(
 
 export async function post<T>(
   path: string,
-  body: { query: string; variables: {} },
+  body: unknown,
   args: RequestInit = {
     method: "post",
     headers: {
@@ -460,7 +461,8 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
             title
             description
           }
-        }
+        },
+        backToMainPageButtonLabel
       }
     }
   `,
@@ -539,7 +541,8 @@ export const getFinalThankYouPageContent = async (
             title
             description
           }
-        }
+        },
+        backToMainPageButtonLabel
       }
     }
   `,
@@ -724,4 +727,22 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
   });
 
   return data?.parsedBody?.data;
+};
+
+const getFormIdByLocale = (locale: string | undefined) => {
+  switch(locale?.toLowerCase()) {
+    case 'pl':
+      return CK_PL_FORM_ID;
+    case 'en':
+      return CK_EN_FORM_ID;
+    default: 
+      return CK_DE_FORM_ID;
+  }
+}
+
+export const subscribeToNewsletter = async(locale: string | undefined, values: NewsletterFormValues) => {
+  const formId = getFormIdByLocale(locale);
+  const data = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
+
+  return data?.parsedBody;
 };

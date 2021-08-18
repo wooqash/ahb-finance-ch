@@ -8,15 +8,15 @@ import React, { useEffect } from "react";
 import AriaLive from "./aria-live";
 
 import { MdDone, MdErrorOutline } from "react-icons/md";
+import { NewsletterFormValues } from "types/newsletter-form-values";
+import { subscribeToNewsletter } from "@/lib/api";
+
 
 type NewsletterFormProps = {
   content: FormsData;
 };
 
-interface NewsletterFormValues {
-  name: string;
-  email: string;
-}
+
 
 const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
   const {
@@ -41,15 +41,23 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
       .required(requiredFieldErrorMsg),
   });
 
+  const router = useRouter();
+  const {locale} = router;
+
   return (
     <div>
       <Formik
         initialValues={{ name: "", email: "" }}
         validationSchema={NewsletterSignupSchema}
-        onSubmit={(values: NewsletterFormValues,
+        onSubmit={async (values: NewsletterFormValues,
             { setSubmitting }: FormikHelpers<NewsletterFormValues>) => {
-          alert(JSON.stringify(values, null, 2));
+          // alert(JSON.stringify(values, null, 2));
+          const content = await subscribeToNewsletter(locale, values);
+          if (!content) {
+            throw new Error("No content");
+          }
           setSubmitting(false);
+          router.push('thank-you', '', {locale});
         }}
       >
         {(props: FormikProps<any>) => {
@@ -68,7 +76,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
           } = props;
 
           
-        const router = useRouter();
+        
 
         useEffect(() => {
           Object.keys(errors).forEach(fieldName => {

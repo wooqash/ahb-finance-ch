@@ -10,4 +10,5 @@ export type GlobalData = {
   logo?: Media[];
   form: FormsData;
   cookieInfo: CookieInfoData;
+  backToMainPageButtonLabel: string;
 };
