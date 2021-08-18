@@ -6,22 +6,17 @@ import "react-toggle/style.css";
 import CookieDetailsRow from "@/components/Cookies/cookie-details-row";
 import rmStyles from "@/components/markdown-styles.module.scss";
 import { CookieInfoData } from "types/cookie-info-data";
+import { CookieGroupsFlags, CookieTypeSum } from "types/cookies";
 
 type ModalCookieInfoProps = {
-  content: Pick<CookieInfoData, "tabs" | "groups">;
-  consents: {
-    necessary: boolean;
-    preferences: boolean;
-    stats: boolean;
-    marketing: boolean;
-    social: boolean;
-    unclassified: boolean;
-  };
+  content: Pick<CookieInfoData, "tabs" | "groups" | "cookieLblSingle" | "cookieLblPlural">;
+  consents: CookieGroupsFlags;
+  cookieTypesSum: CookieTypeSum;
   onHandleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const ModalCookieInfo: React.FC<ModalCookieInfoProps> = ({ content, consents, onHandleChange }) => {
-  const { tabs, groups } = content;
+const ModalCookieInfo: React.FC<ModalCookieInfoProps> = ({ content, consents, cookieTypesSum, onHandleChange }) => {
+  const { tabs, groups, cookieLblSingle, cookieLblPlural } = content;
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   const handleTabChange = (newValue: number) => {
@@ -63,7 +58,8 @@ const ModalCookieInfo: React.FC<ModalCookieInfoProps> = ({ content, consents, on
                 </ReactMarkdown>
                 <div>
                   {groups.map((group) => {
-                    return <CookieDetailsRow key={group.groupName} title={group.title} description={group.description} groupName={group.groupName} defaultChecked={consents[group.groupName]} onChange={onHandleChange} />;
+                    const cookieSum = cookieTypesSum[group.groupName];
+                    return <CookieDetailsRow key={group.groupName} title={group.title} description={group.description} cookieLblSingle={cookieLblSingle} cookieLblPlural={cookieLblPlural} cookieSum={cookieSum} groupName={group.groupName} defaultChecked={consents[group.groupName]} onChange={onHandleChange} />;
                   })}
                 </div>
               </TabPanel>

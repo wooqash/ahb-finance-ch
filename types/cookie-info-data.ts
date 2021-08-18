@@ -15,6 +15,8 @@ export type CookieInfoData = {
     acceptSelectedCookiesButtonLabel: string;
     acceptNecessaryCookiesButtonLabel: string;
     acceptButtonLabel: string;
+    cookieLblSingle: string;
+    cookieLblPlural: string;
     tabs:  [{
         id: number | string;
         label: string;

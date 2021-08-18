@@ -373,6 +373,8 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
         acceptSelectedCookiesButtonLabel
         acceptNecessaryCookiesButtonLabel
         acceptButtonLabel
+        cookieLblSingle
+        cookieLblPlural
         tabs {
           id
           label
@@ -450,6 +452,8 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
           acceptSelectedCookiesButtonLabel
           acceptNecessaryCookiesButtonLabel
           acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
           tabs {
             id
             label
@@ -530,6 +534,8 @@ export const getFinalThankYouPageContent = async (
           acceptSelectedCookiesButtonLabel
           acceptNecessaryCookiesButtonLabel
           acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
           tabs {
             id
             label
@@ -610,6 +616,8 @@ export const getPrivacyPolicyPageContent = async (
           acceptSelectedCookiesButtonLabel
           acceptNecessaryCookiesButtonLabel
           acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
           tabs {
             id
             label
@@ -706,6 +714,8 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
         acceptSelectedCookiesButtonLabel
         acceptNecessaryCookiesButtonLabel
         acceptButtonLabel
+        cookieLblSingle
+        cookieLblPlural
         tabs {
           id
           label
