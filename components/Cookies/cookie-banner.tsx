@@ -14,7 +14,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({content, onAcceptAllCookies,
   const { cookieBannerText, settingsButtonLabel, acceptButtonLabel } = content;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-5 bg-white text-primary">
+    <div className="fixed bottom-0 left-0 right-0 z-40 p-5 bg-white text-primary">
       <ReactMarkdown className={`${rmStyles.markdown}`}>{cookieBannerText}</ReactMarkdown>
       <Button id="ConsentSettings" onClick={onActivateModal} className="mr-5">
         {settingsButtonLabel}

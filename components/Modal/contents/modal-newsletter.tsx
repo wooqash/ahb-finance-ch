@@ -13,9 +13,11 @@ type ModalNewsletterProps = {
     content: NewsletterSubscribeDialogData;
     form?: FormsData;
     logo?: Media | null;
+    onLoading: (isLoding: boolean) => void;
 }
  
-const ModalNewsletter:React.FC<ModalNewsletterProps> = ({logo, form, content}) => {
+const ModalNewsletter:React.FC<ModalNewsletterProps> = ({logo, form, content, onLoading}) => {
+
     return (
         <>
             {logo && <MainLogo logo={logo} />}
@@ -23,7 +25,7 @@ const ModalNewsletter:React.FC<ModalNewsletterProps> = ({logo, form, content}) =
                   {content.offerSummary && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.offerSummary}</ReactMarkdown>}
                   {content.confirmationReminder && <ReactMarkdown className={`${rmStyles.markdown}`}>{content.confirmationReminder}</ReactMarkdown>}
               </div>
-              {form && <NewsletterForm content={form}></NewsletterForm>}
+              {form && <NewsletterForm content={form} onLoading={onLoading}></NewsletterForm>}
               {content.repeatConfirmationReminder && <div className="text-secondary text-xl font-medium"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.repeatConfirmationReminder}</ReactMarkdown></div>}
               {content.clause && <div className="text-sm"><ReactMarkdown className={`${rmStyles.markdown}`}>{content.clause}</ReactMarkdown></div>}
         </>

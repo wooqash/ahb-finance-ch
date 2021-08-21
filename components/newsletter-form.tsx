@@ -22,15 +22,16 @@ import { subscribeToNewsletter, validateReCaptcha } from "@/lib/api";
 
 import { RECAPTCHA_PUBLIC_KEY } from "@/lib/constants";
 import { RecaptchaResData } from "types/recaptcha-res-data";
-import Spinner from "./spinner";
 
 type NewsletterFormProps = {
   content: FormsData;
+  onLoading: (isLoading: boolean) => void;
 };
 
-
-
-const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
+const NewsletterForm: React.FC<NewsletterFormProps> = ({
+  content,
+  onLoading
+}) => {
   const {
     nameLabel,
     emailLabel,
@@ -43,7 +44,13 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ content }) => {
     emailPlaceholderMsg,
     unhandledExeptionLabel,
   } = content;
-  
+
+  const [formIsVisible, setFormIsVisible] = useState<boolean>(true);
+
+  const onFormError = () => {
+      setFormIsVisible(false);
+  }
+
   const NewsletterSignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, fieldTooShortErrorMsg)

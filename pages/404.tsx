@@ -8,17 +8,18 @@ import AriaModal from "react-aria-modal";
 
 import { Custom404PageData } from "types/custom-404-error-page-data";
 
-import Container from "@/components/container";
-import LayoutShort from "@/components/layout-short";
-import LangSwitcher from "@/components/lang-switcher";
-import MainLogo from "@/components/main-logo";
-import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
+import Container from "@/components/container";
+import LangSwitcher from "@/components/lang-switcher";
+import LayoutShort from "@/components/layout-short";
+import MainLogo from "@/components/main-logo";
 import Modal from "@/components/Modal/modal";
 import ModalHeader from "@/components/Modal/modal-header";
 import ModalTitle from "@/components/Modal/modal-title";
 import ModalContent from "@/components/Modal/modal-content";
 import ModalNewsletter from "@/components/Modal/contents/modal-newsletter";
+import Spinner from "@/components/spinner";
+import ShareButtons from "@/components/share-buttons";
 
 import rmStyles from "@/components/markdown-styles.module.scss";
 
@@ -36,6 +37,7 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [modalHasEntered, setModalHasEntered] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const activateModal = () => {
     setModalActive(true);
@@ -60,6 +62,10 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
       throw new Error('App not found!');
     }
     return app;
+  };
+
+  const onLoading = (isLoading: boolean) => {
+    setLoading(isLoading);
   };
 
   return (
@@ -124,11 +130,13 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
                   content={dialog}
                   form={form}
                   logo={mainLogo}
+                  onLoading={onLoading}
                 ></ModalNewsletter>
               </ModalContent>
             </Modal>
           </AriaModal>
           {/* <ShareButtons /> */}
+          {loading && <Spinner />}
         </Container>
       </LayoutShort>
     </>

@@ -10,4 +10,5 @@ export type FormsData = {
     invalidEmailFormatErrorMsg: string;
     namePlaceholderMsg: string;
     emailPlaceholderMsg: string;
+    unhandledExeptionLabel: string;
 }

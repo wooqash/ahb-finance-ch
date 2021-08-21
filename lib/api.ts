@@ -700,6 +700,7 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
         invalidEmailFormatErrorMsg
         namePlaceholderMsg
         emailPlaceholderMsg
+        unhandledExeptionLabel
       }
       cookieInfo {
         cookieBannerText

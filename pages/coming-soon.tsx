@@ -1,24 +1,26 @@
 import { getComingSoonPageContent } from "@/lib/api";
+import { RECAPTCHA_PUBLIC_KEY } from "@/lib/constants";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 
-import { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent } from "react";
 import ReactMarkdown from "react-markdown";
 import AriaModal from "react-aria-modal";
 
 import { ComingSoonPageData } from "types/coming-soon-page-data";
 
-import LayoutShort from "@/components/layout-short";
-import LangSwitcher from "@/components/lang-switcher";
-import Container from "@/components/container";
-import MainLogo from "@/components/main-logo";
-import ShareButtons from "@/components/share-buttons";
 import Button from "@/components/button";
+import Container from "@/components/container";
+import LangSwitcher from "@/components/lang-switcher";
+import LayoutShort from "@/components/layout-short";
+import MainLogo from "@/components/main-logo";
 import Modal from "@/components/Modal/modal";
 import ModalHeader from "@/components/Modal/modal-header";
 import ModalTitle from "@/components/Modal/modal-title";
 import ModalContent from "@/components/Modal/modal-content";
 import ModalNewsletter from "@/components/Modal/contents/modal-newsletter";
+import ShareButtons from "@/components/share-buttons";
+import Spinner from "@/components/spinner";
 
 import rmStyles from "@/components/markdown-styles.module.scss";
 
@@ -41,6 +43,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [modalHasEntered, setModalHasEntered] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const activateModal = () => {
     setModalActive(true);
@@ -65,6 +68,10 @@ const ComingSoon: React.FC<ComingSoonProps> = ({
       throw new Error("App not found!");
     }
     return app;
+  };
+
+  const onLoading = (isLoading: boolean) => {
+    setLoading(isLoading);
   };
 
   return (
@@ -134,11 +141,13 @@ const ComingSoon: React.FC<ComingSoonProps> = ({
                   content={dialog}
                   form={form}
                   logo={mainLogo}
+                  onLoading={onLoading}
                 ></ModalNewsletter>
               </ModalContent>
             </Modal>
           </AriaModal>
           {/* <ShareButtons /> */}
+          {loading && <Spinner />}
         </Container>
       </LayoutShort>
     </>
