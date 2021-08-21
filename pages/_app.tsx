@@ -42,7 +42,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       <>
         <Component showCookiePolicy={activateModal} {...pageProps} />
         {loading && <Spinner />}
-        {cookieInfo && <Cookies content={cookieInfo} isActive={modalActive} onActivateModal={activateModal} setModalActive={setModalActive} />}
+        {/* {cookieInfo && <Cookies content={cookieInfo} isActive={modalActive} onActivateModal={activateModal} setModalActive={setModalActive} />} */}
       </>
     </CookiesProvider>
   );
