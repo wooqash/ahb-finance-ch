@@ -6,6 +6,7 @@ import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 import { Custom404PageData } from "types/custom-404-error-page-data";
 import { API_URL, CK_API_KEY, CK_API_URL, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
 import { NewsletterFormValues } from "types/newsletter-form-values";
+import { RecaptchaResData, RecaptchaResFailData } from "types/recaptcha-res-data";
 
 interface HttpResponse<T> extends Response {
   parsedBody?: { data?: T; errors?: Array<{ message: string }> };
@@ -23,6 +24,7 @@ async function fetchAPI<T>(request: RequestInfo): Promise<HttpResponse<T>> {
   if (!response.ok) {
     throw new Error(response.statusText);
   }
+
   return response;
 }
 
@@ -364,6 +366,7 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
         invalidEmailFormatErrorMsg
         namePlaceholderMsg
         emailPlaceholderMsg
+        unhandledExeptionLabel
       }
       cookieInfo {
         cookieBannerText
@@ -557,7 +560,7 @@ export const getFinalThankYouPageContent = async (
 export const getPrivacyPolicyPageContent = async (
   locale: string | undefined
 ) => {
-  const data = await post<PrivacyPolicyPageData>(API_URL, {
+  const response = await post<PrivacyPolicyPageData>(API_URL, {
     query: `
     query privacyPolicyPage($locale: String){
       privacyPolicyPage(locale: $locale){
@@ -746,3 +749,9 @@ export const subscribeToNewsletter = async(locale: string | undefined, values: N
 
   return data?.parsedBody;
 };
+
+export const validateReCaptcha = async (token: string) => {
+  const response = await post<RecaptchaResData>(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/recaptcha`, {token});
+
+  return response?.parsedBody;
+}

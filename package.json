@@ -31,6 +31,7 @@
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.13",
     "@types/react-aria-modal": "^4.0.3",
+    "@types/grecaptcha": "^3.0.3",
     "@types/react-tabs": "^2.3.3",
     "@types/react-toggle": "^4.0.3",
     "@types/yup": "^0.29.13",

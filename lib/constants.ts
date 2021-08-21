@@ -10,3 +10,5 @@ export const CK_API_KEY = `W3JIXPfNTYz6QInI6KYEhg`;
 export const CK_PL_FORM_ID = '2526688';
 export const CK_EN_FORM_ID = '2531286';
 export const CK_DE_FORM_ID = '2531347';
+export const RECAPTCHA_PUBLIC_KEY = '6LeqLA8cAAAAAO_gDoZfdF2_I2n75wDvd-2xjMGq';
+export const RECAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify';

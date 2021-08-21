@@ -87,6 +87,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({
               content={metaDescription}
             />
           )}
+          <script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIC_KEY}`}></script>
         </Head>
         <Container>
           <LangSwitcher />
