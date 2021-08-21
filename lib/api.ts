@@ -238,7 +238,7 @@ export async function put<T>(
 export const getLocalizationPageContent = async (
   locale: string | undefined
 ) => {
-  const data = await post<LocalizationPageData>(API_URL, {
+  const response = await post<LocalizationPageData>(API_URL, {
     query: `
   query localizationPage($locale: String){
     localizationPage(locale: $locale) {
@@ -299,11 +299,11 @@ export const getLocalizationPageContent = async (
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 export const getComingSoonPageContent = async (locale: string | undefined) => {
-  const data = await post<ComingSoonPageData>(API_URL, {
+  const response = await post<ComingSoonPageData>(API_URL, {
     query: `
   query comingSoon($locale: String){
   	comingSoon(locale: $locale){
@@ -396,11 +396,11 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 export const getThankYouPageContent = async (locale: string | undefined) => {
-  const data = await post<ThankYouPageData>(API_URL, {
+  const response = await post<ThankYouPageData>(API_URL, {
     query: `
     query thankYouPage($locale: String){
       thankYouPage(locale: $locale){
@@ -474,13 +474,13 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 export const getFinalThankYouPageContent = async (
   locale: string | undefined
 ) => {
-  const data = await post<FinalThankYouPageData>(API_URL, {
+  const response = await post<FinalThankYouPageData>(API_URL, {
     query: `
     query finalThankYouPage($locale: String){
       finalThankYouPage(locale: $locale){
@@ -554,7 +554,7 @@ export const getFinalThankYouPageContent = async (
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 export const getPrivacyPolicyPageContent = async (
@@ -633,11 +633,11 @@ export const getPrivacyPolicyPageContent = async (
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 export const getCustom404PageContent = async (locale: string | undefined) => {
-  const data = await post<Custom404PageData>(API_URL, {
+  const response = await post<Custom404PageData>(API_URL, {
     query: `
   query custom404Page($locale: String){
   	custom404Page(locale: $locale){
@@ -730,7 +730,7 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
     },
   });
 
-  return data?.parsedBody?.data;
+  return response?.parsedBody?.data;
 };
 
 const getFormIdByLocale = (locale: string | undefined) => {
@@ -746,9 +746,9 @@ const getFormIdByLocale = (locale: string | undefined) => {
 
 export const subscribeToNewsletter = async(locale: string | undefined, values: NewsletterFormValues) => {
   const formId = getFormIdByLocale(locale);
-  const data = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
+  const response = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
 
-  return data?.parsedBody;
+  return response?.parsedBody;
 };
 
 export const validateReCaptcha = async (token: string) => {
