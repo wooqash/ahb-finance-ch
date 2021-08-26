@@ -3,14 +3,12 @@ import "../styles/index.scss";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
-import { useEffect, useState, MouseEvent } from "react";
-import { CookiesProvider, useCookies } from "react-cookie";
+import React, { useEffect, useState, MouseEvent } from "react";
 
 import { CookieInfoData } from "types/cookie-info-data";
 
 import Spinner from "@/components/spinner";
 import Cookies from '@/components/Cookies/cookies';
-import { CookieType, CookieTypeSum } from "types/cookies";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -18,10 +16,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const activateModal = (e: MouseEvent) => {
+  const activateModal = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
     setModalActive(true);
-  };
+  }, [setModalActive]);
 
   useEffect(() => {
     const handleStart = (url: string) => setLoading(true);
@@ -38,54 +36,12 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     };
   });
 
-  const cookieTypes: CookieType = {
-    necessary: ["COOKIE_CONSENT", "NEXT_LOCALE"],
-    preferences: [],
-    stats: [],
-    marketing: [],
-    social: [],
-    unclassified: [],
-  };
-  
-
-  const [cookies, setCookies, removeCookie] = useCookies([]);
-  const [cookieTypesSum, setCookieTypesSum] = useState<CookieTypeSum>({
-    necessary: 2,
-    preferences: 0,
-    stats: 0,
-    marketing: 0,
-    social: 0,
-    unclassified: 0,
-  });
-
-  // useEffect(() => {
-  //   assignCookiesToTypes();
-  //   console.log(cookieTypesSum);
-  // }, []);
-
-  // const assignCookiesToTypes = (initialCookieSum: CookieTypeSum) => {
-  //     for(let cookieName in cookies){
-  //         for (let cookieType in cookieTypes) {
-              
-  //             if (cookieTypes[cookieType].find((cookie: string) => cookie === cookieName)) {
-  //                 console.log(initialCookieSum, cookieType, initialCookieSum[cookieType]);
-  //                 return {...initialCookieSum, [cookieType]: initialCookieSum[cookieType]++};
-  //                 // console.log(cookieTypesSum, cookieType, cookieTypesSum[cookieType]);
-  //             }
-  //         }
-  //     }
-  //     return initialCookieSum
-  // }
-  console.log('app');
-
   return (
-    <CookiesProvider>
       <>
         <Component showCookiePolicy={activateModal} {...pageProps} />
         {loading && <Spinner />}
         {cookieInfo && <Cookies content={cookieInfo} isActive={modalActive} onActivateModal={activateModal} setModalActive={setModalActive} />}
       </>
-    </CookiesProvider>
   );
 };
 
