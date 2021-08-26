@@ -1,5 +1,4 @@
 import Toggle from "react-toggle";
-import { useState } from "react";
 import { CookieGroupTypes } from "types/cookie-info-data";
 import { ChangeEvent } from "react";
 
@@ -26,7 +25,7 @@ const CookieDetailsRow: React.FC<CookieDetailsRowProps> = ({
 }) => {
   return (
     <div className="flex items-center border-b border-third-dark first:border-t last:border-b-0">
-      <div className="w-3/12 p-4">
+      <div className="w-3/12 p-4 break-words">
         {title}
         <br />
         <span className="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-green-100 bg-green-600 rounded-full">
@@ -39,9 +38,9 @@ const CookieDetailsRow: React.FC<CookieDetailsRowProps> = ({
       <div className="w-7/12 p-4 text-left">{description}</div>
       <div className="w-2/12 p-4 ">
         <Toggle
-          disabled={groupName === CookieGroupTypes.necessary ? true : false}
+          disabled={groupName === CookieGroupTypes.necessary || !cookieSum ? true : false}
           defaultChecked={defaultChecked}
-          aria-label="No label tag"
+          aria-label={title}
           id={groupName}
           name={groupName}
           onChange={onChange}
