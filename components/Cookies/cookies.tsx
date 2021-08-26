@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useState,
   ChangeEvent,
@@ -77,17 +77,22 @@ const Cookies: React.FC<CookiesProps> = ({
     }
   }, [cookieGroupConsents]);
 
-  
+  const cookieTypes: CookieType = {
+    necessary: ["COOKIE_CONSENT"],
+    preferences: ["NEXT_LOCALE"],
+    stats: [],
+    marketing: [],
+    social: [],
+    unclassified: [],
+  };
 
   const acceptAllCookies = () => {
-    setCookieGroupConsents({
-      necessary: true,
-      preferences: true,
-      stats: true,
-      marketing: true,
-      social: true,
-      unclassified: true,
-    });
+    let newCookieConsents = defaultCookieConsents;
+    for (let cookieName in defaultCookieConsents) {
+      newCookieConsents = {...newCookieConsents, [cookieName]: cookieName === 'necessary' || cookieTypesSum[cookieName] ? true : false }
+    }
+    setCookieGroupConsents(newCookieConsents);
+    saveCookieConsent();
     deactivateModal();
   };
 
@@ -100,6 +105,7 @@ const Cookies: React.FC<CookiesProps> = ({
       social: false,
       unclassified: false,
     });
+    saveCookieConsent();
     deactivateModal();
   };
 
@@ -147,7 +153,28 @@ const Cookies: React.FC<CookiesProps> = ({
     return app;
   };
 
-//   console.log(cookieTypesSum);
+  const assignCookiesToTypes = () => {
+      let initialCookieSum: CookieTypeSum = {
+          necessary: 0,
+          preferences: 0,
+          stats: 0,
+          marketing: 0,
+          social: 0,
+          unclassified: 0,
+      }
+      for(let cookieName in cookieConsents){
+          for (let cookieType in cookieTypes) {
+              
+              if (cookieTypes[cookieType].find((cookie: string) => cookie === cookieName)) {
+                  initialCookieSum = {...initialCookieSum, [cookieType]: initialCookieSum[cookieType]+1};
+                }
+              }
+            }
+      return initialCookieSum;
+  }
+
+  const cookieTypesSum = React.useMemo(() => assignCookiesToTypes(), [cookieConsents]);
+
   return (
     <>
       {!cookieConsents[consentPropertyName] && content && (
