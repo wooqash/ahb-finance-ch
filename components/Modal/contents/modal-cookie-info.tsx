@@ -59,7 +59,7 @@ const ModalCookieInfo: React.FC<ModalCookieInfoProps> = ({ content, consents, co
                 <div>
                   {groups.map((group) => {
                     const cookieSum = cookieTypesSum[group.groupName];
-                    return <CookieDetailsRow key={group.groupName} title={group.title} description={group.description} cookieLblSingle={cookieLblSingle} cookieLblPlural={cookieLblPlural} cookieSum={cookieSum} groupName={group.groupName} defaultChecked={consents[group.groupName]} onChange={onHandleChange} />;
+                    return <CookieDetailsRow key={group.groupName} title={group.title} description={group.description} cookieSum={cookieSum} cookieLblSingle={cookieLblSingle} cookieLblPlural={cookieLblPlural}  groupName={group.groupName} defaultChecked={consents[group.groupName]} onChange={onHandleChange} />;
                   })}
                 </div>
               </TabPanel>

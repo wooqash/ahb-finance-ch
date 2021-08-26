@@ -20,7 +20,6 @@ const LayoutShort: React.FC<LayoutShortProps> = ({
   classNames,
   showCookiePolicy
 }) => {
-  console.log('layout');
   return (
     <div className={`${styles.pageWrapper} ${styles['pageWrapper--short']} ${classNames || ''}`}>
       <Meta globalSettings={globalSettings} />
