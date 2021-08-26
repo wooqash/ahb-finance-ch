@@ -54,8 +54,8 @@ const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
         crossOrigin=""
-        media="print"
-        onLoad={() => 'this.media="all"'}
+        // media="print"
+        // onLoad={() => 'this.media="all"'}
       />
 
       <link rel="shortcut icon" href="/favicon/favicon.ico" />

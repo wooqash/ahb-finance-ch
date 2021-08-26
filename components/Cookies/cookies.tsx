@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useState,
   ChangeEvent,
@@ -10,9 +10,9 @@ import { useCookies } from "react-cookie";
 import AriaModal from "react-aria-modal";
 
 import { CookieInfoData } from "types/cookie-info-data";
-import { CookieGroupsFlags } from "types/cookie-groups-flags";
+import { CookieType, CookieTypeSum, CookieGroupsFlags } from "types/cookies";
 
-import Button from '@/components/button';
+import Button from "@/components/button";
 import Modal from "@/components/Modal/modal";
 import ModalHeader from "@/components/Modal/modal-header";
 import ModalTitle from "@/components/Modal/modal-title";
@@ -48,6 +48,8 @@ const Cookies: React.FC<CookiesProps> = ({
     cookieBannerText,
     settingsButtonLabel,
     acceptButtonLabel,
+    cookieLblSingle,
+    cookieLblPlural,
   } = content;
   const defaultCookieConsents: CookieGroupsFlags = {
     necessary: true,
@@ -57,7 +59,7 @@ const Cookies: React.FC<CookiesProps> = ({
     social: false,
     unclassified: false,
   };
-
+  
   const [modalHasEntered, setModalHasEntered] = useState(false);
   const [cookieConsents, setCookieConsents] = useCookies([consentPropertyName]);
   const [cookieGroupConsents, setCookieGroupConsents] =
@@ -66,15 +68,31 @@ const Cookies: React.FC<CookiesProps> = ({
     );
   const prevCookieGroupConsents = usePrevious({ cookieGroupConsents });
 
+  useEffect(() => {
+    if (
+      prevCookieGroupConsents?.cookieGroupConsents &&
+      prevCookieGroupConsents?.cookieGroupConsents !== cookieGroupConsents
+    ) {
+      saveCookieConsent();
+    }
+  }, [cookieGroupConsents]);
+
+  const cookieTypes: CookieType = {
+    necessary: ["COOKIE_CONSENT"],
+    preferences: ["NEXT_LOCALE"],
+    stats: [],
+    marketing: [],
+    social: [],
+    unclassified: [],
+  };
+
   const acceptAllCookies = () => {
-    setCookieGroupConsents({
-      necessary: true,
-      preferences: true,
-      stats: true,
-      marketing: true,
-      social: true,
-      unclassified: true,
-    });
+    let newCookieConsents = defaultCookieConsents;
+    for (let cookieName in defaultCookieConsents) {
+      newCookieConsents = {...newCookieConsents, [cookieName]: cookieName === 'necessary' || cookieTypesSum[cookieName] ? true : false }
+    }
+    setCookieGroupConsents(newCookieConsents);
+    saveCookieConsent();
     deactivateModal();
   };
 
@@ -87,6 +105,7 @@ const Cookies: React.FC<CookiesProps> = ({
       social: false,
       unclassified: false,
     });
+    saveCookieConsent();
     deactivateModal();
   };
 
@@ -134,14 +153,27 @@ const Cookies: React.FC<CookiesProps> = ({
     return app;
   };
 
-  useEffect(() => {
-    if (
-      prevCookieGroupConsents?.cookieGroupConsents &&
-      prevCookieGroupConsents?.cookieGroupConsents !== cookieGroupConsents
-    ) {
-      saveCookieConsent();
-    }
-  }, [cookieGroupConsents]);
+  const assignCookiesToTypes = () => {
+      let initialCookieSum: CookieTypeSum = {
+          necessary: 0,
+          preferences: 0,
+          stats: 0,
+          marketing: 0,
+          social: 0,
+          unclassified: 0,
+      }
+      for(let cookieName in cookieConsents){
+          for (let cookieType in cookieTypes) {
+              
+              if (cookieTypes[cookieType].find((cookie: string) => cookie === cookieName)) {
+                  initialCookieSum = {...initialCookieSum, [cookieType]: initialCookieSum[cookieType]+1};
+                }
+              }
+            }
+      return initialCookieSum;
+  }
+
+  const cookieTypesSum = React.useMemo(() => assignCookiesToTypes(), [cookieConsents]);
 
   return (
     <>
@@ -152,7 +184,7 @@ const Cookies: React.FC<CookiesProps> = ({
           onActivateModal={onActivateModal}
         />
       )}
-      <AriaModal
+      {(isActive && <AriaModal
         mounted={isActive}
         onEnter={onModalEnter}
         onExit={deactivateModal}
@@ -178,7 +210,10 @@ const Cookies: React.FC<CookiesProps> = ({
               content={{
                 tabs,
                 groups,
+                cookieLblSingle,
+                cookieLblPlural,
               }}
+              cookieTypesSum={cookieTypesSum}
               consents={cookieGroupConsents}
               onHandleChange={changeCookieConsents}
             ></ModalCookieInfo>
@@ -209,7 +244,7 @@ const Cookies: React.FC<CookiesProps> = ({
             </div>
           </ModalFooter>
         </Modal>
-      </AriaModal>
+      </AriaModal>)}
     </>
   );
 };

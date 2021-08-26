@@ -3,8 +3,7 @@ import "../styles/index.scss";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
-import { useEffect, useState, MouseEvent } from "react";
-import { CookiesProvider } from "react-cookie";
+import React, { useEffect, useState, MouseEvent } from "react";
 
 import { CookieInfoData } from "types/cookie-info-data";
 
@@ -17,10 +16,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
-  const activateModal = (e: MouseEvent) => {
+  const activateModal = React.useCallback((e: MouseEvent) => {
     e.preventDefault();
     setModalActive(true);
-  };
+  }, [setModalActive]);
 
   useEffect(() => {
     const handleStart = (url: string) => setLoading(true);
@@ -38,13 +37,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   });
 
   return (
-    <CookiesProvider>
       <>
         <Component showCookiePolicy={activateModal} {...pageProps} />
         {loading && <Spinner />}
         {/* {cookieInfo && <Cookies content={cookieInfo} isActive={modalActive} onActivateModal={activateModal} setModalActive={setModalActive} />} */}
       </>
-    </CookiesProvider>
   );
 };
 
