@@ -75,7 +75,7 @@ const Cookies: React.FC<CookiesProps> = ({
     ) {
       saveCookieConsent();
     }
-  }, [cookieGroupConsents]);
+  }, [prevCookieGroupConsents, cookieGroupConsents]);
 
   const cookieTypes: CookieType = {
     necessary: ["COOKIE_CONSENT"],
