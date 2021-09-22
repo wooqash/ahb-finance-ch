@@ -5,7 +5,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "lint": "next lint"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -28,14 +29,16 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@types/grecaptcha": "^3.0.3",
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.13",
     "@types/react-aria-modal": "^4.0.3",
-    "@types/grecaptcha": "^3.0.3",
     "@types/react-tabs": "^2.3.3",
     "@types/react-toggle": "^4.0.3",
     "@types/yup": "^0.29.13",
     "autoprefixer": "^10.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.2",
     "postcss": "^8.3.5",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",

@@ -20,11 +20,21 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/shared/*": ["shared/*"],
-      "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"],
-      "@/public/*": ["public/*"],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/shared/*": [
+        "shared/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ]
     },
     "removeComments": true,
     "importHelpers": true
@@ -32,8 +42,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "lib/api.js"  ],
+    "**/*.tsx",
+    "lib/api.js"
+  ],
   "exclude": [
     "node_modules"
   ]
