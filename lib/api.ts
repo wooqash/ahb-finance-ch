@@ -6,32 +6,34 @@ import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 import { Custom404PageData } from "types/custom-404-error-page-data";
 import { API_URL, CK_API_KEY, CK_API_URL, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
 import { NewsletterFormValues } from "types/newsletter-form-values";
-import { RecaptchaResData, RecaptchaResFailData } from "types/recaptcha-res-data";
+import { RecaptchaResData } from "types/recaptcha-res-data";
 
-interface HttpResponse<T> extends Response {
-  parsedBody?: { data?: T; errors?: Array<{ message: string }> };
+interface JSONResponse<T> extends Response {
+  data?: T;
+  errors?: Array<{ message: string }>
 }
 
-async function fetchAPI<T>(request: RequestInfo): Promise<HttpResponse<T>> {
-  const response: HttpResponse<T> = await fetch(request);
-  try {
-    // may error if there is no body
-    response.parsedBody = await response.json();
-  } catch (ex) {
-    throw new Error(ex);
-  }
+async function fetchAPI<T>(request: RequestInfo): Promise<T> {
+  const response = await fetch(request);
+  const { data, errors }: JSONResponse<T> = await response.json();
 
-  if (!response.ok) {
-    throw new Error(response.statusText);
+  if(response.ok) {
+    if (data) {
+      return data;
+    } else {
+      return Promise.reject(new Error(`No data`))
+    }
+  } else {
+    // handle the graphql errors
+    const error = new Error(errors?.map(e => e.message).join('\n') ?? 'unknown error')
+    return Promise.reject(error);
   }
-
-  return response;
 }
 
 export async function get<T>(
   path: string,
   args: RequestInit = { method: "get" }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
@@ -45,7 +47,7 @@ export async function post<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
@@ -59,7 +61,7 @@ export async function put<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
@@ -299,7 +301,7 @@ export const getLocalizationPageContent = async (
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 export const getComingSoonPageContent = async (locale: string | undefined) => {
@@ -398,7 +400,7 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 export const getThankYouPageContent = async (locale: string | undefined) => {
@@ -478,7 +480,7 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 export const getFinalThankYouPageContent = async (
@@ -560,7 +562,7 @@ export const getFinalThankYouPageContent = async (
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 export const getPrivacyPolicyPageContent = async (
@@ -641,7 +643,7 @@ export const getPrivacyPolicyPageContent = async (
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 export const getCustom404PageContent = async (locale: string | undefined) => {
@@ -740,7 +742,7 @@ export const getCustom404PageContent = async (locale: string | undefined) => {
     },
   });
 
-  return response?.parsedBody?.data;
+  return response;
 };
 
 const getFormIdByLocale = (locale: string | undefined) => {
@@ -758,11 +760,11 @@ export const subscribeToNewsletter = async(locale: string | undefined, values: N
   const formId = getFormIdByLocale(locale);
   const response = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
 
-  return response?.parsedBody;
+  return response;
 };
 
 export const validateReCaptcha = async (token: string) => {
   const response = await post<RecaptchaResData>(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/recaptcha`, {token});
 
-  return response?.parsedBody;
+  return response;
 }
