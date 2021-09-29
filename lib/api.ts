@@ -10,16 +10,20 @@ import { RecaptchaResData } from "types/recaptcha-res-data";
 
 interface JSONResponse<T> extends Response {
   data?: T;
+  subscription?: T,
   errors?: Array<{ message: string }>
 }
 
 async function fetchAPI<T>(request: RequestInfo): Promise<T> {
   const response = await fetch(request);
-  const { data, errors }: JSONResponse<T> = await response.json();
+  const { data, errors, subscription }: JSONResponse<T> = await response.json();
 
   if(response.ok) {
     if (data) {
       return data;
+    }
+    else if (subscription) {
+      return subscription;
     } else {
       return Promise.reject(new Error(`No data`))
     }
