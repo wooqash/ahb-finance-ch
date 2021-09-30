@@ -14,4 +14,33 @@ module.exports = {
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
     },
+    // async rewrites() {
+    //   return [
+    //     {
+    //       source: '/pl/coming-soon',
+    //       destination: '/pl/strona-w-budowie',
+    //       locale: false
+    //     },
+    //     {
+    //       source: '/coming-soon',
+    //       destination: '/kommt-bald',
+    //       locale: false
+    //     },
+    //     {
+    //       source: '/en/coming-soon',
+    //       destination: '/en/coming-soon',
+    //       locale: false
+    //     },
+    //   ]
+    // },
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/coming-soon',
+          permanent: true,
+        },
+      ]
+    },
+    
 }

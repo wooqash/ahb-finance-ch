@@ -1,56 +1,49 @@
+import { ComingSoonPageData } from "types/coming-soon-page-data";
 import { LocalizationPageData } from "types/localization-page-data";
+import { ThankYouPageData } from "types/thank-you-page-data";
+import { FinalThankYouPageData } from "types/final-thank-you-page-data";
+import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
+import { Custom404PageData } from "types/custom-404-error-page-data";
+import { API_URL, CK_API_KEY, CK_API_URL, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
+import { NewsletterFormValues } from "types/newsletter-form-values";
+import { RecaptchaResData } from "types/recaptcha-res-data";
 
-const API_URL = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`;
-
-interface HttpResponse<T> extends Response {
-  parsedBody?: {data?: T, errors?: Array<{message:string}>};
+interface JSONResponse<T> extends Response {
+  data?: T;
+  subscription?: T,
+  errors?: Array<{ message: string }>
 }
 
-// async function fetchAPI2<T>(query, { variables } = {}): Promise<T> {
-//   const res = await fetch(API_URL, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       query,
-//       variables,
-//     }),
-//   });
+async function fetchAPI<T>(request: RequestInfo): Promise<T> {
+  const response = await fetch(request);
+  const { data, errors, subscription }: JSONResponse<T> = await response.json();
 
-//   const json = await res.json();
-//   if (json.errors) {
-//     throw new Error("Failed to fetch API");
-//   }
-
-//   return json.data;
-// }
-
-async function fetchAPI<T>(request: RequestInfo): Promise<HttpResponse<T>> {
-  const response: HttpResponse<T> = await fetch(request);
-  try {
-    // may error if there is no body
-    response.parsedBody = await response.json();
-  } catch (ex) {
-    throw new Error(ex);
+  if(response.ok) {
+    if (data) {
+      return data;
+    }
+    else if (subscription) {
+      return subscription;
+    } else {
+      return Promise.reject(new Error(`No data`))
+    }
+  } else {
+    // handle the graphql errors
+    const error = new Error(errors?.map(e => e.message).join('\n') ?? 'unknown error')
+    return Promise.reject(error);
   }
-
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return response;
 }
 
 export async function get<T>(
   path: string,
   args: RequestInit = { method: "get" }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
 export async function post<T>(
   path: string,
-  body: { query: string; variables: {} },
+  body: unknown,
   args: RequestInit = {
     method: "post",
     headers: {
@@ -58,7 +51,7 @@ export async function post<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
@@ -72,7 +65,7 @@ export async function put<T>(
     },
     body: JSON.stringify(body),
   }
-): Promise<HttpResponse<T>> {
+): Promise<T> {
   return await fetchAPI<T>(new Request(path, args));
 }
 
@@ -248,8 +241,10 @@ export async function put<T>(
 //   return data;
 // }
 
-export const getLocalizationPageContent = async (locale: string | undefined) => {
-  const data = await post<LocalizationPageData>(API_URL, {
+export const getLocalizationPageContent = async (
+  locale: string | undefined
+) => {
+  const response = await post<LocalizationPageData>(API_URL, {
     query: `
   query localizationPage($locale: String){
     localizationPage(locale: $locale) {
@@ -310,47 +305,470 @@ export const getLocalizationPageContent = async (locale: string | undefined) => 
     },
   });
 
-  return data?.parsedBody?.data;
+  return response;
 };
 
-// export const getGlobals = async (locale) => {
-//   const data = await fetchAPI(
-//     `
-//     query globals($locale: String){
-      // global(locale: $locale) {
-      //   favicon {
-      //     mime
-      //     url
-      //     width
-      //     height
-      //   }
-      //   siteName
-      //   defaultSeo {
-      //     metaTitle
-      //     metaDescription
-      //     metaKeywords
-      //     preventIndexing
-      //     ogImage {
-      //       url
-      //     }
-      //     cannonicalLink
-      //   }
-      //   logo {
-      //     alternativeText
-      //     name
-      //     url
-      //     width
-      //     height
-      //   }
-      // }
-//     }
-//     `,
-//     {
-//       variables: {
-//         locale: locale,
-//       },
-//     }
-//   );
-//   console.log(data);
-//   return data?.global;
-// };
+export const getComingSoonPageContent = async (locale: string | undefined) => {
+  const response = await post<ComingSoonPageData>(API_URL, {
+    query: `
+  query comingSoon($locale: String){
+  	comingSoon(locale: $locale){
+    	content
+    	openDialogButtonLabel
+    	seo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        cannonicalLink
+        ogImage {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    	dialog {
+        title
+        clause
+        confiramtionReminder
+        offerSummary
+        repeatConfirmationReminder
+      }
+  	}
+    global(locale: $locale) {
+      favicon {
+        mime
+        url
+        width
+        height
+      }
+      siteName
+      defaultSeo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        ogImage {
+          url
+        }
+        cannonicalLink
+      }
+      logo {
+        alternativeText
+        name
+        url
+        width
+        height
+      }
+      form {
+        nameLabel
+        emailLabel
+        subscribeButtonLabel
+        requiredFieldErrorMsg
+        fieldTooShortErrorMsg
+        fieldTooLongErrorMsg
+        invalidEmailFormatErrorMsg
+        namePlaceholderMsg
+        emailPlaceholderMsg
+        unhandledExeptionLabel
+      }
+      cookieInfo {
+        cookieBannerText
+        settingsTitle
+        settingsButtonLabel
+        acceptAllCookiesButtonLabel
+        acceptSelectedCookiesButtonLabel
+        acceptNecessaryCookiesButtonLabel
+        acceptButtonLabel
+        cookieLblSingle
+        cookieLblPlural
+        tabs {
+          id
+          label
+          description
+        }
+        groups {
+          id
+          groupName
+          title
+          description
+        }
+      }
+    }
+  }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return response;
+};
+
+export const getThankYouPageContent = async (locale: string | undefined) => {
+  const response = await post<ThankYouPageData>(API_URL, {
+    query: `
+    query thankYouPage($locale: String){
+      thankYouPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
+        },
+        backToMainPageButtonLabel
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return response;
+};
+
+export const getFinalThankYouPageContent = async (
+  locale: string | undefined
+) => {
+  const response = await post<FinalThankYouPageData>(API_URL, {
+    query: `
+    query finalThankYouPage($locale: String){
+      finalThankYouPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
+        },
+        backToMainPageButtonLabel
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return response;
+};
+
+export const getPrivacyPolicyPageContent = async (
+  locale: string | undefined
+) => {
+  const response = await post<PrivacyPolicyPageData>(API_URL, {
+    query: `
+    query privacyPolicyPage($locale: String){
+      privacyPolicyPage(locale: $locale){
+        content
+        seo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          cannonicalLink
+          ogImage {
+            alternativeText
+            name
+            url
+            width
+            height
+          }
+        }
+      }
+      global(locale: $locale) {
+        favicon {
+          mime
+          url
+          width
+          height
+        }
+        siteName
+        defaultSeo {
+          metaTitle
+          metaDescription
+          metaKeywords
+          preventIndexing
+          ogImage {
+            url
+          }
+          cannonicalLink
+        }
+        logo {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+        cookieInfo {
+          cookieBannerText
+          settingsTitle
+          settingsButtonLabel
+          acceptAllCookiesButtonLabel
+          acceptSelectedCookiesButtonLabel
+          acceptNecessaryCookiesButtonLabel
+          acceptButtonLabel
+          cookieLblSingle
+          cookieLblPlural
+          tabs {
+            id
+            label
+            description
+          }
+          groups {
+            id
+            groupName
+            title
+            description
+          }
+        }
+      }
+    }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return response;
+};
+
+export const getCustom404PageContent = async (locale: string | undefined) => {
+  const response = await post<Custom404PageData>(API_URL, {
+    query: `
+  query custom404Page($locale: String){
+  	custom404Page(locale: $locale){
+    	content
+    	openDialogButtonLabel
+    	seo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        cannonicalLink
+        ogImage {
+          alternativeText
+          name
+          url
+          width
+          height
+        }
+      }
+    	dialog {
+        title
+        clause
+        confiramtionReminder
+        offerSummary
+        repeatConfirmationReminder
+      }
+  	}
+    global(locale: $locale) {
+      favicon {
+        mime
+        url
+        width
+        height
+      }
+      siteName
+      defaultSeo {
+        metaTitle
+        metaDescription
+        metaKeywords
+        preventIndexing
+        ogImage {
+          url
+        }
+        cannonicalLink
+      }
+      logo {
+        alternativeText
+        name
+        url
+        width
+        height
+      }
+      form {
+        nameLabel
+        emailLabel
+        subscribeButtonLabel
+        requiredFieldErrorMsg
+        fieldTooShortErrorMsg
+        fieldTooLongErrorMsg
+        invalidEmailFormatErrorMsg
+        namePlaceholderMsg
+        emailPlaceholderMsg
+        unhandledExeptionLabel
+      }
+      cookieInfo {
+        cookieBannerText
+        settingsTitle
+        settingsButtonLabel
+        acceptAllCookiesButtonLabel
+        acceptSelectedCookiesButtonLabel
+        acceptNecessaryCookiesButtonLabel
+        acceptButtonLabel
+        cookieLblSingle
+        cookieLblPlural
+        tabs {
+          id
+          label
+          description
+        }
+        groups {
+          id
+          groupName
+          title
+          description
+        }
+      }
+    }
+  }
+  `,
+    variables: {
+      locale: locale,
+    },
+  });
+
+  return response;
+};
+
+const getFormIdByLocale = (locale: string | undefined) => {
+  switch(locale?.toLowerCase()) {
+    case 'pl':
+      return CK_PL_FORM_ID;
+    case 'en':
+      return CK_EN_FORM_ID;
+    default: 
+      return CK_DE_FORM_ID;
+  }
+}
+
+export const subscribeToNewsletter = async(locale: string | undefined, values: NewsletterFormValues) => {
+  const formId = getFormIdByLocale(locale);
+  const response = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
+
+  return response;
+};
+
+export const validateReCaptcha = async (token: string) => {
+  const response = await post<RecaptchaResData>(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/recaptcha`, {token});
+
+  return response;
+}

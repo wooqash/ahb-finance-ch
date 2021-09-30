@@ -1,28 +1,35 @@
+import { MouseEvent } from "react";
+import { getThankYouPageContent } from "@/lib/api";
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useRouter } from 'next/router';
+import { ThankYouPageData } from "types/thank-you-page-data";
+import ReactMarkdown from "react-markdown";
 import Container from "@/components/container";
 import LayoutShort from "@/components/layout-short";
 import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
-import { getLocalizationPageContent } from "@/lib/api";
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import { LocalizationPageData } from "types/localization-page-data";
-import LocalizationPageContent from '@/components/localization-page-content';
 import ShareButtons from "@/components/share-buttons";
+import Button from "@/components/button";
 
-type IndexProps = {
-  content: LocalizationPageData;
+type ThankYouProps = {
+  content: ThankYouPageData;
   preview: boolean | null;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const Index: React.FC<IndexProps> = ({ content, preview }) => {
-  const { mainText, chButton, ukButton, seo } = content?.localizationPage;
-  const { logo, siteName } = content?.global;
+const ThankYou: React.FC<ThankYouProps> = ({ content, preview, showCookiePolicy }) => {
+  const { seo } = content?.thankYouPage;
+  const mainContent = content?.thankYouPage?.content;
+  const { logo, siteName, backToMainPageButtonLabel } = content?.global;
   const metaTitle = seo?.metaTitle;
   const metaDescription = seo?.metaDescription;
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
+  const {locale} = useRouter();
+
   return (
     <>
-      <LayoutShort preview={preview} globalSettings={content?.global}>
+      <LayoutShort preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy}>
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
@@ -40,7 +47,10 @@ const Index: React.FC<IndexProps> = ({ content, preview }) => {
         <Container>
           <LangSwitcher />
           {mainLogo && <MainLogo logo={mainLogo} />}
-          {mainText && chButton && ukButton && <LocalizationPageContent text={mainText} buttons={[chButton, ukButton]} />}
+          <div className="mx-auto my-10 lg:max-w-4xl">
+            {mainContent && <ReactMarkdown>{mainContent}</ReactMarkdown>}
+            {backToMainPageButtonLabel && <a href={`/${locale}`}><Button className="my-4">{backToMainPageButtonLabel}</Button></a>}
+          </div>
           {/* <ShareButtons /> */}
         </Container>
       </LayoutShort>
@@ -50,7 +60,7 @@ const Index: React.FC<IndexProps> = ({ content, preview }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { preview = null, locale } = context;
-  const content = await getLocalizationPageContent(locale);
+  const content = await getThankYouPageContent(locale);
   if (!content) {
     throw new Error("No content");
   }
@@ -59,4 +69,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default Index;
+export default ThankYou;

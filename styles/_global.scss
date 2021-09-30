@@ -1,32 +1,18 @@
 html {
   font-size: $main-text-min-font-size;
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+  scrollbar-width: thin;
 }
 body {
-  align-items: center;
-  background-color: $background-color;
-  background-image: $bg-top-decor-img, $bg-bottom-decor-img, $bg-gradient-img;
-  background-position: left top, right bottom, center center;
-  background-repeat: no-repeat;
-  background-size: contain;
   color: $main-text-color;
-  display: flex;
   font-size: clamp(
     #{$main-text-min-font-size},
     4vw,
     #{$main-text-max-font-size}
   );
   font-weight: 400;
-  justify-content: center;
   line-height: 1.5;
   min-height: 100vh;
-
-  @media (min-width: 1024px) {
-    background-size: 80%;
-  }
-
-  @media (min-width: 1440px) {
-    background-size: contain;
-  }
 }
 
 @for $i from 1 through 6 {
@@ -46,6 +32,38 @@ body {
   }
 }
 
-blockquote, dl, dd, hr, figure, p, pre {
-  margin: 0.75rem;
+a:focus,
+button:focus,
+input:focus {
+  outline: 2px solid $third-light-color;
+  outline-offset: 2px;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $scrollbar-track-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-thumb-color;
+}
+
+.dialog__content {
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+  }
 }

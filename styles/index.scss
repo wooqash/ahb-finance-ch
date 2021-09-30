@@ -2,33 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-.grayscale {
-  filter: grayscale(1);
-}
+@layer utilities {
+    @variants responsive {
+      .modal--unfoldingIn {
+        transform:scaleY(.01) scaleX(0);
+        animation:unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+
+      .modal--unfoldingOut {
+        transform:scale(1);
+        animation:unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+
+      .modal-content--unfoldingIn {
+        transform:scale(0);
+        animation: zoomIn 1s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+
+      .modal-content--unfoldingOut {
+        animation: zoomOut 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+    }
+  }
 
 @import "reset";
 @import "vars";
 @import "global";
-
-// body {
-//   align-items: center;
-//   background-color: $background-color;
-//   background-image: $bg-top-decor-img, $bg-bottom-decor-img, $bg-gradient-img;
-//   background-position: left top, right bottom, center center;
-//   background-repeat: no-repeat;
-//   background-size: contain;
-//   color: $main-text-color;
-//   display: flex;
-//   font-size: clamp(100%, 10vw, #{$main-text-max-font-size});
-//   font-weight: 400;
-//   justify-content: center;
-//   min-height: 100vh;
-
-//   @media (min-width: 1024px) {
-//     background-size: 80%;
-//   }
-
-//   @media (min-width: 1440px) {
-//     background-size: contain;
-//   }
-// }

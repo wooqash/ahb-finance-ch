@@ -1,28 +1,33 @@
+import { MouseEvent } from "react";
+import { getPrivacyPolicyPageContent } from "@/lib/api";
+import { GetStaticProps } from "next";
+import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
+import ReactMarkdown from "react-markdown";
+import Head from "next/head";
 import Container from "@/components/container";
-import LayoutShort from "@/components/layout-short";
+import LayoutClean from "@/components/layout-clean";
 import LangSwitcher from "@/components/lang-switcher";
 import MainLogo from "@/components/main-logo";
-import { getLocalizationPageContent } from "@/lib/api";
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import { LocalizationPageData } from "types/localization-page-data";
-import LocalizationPageContent from '@/components/localization-page-content';
 import ShareButtons from "@/components/share-buttons";
+import rmStyles from '@/components/markdown-styles.module.scss';
 
-type IndexProps = {
-  content: LocalizationPageData;
+type PrivacyPolicyProps = {
+  content: PrivacyPolicyPageData;
   preview: boolean | null;
+  showCookiePolicy?: (e: MouseEvent<HTMLElement>) => void;
 };
 
-const Index: React.FC<IndexProps> = ({ content, preview }) => {
-  const { mainText, chButton, ukButton, seo } = content?.localizationPage;
+const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ content, preview, showCookiePolicy }) => {
+  const { seo } = content?.privacyPolicyPage;
+  const mainContent = content?.privacyPolicyPage?.content;
   const { logo, siteName } = content?.global;
   const metaTitle = seo?.metaTitle;
   const metaDescription = seo?.metaDescription;
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
+
   return (
     <>
-      <LayoutShort preview={preview} globalSettings={content?.global}>
+      <LayoutClean preview={preview} globalSettings={content?.global} showCookiePolicy={showCookiePolicy}>
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
@@ -40,17 +45,19 @@ const Index: React.FC<IndexProps> = ({ content, preview }) => {
         <Container>
           <LangSwitcher />
           {mainLogo && <MainLogo logo={mainLogo} />}
-          {mainText && chButton && ukButton && <LocalizationPageContent text={mainText} buttons={[chButton, ukButton]} />}
+          <div className="mx-auto my-10 lg:max-w-6xl text-left">
+            {mainContent && <ReactMarkdown className={`${rmStyles.markdown}`}>{mainContent}</ReactMarkdown>}
+          </div>
           {/* <ShareButtons /> */}
         </Container>
-      </LayoutShort>
+      </LayoutClean>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { preview = null, locale } = context;
-  const content = await getLocalizationPageContent(locale);
+  const content = await getPrivacyPolicyPageContent(locale);
   if (!content) {
     throw new Error("No content");
   }
@@ -59,4 +66,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default Index;
+export default PrivacyPolicy;
