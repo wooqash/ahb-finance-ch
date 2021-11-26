@@ -1,3 +1,5 @@
+import { ImageInfo } from "./image-info";
+
 export type Media = {
     name: string;
     alternativeText?: string;
@@ -6,4 +8,11 @@ export type Media = {
     height: number;
     mime: string;
     url: string;
+    formats: {
+        large: ImageInfo;
+        medium: ImageInfo;
+        small: ImageInfo;
+        thumbnail: ImageInfo;
+    };
+    hash: string;
 }

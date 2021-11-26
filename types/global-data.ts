@@ -6,7 +6,6 @@ import { NavbarData } from "./layout/navbar-data";
 import { FooterSectionData } from "./elements/footer-section-data";
 
 export type GlobalData = {
-  siteName: string;
   favicon?: Media;
   defaultSeo: SeoData;
   logo?: Media[];

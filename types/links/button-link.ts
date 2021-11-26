@@ -1,4 +1,4 @@
-import { ButtonType } from "types/button-type";
+import { ButtonType } from "types/button-type.enum";
 
 export type ButtonLink = {
     label: string;
