@@ -4,7 +4,7 @@ import { ThankYouPageData } from "types/thank-you-page-data";
 import { FinalThankYouPageData } from "types/final-thank-you-page-data";
 import { PrivacyPolicyPageData } from "types/privacy-policy-page-data";
 import { Custom404PageData } from "types/custom-404-error-page-data";
-import { API_URL, CK_API_KEY, CK_API_URL, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
+import { API_GRAPHQL_URL, CK_API_KEY, CK_DE_FORM_ID, CK_PL_FORM_ID, CK_EN_FORM_ID } from "@/lib/constants";
 import { NewsletterFormValues } from "types/newsletter-form-values";
 import { RecaptchaResData } from "types/recaptcha-res-data";
 
@@ -17,6 +17,7 @@ interface JSONResponse<T> extends Response {
 async function fetchAPI<T>(request: RequestInfo): Promise<T> {
   const response = await fetch(request);
   const { data, errors, subscription }: JSONResponse<T> = await response.json();
+  console.log(data);
 
   if(response.ok) {
     if (data) {
@@ -244,7 +245,7 @@ export async function put<T>(
 export const getLocalizationPageContent = async (
   locale: string | undefined
 ) => {
-  const response = await post<LocalizationPageData>(API_URL, {
+  const response = await post<LocalizationPageData>(API_GRAPHQL_URL, {
     query: `
   query localizationPage($locale: String){
     localizationPage(locale: $locale) {
@@ -309,7 +310,7 @@ export const getLocalizationPageContent = async (
 };
 
 export const getComingSoonPageContent = async (locale: string | undefined) => {
-  const response = await post<ComingSoonPageData>(API_URL, {
+  const response = await post<ComingSoonPageData>(API_GRAPHQL_URL, {
     query: `
   query comingSoon($locale: String){
   	comingSoon(locale: $locale){
@@ -408,7 +409,7 @@ export const getComingSoonPageContent = async (locale: string | undefined) => {
 };
 
 export const getThankYouPageContent = async (locale: string | undefined) => {
-  const response = await post<ThankYouPageData>(API_URL, {
+  const response = await post<ThankYouPageData>(API_GRAPHQL_URL, {
     query: `
     query thankYouPage($locale: String){
       thankYouPage(locale: $locale){
@@ -490,7 +491,7 @@ export const getThankYouPageContent = async (locale: string | undefined) => {
 export const getFinalThankYouPageContent = async (
   locale: string | undefined
 ) => {
-  const response = await post<FinalThankYouPageData>(API_URL, {
+  const response = await post<FinalThankYouPageData>(API_GRAPHQL_URL, {
     query: `
     query finalThankYouPage($locale: String){
       finalThankYouPage(locale: $locale){
@@ -572,7 +573,7 @@ export const getFinalThankYouPageContent = async (
 export const getPrivacyPolicyPageContent = async (
   locale: string | undefined
 ) => {
-  const response = await post<PrivacyPolicyPageData>(API_URL, {
+  const response = await post<PrivacyPolicyPageData>(API_GRAPHQL_URL, {
     query: `
     query privacyPolicyPage($locale: String){
       privacyPolicyPage(locale: $locale){
@@ -651,7 +652,7 @@ export const getPrivacyPolicyPageContent = async (
 };
 
 export const getCustom404PageContent = async (locale: string | undefined) => {
-  const response = await post<Custom404PageData>(API_URL, {
+  const response = await post<Custom404PageData>(API_GRAPHQL_URL, {
     query: `
   query custom404Page($locale: String){
   	custom404Page(locale: $locale){
@@ -762,13 +763,13 @@ const getFormIdByLocale = (locale: string | undefined) => {
 
 export const subscribeToNewsletter = async(locale: string | undefined, values: NewsletterFormValues) => {
   const formId = getFormIdByLocale(locale);
-  const response = await post(`${CK_API_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
+  const response = await post(`${CK_API_GRAPHQL_URL}forms/${formId}/subscribe`, {...values, api_key: CK_API_KEY});
 
   return response;
 };
 
 export const validateReCaptcha = async (token: string) => {
-  const response = await post<RecaptchaResData>(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/recaptcha`, {token});
+  const response = await post<RecaptchaResData>(`${process.env.NEXT_PUBLIC_STRAPI_API_GRAPHQL_URL}/recaptcha`, {token});
 
   return response;
 }
