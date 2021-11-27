@@ -69,86 +69,109 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
-          crossOrigin=""
-        />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="194x194"
-          href="/favicon/favicon-194x194.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/favicon/android-chrome-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
-          color="#104657"
-        />
-        <meta
-          name="apple-mobile-web-app-title"
-          content="AHB Finance Management"
-        />
-        <meta name="application-name" content="AHB Finance Management" />
-        <meta name="msapplication-TileColor" content="#104657" />
-        <meta
-          name="msapplication-TileImage"
-          content="/favicon/mstile-144x144.png"
-        />
-        <meta name="theme-color" content="#104657" />
-      </Head>
       <DefaultSeo
+        additionalLinkTags={[
+          {
+            rel: "preconnect",
+            href: "https://fonts.gstatic.com",
+            crossorigin: ""
+          },
+          {
+            rel: "preload",
+            as: "style",
+            href: "https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap"
+          },
+          {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500&display=swap",
+            crossorigin: ""
+          },
+          {
+            rel: "shortcut icon",
+            href: "/favicon/favicon.ico"
+          },
+          {
+            rel: "apple-touch-icon",
+            sizes: "180x180",
+            href: "/favicon/apple-touch-icon.png"
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "32x32",
+            href: "/favicon/favicon-32x32.png"
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "194x194",
+            href: "/favicon/favicon-194x194.png"
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "192x192",
+            href: "/favicon/android-chrome-192x192.png"
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "16x16",
+            href: "/favicon/favicon-16x16.png",
+          },
+          {
+            rel: "manifest",
+            href: "/favicon/site.webmanifest"
+          },
+          {
+            rel: "mask-icon",
+            href: "/favicon/safari-pinned-tab.svg",
+            color: "#104657"
+          }
+        ]}
         titleTemplate={`%s | ${defaultSeo.metaTitleSuffix}`}
         title={defaultSeo.metaTitle}
+        defaultTitle={defaultSeo.metaTitle}
         description={defaultSeo.metaDescription}
+        noindex={defaultSeo.preventIndexing}
+        nofollow={defaultSeo.preventFollowing}
         openGraph={{
           // images: ogImages,
           type: defaultSeo.openGraph?.type,
           url: defaultSeo.openGraph?.url,
           title: defaultSeo.openGraph?.title || defaultSeo.metaTitle,
           description: defaultSeo.openGraph?.description || defaultSeo.metaDescription,
-          images: ogImages
+          images: ogImages,
+          locale: defaultSeo.openGraph?.locale
         }}
+        facebook={{ appId: defaultSeo.openGraph?.fbAppId?.toString() || "" }}
         twitter={{
           cardType: defaultSeo.twitterCard?.card,
           handle: defaultSeo.twitterCard?.username,
         }}
+        additionalMetaTags={[
+          {
+            name: "apple-mobile-web-app-title",
+            content: defaultSeo.metaTitleSuffix || ''
+          },
+          {
+            name: "application-name",
+            content: defaultSeo.metaTitleSuffix || ''
+          },
+          {
+            name: "msapplication-TileColor",
+            content: "#104657"
+          },
+          {
+            name: "msapplication-TileImage",
+            content: "/favicon/mstile-144x144.png"
+          },
+          {
+            name: "theme-color",
+            content: "#104657"
+          }
+        ]}
+        
       />
       <Component {...pageProps} />
       {/* <Component showCookiePolicy={activateModal} {...pageProps} /> */}
