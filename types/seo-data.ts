@@ -8,6 +8,7 @@ export type SeoData = {
     metaDescription: string;
     metaKeywords?: string;
     preventIndexing: boolean;
+    preventFollowing: boolean;
     cannonicalLink?: string;
     shareImage?: Media;
     openGraph?: OpenGraphData;
