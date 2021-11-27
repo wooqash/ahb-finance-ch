@@ -101,7 +101,8 @@ export const getAllPages = async (locale: string | undefined) => {
   try {
     allPages = await get<PageData[]>(url);
   } catch (error) {
-    return Promise.reject(new Error(error));
+    const errorMsg = typeof error === 'string' ? error : undefined;
+    return Promise.reject(new Error(errorMsg));
   }
 
   return allPages.parsedBody;
@@ -118,7 +119,8 @@ export const getPageSlugs = async (page: PageData, preview: boolean | null) => {
         try {
             otherPage = await get<PageData[]>(url);
         } catch (error) {
-            return Promise.reject(new Error(error));
+            const errorMsg = typeof error === 'string' ? error : undefined;
+            return Promise.reject(new Error(errorMsg));
         }
 
         return otherPage.parsedBody;
@@ -141,7 +143,8 @@ export const getGlobalData = async (locale: string | undefined) => {
   try {
     global = await get<GlobalData>(url);
   } catch (error) {
-    return Promise.reject(new Error(error));
+    const errorMsg = typeof error === 'string' ? error : undefined;
+    return Promise.reject(new Error(errorMsg));
   }
 
   return global.parsedBody;
