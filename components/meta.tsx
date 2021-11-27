@@ -9,7 +9,7 @@ type MetaProps = {
 };
 
 const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
-  const { defaultSeo, siteName } = globalSettings;
+  const { defaultSeo, metaTitleSuffix } = globalSettings;
   const { metaTitle, metaDescription } = defaultSeo;
   const [pageUrl, setPageUrl] = useState('');
   const router = useRouter();
@@ -46,7 +46,7 @@ const Meta: React.FC<MetaProps> = ({ globalSettings }) => {
       />
 
       <title key={metaTitle}>
-        {metaTitle ? metaTitle + " | " + siteName : siteName}
+        {metaTitle ? metaTitle + " | " + metaTitleSuffix : metaTitleSuffix}
       </title>
       <meta name="description" content={metaDescription} />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />

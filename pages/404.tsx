@@ -31,7 +31,7 @@ type Custom404Props = {
 const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
   const { openDialogButtonLabel, seo, dialog } = content?.custom404Page;
   const mainContent = content?.custom404Page?.content;
-  const { logo, siteName, form } = content?.global;
+  const { logo, metaTitleSuffix, form } = content?.global;
   const metaTitle = seo?.metaTitle;
   const metaDescription = seo?.metaDescription;
   const mainLogo = logo && logo.length > 0 ? logo[0] : null;
@@ -74,7 +74,7 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
         <Head>
           {metaTitle && (
             <title key={metaTitle}>
-              {metaTitle ? metaTitle + " | " + siteName : siteName}
+              {metaTitle ? metaTitle + " | " + metaTitleSuffix : metaTitleSuffix}
             </title>
           )}
           {metaDescription && (
