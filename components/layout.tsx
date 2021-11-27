@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { ExtendedPageContextData } from 'types/page-context-data';
 import { SeoData } from 'types/seo-data';
 
-import Seo from "./seo";
+import Seo from "@/components/seo";
 
 type LayoutProps = {
     children?: ReactNode;
