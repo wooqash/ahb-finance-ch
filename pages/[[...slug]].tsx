@@ -42,7 +42,7 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   console.log(sections, seo, preview, global, pageContext);
 
   return (
-      <Layout pageContext={pageContext} seo={seo}></Layout>
+      <Layout pageContext={pageContext} seo={seo} global={global}></Layout>
   );
 };
 
