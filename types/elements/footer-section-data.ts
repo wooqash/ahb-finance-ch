@@ -1,6 +1,6 @@
-import { Link } from "types/links/link";
+import { LinkData } from "types/links/link-data";
 
 export type FooterSectionData = {
     title?: string;
-    links: Link[];
+    links: LinkData[];
 }

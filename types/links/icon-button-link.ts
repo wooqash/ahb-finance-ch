@@ -1,7 +1,7 @@
 import { Media } from "types/media";
-import { Link } from "./link";
+import { LinkData } from "./link-data";
 
 export type IconButtonLink = {
     icon: Media;
-    link: Link
+    link: LinkData;
 }
