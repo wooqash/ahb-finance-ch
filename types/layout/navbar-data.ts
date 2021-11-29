@@ -3,5 +3,5 @@ import { NavItemData } from "types/elements/nav-item-data";
 
 export type NavbarData = {
     logo?: LogoData;
-    menuItem: NavItemData[];
+    menuItems: NavItemData[];
 }
