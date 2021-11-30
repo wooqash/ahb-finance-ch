@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { NavbarData } from "types/layout/navbar-data";
 import { ExtendedPageContextData } from "types/page-context-data";
 import CustomLink from "@/components/links/custom-link";
+import MobileNavMenu from "./mobile-nav-menu";
 import LangSwitcher from "../lang-switcher";
+import { MdMenu } from "react-icons/md";
 
 type NavbarProps = {
   navbar: NavbarData;
@@ -11,6 +14,7 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ navbar, pageContext }) => {
   const router = useRouter();
+  const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false);
 
   return (
     <>
@@ -39,7 +43,16 @@ const Navbar: React.FC<NavbarProps> = ({ navbar, pageContext }) => {
             </li>
           ))}
         </ul>
-        <LangSwitcher />
+        {pageContext.localizedPaths && <LangSwitcher /> }
+        <button title="open menu" style={{ color: "#000" }} onClick={() => setMobileMenuIsShown(true)}>
+          <MdMenu />
+        </button>
+        {mobileMenuIsShown && (
+        <MobileNavMenu
+          navbar={navbar}
+          closeSelf={() => setMobileMenuIsShown(false)}
+        />
+      )}
       </nav>
     </>
   );
