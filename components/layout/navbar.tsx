@@ -5,6 +5,7 @@ import { ExtendedPageContextData } from "types/page-context-data";
 import CustomLink from "@/components/links/custom-link";
 import MobileNavMenu from "./mobile-nav-menu";
 import LangSwitcher from "../lang-switcher";
+import LocaleSwitch from "../locale-switch";
 import { MdMenu } from "react-icons/md";
 
 type NavbarProps = {
@@ -43,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbar, pageContext }) => {
             </li>
           ))}
         </ul>
-        {pageContext.localizedPaths && <LangSwitcher /> }
+        {pageContext.localizedPaths && <LocaleSwitch pageContext={pageContext} /> }
         <button title="open menu" style={{ color: "#000" }} onClick={() => setMobileMenuIsShown(true)}>
           <MdMenu />
         </button>
