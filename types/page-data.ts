@@ -1,3 +1,4 @@
+import { Localization } from "./page-context-data";
 import { PageStatus } from "./page-status.enum";
 import { SectionsData } from "./sections/sections-data";
 import { SeoData } from "./seo-data";
@@ -8,6 +9,6 @@ export type PageData = {
   slug?: string;
   locale: string;
   contentSections: SectionsData;
-  localizations: [{ locale: string }];
+  localizations: Localization[];
   status: PageStatus;
 };
