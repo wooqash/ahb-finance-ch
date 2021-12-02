@@ -1,15 +1,24 @@
-import { PageContextData } from 'types/page-context-data'
-// import { fetchAPI } from './api'
+import { ExtendedPageContextData } from 'types/page-context-data'
+import { getPageById } from './api';
 
-// export async function getLocalizedPage(targetLocale, pageContext) {
-//   const localization = pageContext.localizations.find(
-//     (localization) => localization.locale === targetLocale
-//   )
-//   const localePage = await fetchAPI(`/pages/${localization.id}`)
-//   return localePage
-// }
+export async function getLocalizedPage(targetLocale: string, pageContext: ExtendedPageContextData) {
+  if (!targetLocale || !pageContext) {
+    return null;
+  }
 
-export function localizePath(page: PageContextData) {
+  const localization = pageContext.localizations.find(
+    (localization) => localization.locale === targetLocale
+  )
+
+  if (!localization) {
+    return null;
+  }
+
+  const localePage = await getPageById(localization.id)
+  return localePage;
+}
+
+export function localizePath(page: ExtendedPageContextData) {
   const { locale, defaultLocale, slug } = page;
 
   if (locale === defaultLocale) {
@@ -21,7 +30,7 @@ export function localizePath(page: PageContextData) {
   return `/${locale}/${slug}`;
 }
 
-export function getLocalizedPaths(page: PageContextData) {
+export function getLocalizedPaths(page: ExtendedPageContextData) {
   if (!page || !page.locales) {
     return null;
   }
