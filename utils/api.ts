@@ -149,3 +149,21 @@ export const getGlobalData = async (locale: string | undefined) => {
 
   return global.parsedBody;
 };
+
+export const getPageById = async(id: number) => {
+  if (!id) {
+    return null;
+  }
+
+  const url =  `${API_URL}/pages/${id}`;
+
+  let page: HttpResponse<PageData>;
+  try {
+    page = await get<PageData>(url);
+  } catch (error) {
+    const errorMsg = typeof error === 'string' ? error : undefined;
+    return Promise.reject(new Error(errorMsg));
+  }
+
+  return page.parsedBody;
+}
