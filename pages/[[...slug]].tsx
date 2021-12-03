@@ -1,15 +1,17 @@
+import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from "next";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 
-import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from "next";
 import { ExtendedPageContextData, PageContextData } from "types/page-context-data";
-import { getPageData, getGlobalData, getAllPages, getPageSlugs } from "utils/api";
 import { getLocalizedPaths } from "utils/localize";
 import { SectionsData } from "types/sections/sections-data";
 import { SeoData } from "types/seo-data";
 import { GlobalData } from "types/global-data";
 import { LocalizedPathsData } from "types/localized-paths-data";
+import { getPageData, getGlobalData, getAllPages, getPageSlugs } from "utils/api";
+
 import Layout from "@/components/layout";
+import Seo from "@/components/seo";
 
 type DynamicPageData = {
   preview: boolean | null;
@@ -42,7 +44,9 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   console.log(sections, seo, preview, global, pageContext);
 
   return (
-      <Layout pageContext={pageContext} seo={seo} global={global}></Layout>
+      <Layout pageContext={pageContext} global={global}>
+        <Seo seo={seo} pageContext={pageContext} />
+      </Layout>
   );
 };
 
