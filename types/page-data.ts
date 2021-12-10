@@ -8,7 +8,8 @@ export type PageData = {
   seo: SeoData;
   slug?: string;
   locale: string;
-  contentSections: SectionsData;
+  contentSections: SectionsData[];
   localizations: Localization[];
   status: PageStatus;
 };
+

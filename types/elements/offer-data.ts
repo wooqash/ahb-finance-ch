@@ -1,6 +1,8 @@
-import { TileData } from "./tile-data";
+import { ButtonLink } from "types/links/button-link";
+import { ListItem } from "./list-item";
 
 export type OfferData = {
     groupName: string;
-    offer: TileData[];
+    offer: ListItem[];
+    moreBtn: ButtonLink;
 }
