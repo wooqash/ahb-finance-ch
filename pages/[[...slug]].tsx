@@ -12,10 +12,11 @@ import { getPageData, getGlobalData, getAllPages, getPageSlugs } from "utils/api
 
 import Layout from "@/components/layout";
 import Seo from "@/components/seo";
+import Sections from "@/components/sections";
 
 type DynamicPageData = {
   preview: boolean | null;
-  sections: SectionsData;
+  sections: SectionsData[];
   seo: SeoData;
   global: GlobalData;
   pageContext: ExtendedPageContextData;
@@ -41,11 +42,14 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   }
   
 
-  console.log(sections, seo, preview, global, pageContext);
+  // console.log(sections, seo, preview, global, pageContext);
+
+  
 
   return (
       <Layout pageContext={pageContext} global={global}>
         <Seo seo={seo} pageContext={pageContext} />
+        <Sections sections={sections} preview={preview} />
       </Layout>
   );
 };
@@ -76,8 +80,6 @@ export const getStaticPaths: GetStaticPaths = async (
       locale: page?.locale,
     };
   });
-
-  console.log(paths);
 
   return { paths, fallback: true };
 
