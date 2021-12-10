@@ -5,7 +5,6 @@ import { PartnerItem } from "types/elements/partner-item";
 import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLink } from "types/links/button-link";
-import { IconButtonLink } from "types/links/icon-button-link";
 import { SectionType } from "./section-type.enum";
 
 export type SectionData = {

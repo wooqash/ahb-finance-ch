@@ -41,10 +41,7 @@ const DynamicPage: React.FC<DynamicPageData> = ({
     return <div className="container">Loading...</div>;
   }
   
-
   // console.log(sections, seo, preview, global, pageContext);
-
-  
 
   return (
       <Layout pageContext={pageContext} global={global}>

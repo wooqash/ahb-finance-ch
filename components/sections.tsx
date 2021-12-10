@@ -6,6 +6,7 @@ import FaqGroup from "./sections/faq-group";
 import Hero from "./sections/hero";
 import OffersGroup from "./sections/offers-group";
 import Partners from "./sections/partners";
+import PublicationsGroup from "./sections/publications-group";
 import RichTextWithCta from "./sections/rich-text-with-cta";
 import TestimonialsGroup from "./sections/testimonials-group";
 
@@ -16,7 +17,6 @@ type SectionsProps = {
 
 type SectionProps = {
   sectionData: SectionsData;
-//   children: React.ReactChild;
 };
 
 // Display a section individually
@@ -29,7 +29,7 @@ const Section: React.FC<SectionProps> =  (prop) => {
     case SectionType.FAQS:
       return <FaqGroup data={sectionData} />;
     case SectionType.HERO:
-      return (<Hero data={sectionData} />);
+      return <Hero data={sectionData} />;
     case SectionType.OFFERS:
       return <OffersGroup data={sectionData} />;
     case SectionType.PARTNERS:
@@ -38,6 +38,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <RichTextWithCta data={sectionData} />;
     case SectionType.TESTIMONIALS:
       return <TestimonialsGroup data={sectionData} />;
+    case SectionType.PUBLICATIONS:
+      return <PublicationsGroup data={sectionData} />
     default:
       let x: never = sectionData;
       return <></>;
