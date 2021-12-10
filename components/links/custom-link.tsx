@@ -10,8 +10,6 @@ type CustomLinkProps = {
 const CustomLink: React.FC<CustomLinkProps> = ({ link, children }) => {
   const isInternalLink = link.url.startsWith("/");
 
-  console.log(isInternalLink);
-
   // For internal links, use the Next.js Link component
   if (isInternalLink) {
     return (
