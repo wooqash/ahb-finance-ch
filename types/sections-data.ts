@@ -1,65 +1,76 @@
+
 import { AdvantageData } from "types/elements/advantage-data";
 import { FaqItemData } from "types/elements/faq-item-data";
 import { OfferData } from "types/elements/offer-data";
 import { PartnerItem } from "types/elements/partner-item";
 import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
-import { ButtonLink } from "types/links/button-link";
-import { SectionType } from "./section-type.enum";
+import { ButtonLinkData } from "types/buttons-data";
 
-export type SectionData = {
+export enum SectionType {
+    HERO = "HERO",
+    ADVANTAGES = "ADVANTAGESGROUP",
+    FAQS = "FAQGROUP",
+    OFFERS = "OFFERSGROUP",
+    PARTNERS = "PARTNERS",
+    RICHTEXTWITHCTA = "RICHTEXTWITHCTA",
+    TESTIMONIALS = "TESTIMONIALSGROUP",
+    PUBLICATIONS = "PUBLICATIONSGROUP"
+}
+
+export interface SectionData {
     __component: string,
     id: number | string,
 }
 
-export type AdvantagesGroupData =  {
+export interface AdvantagesGroupData extends SectionData{
     type: SectionType.ADVANTAGES,
     title: string,
     advantages: AdvantageData[],
-} & SectionData;
+};
 
-export type FaqGroupData = {
+export interface FaqGroupData extends SectionData{
     type: SectionType.FAQS,
     questionAndAnswer: FaqItemData[],
     title?: string,
-    moreBtn?: ButtonLink,
-} & SectionData;
+    moreBtn?: ButtonLinkData,
+};
 
-export type HeroData = {
+export interface HeroData extends SectionData{
     type: SectionType.HERO,
     title: string,
-    cta?: ButtonLink[],
-} & SectionData;
+    cta?: ButtonLinkData[],
+};
 
-export type OffersGroupData = {
+export interface OffersGroupData extends SectionData{
     type: SectionType.OFFERS,
     title?: string,
     offerGroups: OfferData[],
-} & SectionData;
+};
 
-export type PartnersData = {
+export interface PartnersData extends SectionData{
     type: SectionType.PARTNERS,
     title?: string,
     partners: PartnerItem[],
-} & SectionData;
+};
 
-export type RichtextWithCtaData = {
+export interface RichtextWithCtaData extends SectionData{
     type: SectionType.RICHTEXTWITHCTA,
     title?: string,
     content: string,
-    cta: ButtonLink,
-} & SectionData;
+    cta: ButtonLinkData,
+};
 
-export type TestimonialsGroupData = {
+export interface TestimonialsGroupData extends SectionData{
     type: SectionType.TESTIMONIALS,
     title?: string,
     testimonials: TileData[],
-} & SectionData;
+};
 
-export type PublicationsGroupData = {
+export interface PublicationsGroupData extends SectionData{
     type: SectionType.PUBLICATIONS,
     title?: string,
     publications: PublicationItem[],
-} & SectionData;
+};
 
 export type SectionsData = AdvantagesGroupData | FaqGroupData | HeroData | OffersGroupData | PartnersData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;

@@ -1,4 +1,4 @@
-import { SectionsData } from "types/sections/sections-data";
+import { SectionsData } from "types/sections-data";
 
 type OffersGroupProps = {
     data: SectionsData;

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { ExtendedPageContextData, PageContextData } from "types/page-context-data";
 import { getLocalizedPaths } from "utils/localize";
-import { SectionsData } from "types/sections/sections-data";
+import { SectionsData } from "types/sections-data";
 import { SeoData } from "types/seo-data";
 import { GlobalData } from "types/global-data";
 import { LocalizedPathsData } from "types/localized-paths-data";

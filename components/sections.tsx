@@ -1,6 +1,5 @@
-import { SectionType } from "types/sections/section-type.enum";
-import { SectionsData } from "types/sections/sections-data";
 
+import { SectionsData, SectionType } from "types/sections-data";
 import AdvantagesGroup from "./sections/advantages-group";
 import FaqGroup from "./sections/faq-group";
 import Hero from "./sections/hero";

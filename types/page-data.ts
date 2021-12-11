@@ -1,6 +1,6 @@
 import { Localization } from "./page-context-data";
 import { PageStatus } from "./page-status.enum";
-import { SectionsData } from "./sections/sections-data";
+import { SectionsData } from "./sections-data";
 import { SeoData } from "./seo-data";
 
 export type PageData = {
@@ -12,4 +12,5 @@ export type PageData = {
   localizations: Localization[];
   status: PageStatus;
 };
+
 
