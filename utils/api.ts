@@ -1,5 +1,6 @@
 import { API_URL } from "@/lib/constants";
 import { ParsedUrlQuery } from "querystring";
+import { AdvantageData } from "types/elements/advantage-data";
 import { GlobalData } from "types/global-data";
 import { PageData } from "types/page-data";
 
