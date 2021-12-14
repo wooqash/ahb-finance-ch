@@ -1,8 +1,10 @@
-import { ButtonLink } from "types/links/button-link";
+
+import { ButtonLinkData } from "types/buttons-data";
 import { ListItem } from "./list-item";
 
-export type OfferData = {
+export interface OfferData {
+    id: number | string;
     groupName: string;
     offer: ListItem[];
-    moreBtn: ButtonLink;
+    moreBtn: ButtonLinkData;
 }
