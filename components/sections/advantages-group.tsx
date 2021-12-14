@@ -10,12 +10,12 @@ type AdvantagesGroupProps = {
 const AdvantagesGroup:React.FC<AdvantagesGroupProps> = (props) => {
     const { data } = props;
     return (
-        <div>
+        <section>
             <h2>{data.title}</h2>
             {data.advantages.map((advantage)=> {
                 return <Advantage advantage={advantage} key={advantage.id} />
             })}
-        </div>
+        </section>
     );
 }
  

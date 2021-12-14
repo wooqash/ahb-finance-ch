@@ -58,7 +58,7 @@ export interface RichtextWithCtaData extends SectionData{
     type: SectionType.RICHTEXTWITHCTA,
     title?: string,
     content: string,
-    cta: ButtonLinkData,
+    cta: ButtonLinkData[],
 };
 
 export interface TestimonialsGroupData extends SectionData{
