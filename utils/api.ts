@@ -1,5 +1,6 @@
 import { API_URL } from "@/lib/constants";
 import { ParsedUrlQuery } from "querystring";
+import { ArticleData } from "types/blog-data";
 import { AdvantageData } from "types/elements/advantage-data";
 import { GlobalData } from "types/global-data";
 import { PageData } from "types/page-data";
@@ -87,7 +88,21 @@ export const getPageData = async (
   // Make sure we found something, otherwise return null
   if (pagesData.parsedBody && pagesData.parsedBody.length > 0) {
     // Return the first item since there should only be one result per slug
-    return pagesData.parsedBody[0];
+    const page = pagesData.parsedBody[0];
+
+    // const sections = page.contentSections.map((section) => {
+    //   switch (section.type) {
+    //     case "ADVANTAGESGROUP":
+    //       return section as AdvantageData;
+    //     case "HERO":
+    //       return section as HeroData;
+    //     default:
+    //       let x:never = section;
+    //       return x;
+    //   }
+    // })
+
+    return page;
   }
 
   return null
@@ -168,3 +183,21 @@ export const getPageById = async(id: number) => {
 
   return page.parsedBody;
 }
+
+export const getAllArticles = async(locale: string | undefined) => {
+  if (!locale) {
+    return null;
+  }
+  const url = `${API_URL}/articles?_locale=${locale}&status=published`;
+
+  let allArticles: HttpResponse<ArticleData[]>;
+  try {
+    allArticles = await get<ArticleData[]>(url);
+  } catch (error) {
+    const errorMsg = typeof error === 'string' ? error : undefined;
+    return Promise.reject(new Error(errorMsg));
+  }
+
+  return allArticles.parsedBody;
+};
+
