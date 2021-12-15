@@ -1,5 +1,5 @@
 import { AdvantageData } from "types/elements/advantage-data";
-import NextImage from "./image";
+import CustomImage from "./custom-image";
 
 type AdvantageProps = {
     advantage: AdvantageData;
@@ -12,7 +12,7 @@ const Advantage:React.FC<AdvantageProps> = (props) => {
     return (
         <div>
             <h3>{title}</h3>
-            {icon &&<NextImage media={icon} />}
+            {icon &&<CustomImage media={icon} />}
             <p>{description}</p>
         </div>
     );

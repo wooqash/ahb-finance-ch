@@ -2,13 +2,13 @@ import { Media } from "types/media";
 import { getStrapiMedia } from "utils/media";
 import Image, { ImageLoaderProps } from "next/image";
 
-type NextImageProps = {
+type CustomImageProps = {
   media: Pick<Media, "url" | "width" | "height" | "alternativeText">;
   layout?: "intrinsic" | "fixed" | "fill" | "responsive" | undefined;
   isBgImage?: boolean; 
 };
 
-const NextImage: React.FC<NextImageProps> = (props) => {
+const CustomImage: React.FC<CustomImageProps> = (props) => {
   const { media, layout = "intrinsic", isBgImage } = props;
   const { url, alternativeText, width, height } = media;
 
@@ -43,4 +43,4 @@ const NextImage: React.FC<NextImageProps> = (props) => {
   );
 };
 
-export default NextImage;
+export default CustomImage;
