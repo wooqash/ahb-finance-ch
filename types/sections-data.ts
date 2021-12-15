@@ -6,6 +6,7 @@ import { PartnerItem } from "types/elements/partner-item";
 import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLinkData } from "types/buttons-data";
+import { ArticleData } from "./blog-data";
 
 export enum SectionType {
     HERO = "HERO",
@@ -15,18 +16,24 @@ export enum SectionType {
     PARTNERS = "PARTNERS",
     RICHTEXTWITHCTA = "RICHTEXTWITHCTA",
     TESTIMONIALS = "TESTIMONIALSGROUP",
-    PUBLICATIONS = "PUBLICATIONSGROUP"
+    PUBLICATIONS = "PUBLICATIONSGROUP",
+    BLOG ="BLOG"
 }
 
 export interface SectionData {
     __component: string,
     id: number | string,
 }
-
 export interface AdvantagesGroupData extends SectionData{
     type: SectionType.ADVANTAGES,
     title: string,
     advantages: AdvantageData[],
+};
+
+export interface BlogData extends SectionData{
+    type: SectionType.BLOG,
+    title: string,
+    moreBtn?: ButtonLinkData,
 };
 
 export interface FaqGroupData extends SectionData{
@@ -73,4 +80,4 @@ export interface PublicationsGroupData extends SectionData{
     publications: PublicationItem[],
 };
 
-export type SectionsData = AdvantagesGroupData | FaqGroupData | HeroData | OffersGroupData | PartnersData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;
+export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;

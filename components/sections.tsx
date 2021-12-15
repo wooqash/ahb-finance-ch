@@ -1,6 +1,8 @@
 
+import { ArticleData } from "types/blog-data";
 import { SectionsData, SectionType } from "types/sections-data";
 import AdvantagesGroup from "./sections/advantages-group";
+import Blog from "./sections/blog";
 import FaqGroup from "./sections/faq-group";
 import Hero from "./sections/hero";
 import OffersGroup from "./sections/offers-group";
@@ -11,20 +13,24 @@ import TestimonialsGroup from "./sections/testimonials-group";
 
 type SectionsProps = {
   sections: SectionsData[];
+  articles?: ArticleData[];
   preview: boolean | null;
 };
 
 type SectionProps = {
   sectionData: SectionsData;
+  articles?: ArticleData[];
 };
 
 // Display a section individually
 const Section: React.FC<SectionProps> =  (prop) => {
-  const { sectionData } = prop;
+  const { sectionData, articles } = prop;
 
   switch (sectionData.type) {
     case SectionType.ADVANTAGES:
       return <AdvantagesGroup data={sectionData} />;
+    case SectionType.BLOG:
+      return <Blog data={sectionData} articles={articles} />;
     case SectionType.FAQS:
       return <FaqGroup data={sectionData} />;
     case SectionType.HERO:
@@ -46,12 +52,14 @@ const Section: React.FC<SectionProps> =  (prop) => {
 };
 
 const Sections: React.FC<SectionsProps> = (props) => {
-  const { sections, preview } = props;
+  const { sections, articles, preview } = props;
+
   return (
     <>
       {sections.map((section) => (
         <Section
           sectionData={section}
+          articles={articles}
           key={`${section.__component}${section.id}`}
         />
       ))}

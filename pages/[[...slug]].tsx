@@ -8,16 +8,18 @@ import { SectionsData } from "types/sections-data";
 import { SeoData } from "types/seo-data";
 import { GlobalData } from "types/global-data";
 import { LocalizedPathsData } from "types/localized-paths-data";
-import { getPageData, getGlobalData, getAllPages, getPageSlugs } from "utils/api";
+import { getPageData, getGlobalData, getAllPages, getPageSlugs, getAllArticles } from "utils/api";
 
 import Layout from "@/components/layout";
 import Seo from "@/components/seo";
 import Sections from "@/components/sections";
+import { ArticleData } from "types/blog-data";
 
 type DynamicPageData = {
   preview: boolean | null;
   sections: SectionsData[];
   seo: SeoData;
+  articles: ArticleData[];
   global: GlobalData;
   pageContext: ExtendedPageContextData;
 };
@@ -25,6 +27,7 @@ type DynamicPageData = {
 const DynamicPage: React.FC<DynamicPageData> = ({
   sections,
   seo,
+  articles,
   preview,
   global,
   pageContext,
@@ -40,13 +43,15 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   if (router.isFallback) {
     return <div className="container">Loading...</div>;
   }
+
+  // console.log(articles);
   
   // console.log(sections, seo, preview, global, pageContext);
 
   return (
       <Layout pageContext={pageContext} global={global}>
         <Seo seo={seo} pageContext={pageContext} />
-        <Sections sections={sections} preview={preview} />
+        <Sections sections={sections} preview={preview} articles={articles} />
       </Layout>
   );
 };
@@ -102,6 +107,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const otherLocalizationPages = await getPageSlugs(pageData, preview);
 
+  const articles = await getAllArticles(locale);
+
   const slugs = otherLocalizationPages.map((page) => {
       return {
           locale: page?.locale,
@@ -123,8 +130,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       preview,
-      sections: contentSections,
       seo,
+      sections: contentSections,
+      articles,
       global: globalLocale,
       pageContext: {
         ...pageContext,
