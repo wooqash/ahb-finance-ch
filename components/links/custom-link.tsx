@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ButtonLinkData, LinkData } from "types/buttons-data";
+import VisuallyHidden from "../elements/visually-hidden";
 
 type CustomLinkProps = {
   link: LinkData | ButtonLinkData;
@@ -26,7 +27,8 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
     return (
       <a href={link.url} target="_blank" rel="noopener noreferrer" {...roleAttribute} className="inline-block">
         {children}
-        {link.ariaNewTabLabel && <span className="sr-only">({link.ariaNewTabLabel})</span>}
+        {/* {link.ariaNewTabLabel && <span className="sr-only">({link.ariaNewTabLabel})</span>} */}
+        <VisuallyHidden label={link.ariaNewTabLabel} />
       </a>
     );
   }
