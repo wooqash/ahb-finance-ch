@@ -6,7 +6,7 @@ import Blog from "./sections/blog";
 import FaqGroup from "./sections/faq-group";
 import Hero from "./sections/hero";
 import OffersGroup from "./sections/offers-group";
-import Partners from "./sections/partners";
+import PartnersGroup from "./sections/partners-group";
 import PublicationsGroup from "./sections/publications-group";
 import RichTextWithCta from "./sections/rich-text-with-cta";
 import TestimonialsGroup from "./sections/testimonials-group";
@@ -38,7 +38,7 @@ const Section: React.FC<SectionProps> =  (prop) => {
     case SectionType.OFFERS:
       return <OffersGroup data={sectionData} />;
     case SectionType.PARTNERS:
-      return <Partners data={sectionData} />;
+      return <PartnersGroup data={sectionData} />;
     case SectionType.RICHTEXTWITHCTA:
       return <RichTextWithCta data={sectionData} />;
     case SectionType.TESTIMONIALS:

@@ -2,7 +2,7 @@
 import { AdvantageData } from "types/elements/advantage-data";
 import { FaqItemData } from "types/elements/faq-item-data";
 import { OfferData } from "types/elements/offer-data";
-import { PartnerItem } from "types/elements/partner-item";
+import { PartnerItemData } from "types/elements/partner-item-data";
 import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLinkData } from "types/buttons-data";
@@ -55,10 +55,10 @@ export interface OffersGroupData extends SectionData{
     offerGroups: OfferData[],
 };
 
-export interface PartnersData extends SectionData{
+export interface PartnersGroupData extends SectionData{
     type: SectionType.PARTNERS,
     title?: string,
-    partners: PartnerItem[],
+    partners: PartnerItemData[],
 };
 
 export interface RichtextWithCtaData extends SectionData{
@@ -80,4 +80,4 @@ export interface PublicationsGroupData extends SectionData{
     publications: PublicationItem[],
 };
 
-export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;
+export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;

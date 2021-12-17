@@ -1,7 +1,9 @@
-import { LinkData } from "types/links/link-data";
+
+import { LinkData } from "types/buttons-data";
 import { Media } from "types/media";
 
-export type PartnerItem = {
+export type PartnerItemData = {
+    id: number | string;
     partnerName: string;
     companyName: string;
     descritpion: string;
