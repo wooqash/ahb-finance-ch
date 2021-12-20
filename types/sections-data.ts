@@ -2,7 +2,7 @@
 import { AdvantageData } from "types/elements/advantage-data";
 import { FaqItemData } from "types/elements/faq-item-data";
 import { OfferData } from "types/elements/offer-data";
-import { PartnerItemData } from "types/elements/partner-item-data";
+import { CollabolatorItemData } from "types/elements/collabolator-item-data";
 import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLinkData } from "types/buttons-data";
@@ -13,7 +13,7 @@ export enum SectionType {
     ADVANTAGES = "ADVANTAGESGROUP",
     FAQS = "FAQGROUP",
     OFFERS = "OFFERSGROUP",
-    PARTNERS = "PARTNERS",
+    COLLABOLATORS = "COLLABOLATORSGROUP",
     RICHTEXTWITHCTA = "RICHTEXTWITHCTA",
     TESTIMONIALS = "TESTIMONIALSGROUP",
     PUBLICATIONS = "PUBLICATIONSGROUP",
@@ -55,10 +55,10 @@ export interface OffersGroupData extends SectionData{
     offerGroups: OfferData[],
 };
 
-export interface PartnersGroupData extends SectionData{
-    type: SectionType.PARTNERS,
+export interface CollabolatorsGroupData extends SectionData{
+    type: SectionType.COLLABOLATORS,
     title?: string,
-    partners: PartnerItemData[],
+    collabolators: CollabolatorItemData[],
 };
 
 export interface RichtextWithCtaData extends SectionData{
