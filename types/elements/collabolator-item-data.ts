@@ -5,7 +5,7 @@ import { Media } from "types/media";
 export type CollabolatorItemData = {
     id: number | string;
     collabName: string;
-    collabDescritpion: string;
+    collabDesc: string;
     collabCompanyName?: string;
     collabCompanyUrl?: LinkData;
     collabImage?: Media;

@@ -3,7 +3,7 @@ import { AdvantageData } from "types/elements/advantage-data";
 import { FaqItemData } from "types/elements/faq-item-data";
 import { OfferData } from "types/elements/offer-data";
 import { CollabolatorItemData } from "types/elements/collabolator-item-data";
-import { PublicationItem } from "types/elements/publication-item";
+import { PublicationItemData } from "types/elements/publication-item-data";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLinkData } from "types/buttons-data";
 import { ArticleData } from "./blog-data";
@@ -79,7 +79,7 @@ export interface TestimonialsGroupData extends SectionData{
 export interface PublicationsGroupData extends SectionData{
     type: SectionType.PUBLICATIONS,
     title?: string,
-    publications: PublicationItem[],
+    publications: PublicationItemData[],
 };
 
 export interface NewsletterForm extends SectionData {

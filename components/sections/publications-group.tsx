@@ -1,15 +1,19 @@
-import { SectionsData } from "types/sections-data";
+import { PublicationsGroupData } from "types/sections-data";
+import Publication from "../elements/publication";
 
 type PublicationsGroupProps = {
-    data: SectionsData,
+    data: PublicationsGroupData,
 }
  
 const PublicationsGroup:React.FC<PublicationsGroupProps> = (props) => {
     const { data } = props;
     return (
-        <div>
-            PublicationsGroup
-        </div>
+        <section>
+           <h2>{data.title}</h2>
+           {data.publications.map((publication)=>{
+               return <Publication data={publication} key={publication.id} />
+           })}
+        </section>
     );
 }
  
