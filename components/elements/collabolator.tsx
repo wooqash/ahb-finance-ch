@@ -8,14 +8,15 @@ type CollabolatorProps = {
  
 const Collabolator:React.FC<CollabolatorProps> = (props) => {
     const { data } = props;
-    const { collabDescritpion, collabName, collabCompanyName, collabImage, collabCompanyUrl, collabCompanyLogo } = data;
+    const { collabDesc, collabName, collabCompanyName, collabImage, collabCompanyUrl, collabCompanyLogo } = data;
+
     return (
         <div>
             <div>
                 {collabImage && <CustomImage media={collabImage} />}
             </div>
             <div>
-                {collabDescritpion}
+                {collabDesc}
             </div>
             <div>
                 <span>{collabName}</span>

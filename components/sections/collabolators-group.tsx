@@ -11,7 +11,7 @@ const CollabolatorsGroup:React.FC<CollabolatorsGroupProps> = (props) => {
         <section>
            <h2>{data.title}</h2>
            {data.collabolators.map((collabolator)=>{
-               <Collabolator data={collabolator} key={collabolator.id} />
+               return <Collabolator data={collabolator} key={collabolator.id} />
            })}
         </section>
     );
