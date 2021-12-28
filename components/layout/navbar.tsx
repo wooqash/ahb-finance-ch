@@ -7,9 +7,11 @@ import MobileNavMenu from "./mobile-nav-menu";
 import LangSwitcher from "../lang-switcher";
 import LocaleSwitch from "../locale-switch";
 import { MdMenu } from "react-icons/md";
+import { SocialMediaLinksData } from "types/social-media-links-data";
 
 type NavbarProps = {
   navbar: NavbarData;
+  socialMedia?: SocialMediaLinksData;
   pageContext: ExtendedPageContextData;
 };
 

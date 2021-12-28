@@ -3,7 +3,8 @@ import { SeoData } from "./seo-data";
 import { FormsData } from './forms-data';
 import { CookieInfoData } from './cookie-info-data';
 import { NavbarData } from "./layout/navbar-data";
-import { FooterSectionData } from "./elements/footer-section-data";
+import { FooterData } from "./layout/footer-data";
+import { SocialMediaLinksData } from "./social-media-links-data";
 
 export type GlobalData = {
   metaTitle: string;
@@ -14,5 +15,6 @@ export type GlobalData = {
   cookieInfo: CookieInfoData;
   backToMainPageButtonLabel: string;
   mainNav: NavbarData;
-  footerMenu: FooterSectionData;
+  footer: FooterData;
+  socialMediaLinks?: SocialMediaLinksData;
 };
