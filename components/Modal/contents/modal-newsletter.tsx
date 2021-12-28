@@ -1,6 +1,5 @@
 import ReactMarkdown from "react-markdown";
 
-import { NewsletterSubscribeDialogData } from "types/newsletter-subscribe-dialog-data";
 import { Media } from "types/media";
 import { FormsData } from "types/forms-data";
 
@@ -8,9 +7,10 @@ import MainLogo from "@/components/main-logo";
 import NewsletterForm from "@/components/newsletter-form";
 
 import rmStyles from '@/components/markdown-styles.module.scss';
+import { NewsletterModalInfoData } from "types/newsletter-modal-info-data";
 
 type ModalNewsletterProps = {
-    content: NewsletterSubscribeDialogData;
+    content: NewsletterModalInfoData;
     form?: FormsData;
     logo?: Media | null;
     onLoading: (isLoding: boolean) => void;

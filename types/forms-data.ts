@@ -1,5 +1,4 @@
-
-export type FormsData = {
+export interface FormsData {
     nameLabel: string;
     emailLabel: string;
     subscribeButtonLabel: string;

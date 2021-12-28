@@ -10,21 +10,26 @@ import CollabolatorsGroup from "./sections/collabolators-group";
 import PublicationsGroup from "./sections/publications-group";
 import RichTextWithCta from "./sections/rich-text-with-cta";
 import TestimonialsGroup from "./sections/testimonials-group";
+import NewsletterFrom from "./sections/newsletter-form";
+import { FormsData } from "types/forms-data";
 
 type SectionsProps = {
   sections: SectionsData[];
   articles?: ArticleData[];
+  form?: FormsData;
   preview: boolean | null;
 };
 
 type SectionProps = {
   sectionData: SectionsData;
   articles?: ArticleData[];
+  form?: FormsData;
 };
 
 // Display a section individually
 const Section: React.FC<SectionProps> =  (prop) => {
-  const { sectionData, articles } = prop;
+  const { sectionData, articles, form } = prop;
+  console.log(form);
 
   switch (sectionData.type) {
     case SectionType.ADVANTAGES:
@@ -45,6 +50,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <TestimonialsGroup data={sectionData} />;
     case SectionType.PUBLICATIONS:
       return <PublicationsGroup data={sectionData} />
+    case SectionType.NEWSLETTER:
+      return form ? <NewsletterFrom data={sectionData} form={form} /> : <></>
     default:
       let x: never = sectionData;
       return <></>;
@@ -52,7 +59,7 @@ const Section: React.FC<SectionProps> =  (prop) => {
 };
 
 const Sections: React.FC<SectionsProps> = (props) => {
-  const { sections, articles, preview } = props;
+  const { sections, articles, form, preview } = props;
 
   return (
     <>
@@ -60,6 +67,7 @@ const Sections: React.FC<SectionsProps> = (props) => {
         <Section
           sectionData={section}
           articles={articles}
+          form={form}
           key={`${section.__component}${section.id}`}
         />
       ))}

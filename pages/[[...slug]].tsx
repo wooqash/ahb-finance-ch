@@ -44,14 +44,14 @@ const DynamicPage: React.FC<DynamicPageData> = ({
     return <div className="container">Loading...</div>;
   }
 
-  // console.log(articles);
+  console.log(global);
   
   // console.log(sections, seo, preview, global, pageContext);
 
   return (
       <Layout pageContext={pageContext} global={global}>
         <Seo seo={seo} pageContext={pageContext} />
-        <Sections sections={sections} preview={preview} articles={articles} />
+        <Sections sections={sections} preview={preview} articles={articles} form={global.form} />
       </Layout>
   );
 };

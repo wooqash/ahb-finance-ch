@@ -7,6 +7,7 @@ import { PublicationItem } from "types/elements/publication-item";
 import { TileData } from "types/elements/tile-data";
 import { ButtonLinkData } from "types/buttons-data";
 import { ArticleData } from "./blog-data";
+import { NewsletterModalInfoData } from "./newsletter-modal-info-data";
 
 export enum SectionType {
     HERO = "HERO",
@@ -17,6 +18,7 @@ export enum SectionType {
     RICHTEXTWITHCTA = "RICHTEXTWITHCTA",
     TESTIMONIALS = "TESTIMONIALSGROUP",
     PUBLICATIONS = "PUBLICATIONSGROUP",
+    NEWSLETTER = "NEWSLETTERFORM",
     BLOG ="BLOG"
 }
 
@@ -80,4 +82,11 @@ export interface PublicationsGroupData extends SectionData{
     publications: PublicationItem[],
 };
 
-export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData;
+export interface NewsletterForm extends SectionData {
+    type: SectionType.NEWSLETTER,
+    title?: string,
+    cta: ButtonData,
+    modalInfo: NewsletterModalInfoData,
+}
+
+export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | CollabolatorsGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
