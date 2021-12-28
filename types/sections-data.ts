@@ -5,7 +5,7 @@ import { OfferData } from "types/elements/offer-data";
 import { CollabolatorItemData } from "types/elements/collabolator-item-data";
 import { PublicationItemData } from "types/elements/publication-item-data";
 import { TileData } from "types/elements/tile-data";
-import { ButtonLinkData } from "types/buttons-data";
+import { ButtonData, ButtonLinkData } from "types/buttons-data";
 import { ArticleData } from "./blog-data";
 import { NewsletterModalInfoData } from "./newsletter-modal-info-data";
 

@@ -3,6 +3,7 @@ import { ExtendedPageContextData } from 'types/page-context-data';
 
 import { GlobalData } from 'types/global-data';
 import Navbar from './layout/navbar';
+import Footer from './layout/footer';
 
 type LayoutProps = {
     children?: ReactNode;
@@ -11,12 +12,13 @@ type LayoutProps = {
 }
 
 const Layout:React.FC<LayoutProps> = ({ children, global, pageContext }) => {
-    const { mainNav } = global;
+    const { mainNav, footer, socialMediaLinks } = global;
 
     return (
         <>
-            <Navbar navbar={mainNav} pageContext={pageContext} />
-            <div>{children}</div>
+            <Navbar navbar={mainNav} socialMedia={socialMediaLinks} pageContext={pageContext} />
+            <div style={{color: '#000'}}>{children}</div>
+            <Footer footer={footer} socialMedia={socialMediaLinks} pageContext={pageContext} />
         </>
     )
 }

@@ -1,8 +1,18 @@
-import { FooterSectionData } from "types/elements/footer-section-data";
-import { LogoData } from "types/elements/logo-data";
+import { LinkData, LogoLinkData } from "../buttons-data";
+import { ContactInfo } from "../contact-info-data";
 
-export type FooterData = {
-    logo?: LogoData;
+
+interface FooterColumnData {
+    id: number | string;
+    title?: string;
+    links: LinkData[]; 
+}
+
+export interface FooterData {
+    columns?: FooterColumnData[];
+    contactInfo?: ContactInfo;
     copyrightText?: string;
-    columns: FooterSectionData[];
+    createdBy?: string;
+    legalLinks?: LinkData[];
+    logo?: LogoLinkData;
 }

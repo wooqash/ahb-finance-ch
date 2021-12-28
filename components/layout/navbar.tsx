@@ -15,7 +15,8 @@ type NavbarProps = {
   pageContext: ExtendedPageContextData;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ navbar, pageContext }) => {
+const Navbar: React.FC<NavbarProps> = (props) => {
+  const { navbar, socialMedia, pageContext } = props;
   const router = useRouter();
   const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false);
 
