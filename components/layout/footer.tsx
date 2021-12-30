@@ -24,7 +24,7 @@ const Footer:React.FC<FooterProps> = (props) => {
             <div>
                 {logo?.image && logo.link && <CustomLink link={logo.link}><CustomImage media={logo.image} /></CustomLink>}
             </div>
-            <div style={{ color: "#000" }}>
+            <div>
                 <h4>{contactInfo?.companyName}</h4>
                 <p>{contactInfo?.companyAddress}</p>
                 <p>{contactInfo?.companyPhoneNo}</p>
@@ -33,7 +33,7 @@ const Footer:React.FC<FooterProps> = (props) => {
             <div>
                 {columns && <ul>
                     {columns.map((column) => (
-                        <li key={column.id} style={{ color: "#000" }}>
+                        <li key={column.id}>
                         {column.title ? (
                             <>
                             {column.title}
@@ -58,7 +58,7 @@ const Footer:React.FC<FooterProps> = (props) => {
             </div>
             {socialMedia && <ul>
                 {socialMedia.links.map((smLink) => {
-                    return <li key={smLink.id} style={{ color: "#000" }}>
+                    return <li key={smLink.id}>
                         <CustomLink link={smLink.link}>
                             <span>{smLink.type}</span>
                         </CustomLink>
@@ -67,15 +67,15 @@ const Footer:React.FC<FooterProps> = (props) => {
             </ul>}
             {legalLinks && <ul>
                 {legalLinks.map((legalLink) => {
-                    return <li key={legalLink.id} style={{ color: "#000" }}>
+                    return <li key={legalLink.id}>
                         <CustomLink link={legalLink}>
                             <span>{legalLink.label}</span>
                         </CustomLink>
                     </li>
                 })}
             </ul>}
-            {copyrightText && <p style={{ color: "#000" }}>{`${copyrightText} ${copyrightYear}`}</p>}
-            {createdBy && <div style={{ color: "#000" }}>
+            {copyrightText && <p>{`${copyrightText} ${copyrightYear}`}</p>}
+            {createdBy && <div>
                 <ReactMarkdown>
                 {createdBy}
               </ReactMarkdown></div>}

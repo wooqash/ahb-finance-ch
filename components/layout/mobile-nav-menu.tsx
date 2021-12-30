@@ -12,11 +12,11 @@ const MobileNavMenu:React.FC<MobileNavMenuProps> = ({ navbar, closeSelf }) => {
     return (
         <>
             <button title="close menu" onClick={closeSelf}>
-                <MdClose style={{ color: "#000" }} />
+                <MdClose />
             </button>
             <ul>
             {navbar.menuItems.map((menuItem) => (
-                <li key={menuItem.id} style={{ color: "#000" }}>
+                <li key={menuItem.id}>
                 {menuItem.navLevelLabel ? (
                     <>
                     {menuItem.navLevelLabel}

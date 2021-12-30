@@ -68,7 +68,7 @@ const LocaleSwitch:React.FC<LocaleSwitchProps> = ({ pageContext }) => {
       }, [locale, router, pageContext]);
 
     return (
-        <div ref={select} style={{ color: "#000" }}>
+        <div ref={select}>
             <button
                 type="button"
                 onClick={() => setShowing(!showing)}

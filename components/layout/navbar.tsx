@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
       <nav>
         <ul>
           {navbar.menuItems.map((menuItem) => (
-            <li key={menuItem.id} style={{ color: "#000" }}>
+            <li key={menuItem.id}>
               {menuItem.navLevelLabel ? (
                 <>
                   {menuItem.navLevelLabel}
@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
           ))}
         </ul>
         {pageContext.localizedPaths && <LocaleSwitch pageContext={pageContext} /> }
-        <button title="open menu" style={{ color: "#000" }} onClick={() => setMobileMenuIsShown(true)}>
+        <button title="open menu" onClick={() => setMobileMenuIsShown(true)}>
           <MdMenu />
         </button>
         {mobileMenuIsShown && (

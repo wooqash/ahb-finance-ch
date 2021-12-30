@@ -17,7 +17,7 @@ const Layout:React.FC<LayoutProps> = ({ children, global, pageContext }) => {
     return (
         <>
             <Navbar navbar={mainNav} socialMedia={socialMediaLinks} pageContext={pageContext} />
-            <div style={{color: '#000'}}>{children}</div>
+            <div>{children}</div>
             <Footer footer={footer} socialMedia={socialMediaLinks} pageContext={pageContext} />
         </>
     )
