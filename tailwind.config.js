@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: '-apple-system, "Helvetica Neue", "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        // sans: '-apple-system, "Helvetica Neue", "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       },
       colors: {
         "accent-1": "#FAFAFA",
@@ -37,6 +37,12 @@ module.exports = {
         "midnight-green-eagle-green": "#104657",
 
         "error-color": "#f44336",
+
+        "primary-color": "#00435C",
+        "secondary-color": "#3ecfeb",
+        "additional-black-color": "#001922",
+        "accents-color": "#f4db89",
+        "form-frame-color": "#d8f6fb"
       },
       spacing: {
         28: "7rem",
