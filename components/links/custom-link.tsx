@@ -1,42 +1,71 @@
 import Link from "next/link";
+import React from "react";
 import { ButtonLinkData, LinkData } from "types/buttons-data";
 import VisuallyHidden from "../helpers/visually-hidden";
 
 type CustomLinkProps = {
+  id?: string;
   link: LinkData | ButtonLinkData;
+  className?: string;
   children?: React.ReactChild;
-  role?: "button";
+  role?: "menuitem";
+  tabIndex?: number;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
 };
 
-const CustomLink: React.FC<CustomLinkProps> = (props) => {
-  const { link, children, role } = props;
+const CustomLink = React.forwardRef<HTMLAnchorElement, CustomLinkProps>((props, ref) => {
+  const {
+    id,
+    link,
+    children,
+    className,
+    role,
+    tabIndex,
+    onKeyDown,
+  } = props;
   const isInternalLink = link.url.startsWith("/");
-  const roleAttribute = role ? { role: role } : {};
+  const classes = className ? { className } : {};
+  const target = link.newTab ? {target: "_blank"} : {target : "_self"};
+  const rel = !isInternalLink && link.newTab ? {rel: "noopener noreferrer"} : {};
+  const roleAttr = role ? { role } : {}
 
   // For internal links, use the Next.js Link component
   if (isInternalLink) {
+    const idAttr = id ? { id: `InternalMenuLink${id}`} : {};
     return (
       <Link href="/[[...slug]]" as={link.url}>
-        <a {...roleAttribute} className="inline-block">{children}</a>
+        <a
+          {...idAttr}
+          { ...classes }
+          { ...roleAttr }
+          tabIndex={tabIndex}
+          ref={ref}
+          onKeyDown={onKeyDown}
+        >
+          {children}
+        </a>
       </Link>
     );
   }
 
-  // Plain <a> tags for external links
-  if (link.newTab) {
-    return (
-      <a href={link.url} target="_blank" rel="noopener noreferrer" {...roleAttribute} className="inline-block">
-        {children}
-        <VisuallyHidden label={link.ariaNewTabLabel} />
-      </a>
-    );
-  }
-
   return (
-    <a href={link.url} target="_self" {...roleAttribute} className="inline-block">
+    <a
+      id={`MenuLink${id}`}
+      href={link.url}
+      { ...target }
+      { ...rel }
+      { ...classes }
+      { ...roleAttr }
+      tabIndex={tabIndex}
+      ref={ref}
+      onKeyDown={onKeyDown}
+    >
       {children}
+      {link.newTab && <VisuallyHidden label={link.ariaNewTabLabel} />}
     </a>
   );
-};
+});
 
 export default CustomLink;
+
+CustomLink.displayName = "CustomLink";
