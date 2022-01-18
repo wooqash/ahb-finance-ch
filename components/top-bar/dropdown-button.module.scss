@@ -1,0 +1,30 @@
+@use "../../styles/vars";
+
+.dropdown {
+  &__button {
+    background: none;
+    border: none;
+    font-size: 1.13rem;
+    color: vars.$on-primary-link-text-color;
+    &--open {
+      .dropdown__button-icon {
+        transform: rotate(180deg);
+      }
+    }
+    &--dark {
+        color: vars.$on-primary-link-text-color;
+    }
+  
+    &--light {
+        color: vars.$on-secondary-text-color;
+    }
+  }
+
+
+
+  &__button-icon {
+    margin-left: 0.5em;
+    vertical-align: middle;
+    transition: 0.3s all ease-out;
+  }
+}

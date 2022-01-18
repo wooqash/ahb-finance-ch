@@ -1,0 +1,24 @@
+@use "../../styles/vars";
+
+.social-media-links {
+    display: flex;
+    list-style: none;
+    padding: 0 1em;
+    position: relative;
+    
+    &::before,
+    &::after {
+        content: "";
+        width: 1px;
+        height: 100%;
+        background-color: vars.$on-primary-link-text-color;;
+        position: absolute;
+        top: 0;
+    }
+    &::before { left: 0; }
+    &::after { right: 0; }
+
+    &__item {
+        margin: 0 .5em;
+    }
+}

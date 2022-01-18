@@ -1,0 +1,44 @@
+@use "../../styles/vars";
+
+.mainmenu {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  padding: 0 1em;
+
+  &--dark {
+    .mainmenu__link {
+      color: vars.$on-primary-link-text-color;
+    }
+  }
+
+  &--light {
+    .mainmenu__link {
+      color: vars.$on-secondary-text-color;
+    }
+  }
+  
+  &__item {
+    margin: 0 1em;
+    &--dropdown {
+        position: relative;
+    }
+  }
+
+  &__link {
+      color: vars.$on-primary-link-text-color;
+      display: inline-block;
+      font-size: 1.13rem;
+      text-decoration: none;
+      &--dark {
+          color: vars.$on-primary-link-text-color;
+      }
+    
+      &--light {
+          color: vars.$on-secondary-text-color;
+      }
+  }
+
+  
+  
+}
