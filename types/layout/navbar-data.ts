@@ -1,7 +1,7 @@
-import { LogoData } from "types/elements/logo-data";
-import { NavItemData } from "types/elements/nav-item-data";
+import { LogoLinkData } from "types/buttons-data";
+import { MenuItemData } from "types/elements/menu-item-data";
 
 export type NavbarData = {
-    logo?: LogoData;
-    menuItems: NavItemData[];
+    logo?: LogoLinkData;
+    menuItems: MenuItemData[];
 }

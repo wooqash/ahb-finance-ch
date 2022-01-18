@@ -1,3 +1,4 @@
+import { PageAppearance } from "./page-appearance.enum";
 import { Localization } from "./page-context-data";
 import { PageStatus } from "./page-status.enum";
 import { SectionsData } from "./sections-data";
@@ -11,6 +12,7 @@ export type PageData = {
   contentSections: SectionsData[];
   localizations: Localization[];
   status: PageStatus;
+  appearance: PageAppearance;
 };
 
 
