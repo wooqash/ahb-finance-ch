@@ -14,6 +14,7 @@ import Layout from "@/components/layout";
 import Seo from "@/components/seo";
 import Sections from "@/components/sections";
 import { ArticleData } from "types/blog-data";
+import { PageAppearance } from "types/page-appearance.enum";
 
 type DynamicPageData = {
   preview: boolean | null;
@@ -22,6 +23,7 @@ type DynamicPageData = {
   articles: ArticleData[];
   global: GlobalData;
   pageContext: ExtendedPageContextData;
+  appearance: PageAppearance;
 };
 
 const DynamicPage: React.FC<DynamicPageData> = ({
@@ -31,6 +33,7 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   preview,
   global,
   pageContext,
+  appearance,
 }) => {
   const router = useRouter();
 
@@ -49,7 +52,7 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   // console.log(sections, seo, preview, global, pageContext);
 
   return (
-      <Layout pageContext={pageContext} global={global}>
+      <Layout pageContext={pageContext} global={global} appearance={appearance}>
         <Seo seo={seo} pageContext={pageContext} />
         {/* <Sections sections={sections} preview={preview} articles={articles} form={global.form} /> */}
         <h1>Heading 1</h1>
@@ -107,7 +110,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return { props: {} };
   }
 
-  const { contentSections, seo, localizations, slug } = pageData;
+  const { contentSections, seo, localizations, slug, appearance } = pageData;
 
   const otherLocalizationPages = await getPageSlugs(pageData, preview);
 
@@ -138,6 +141,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       sections: contentSections,
       articles,
       global: globalLocale,
+      appearance,
       pageContext: {
         ...pageContext,
         localizedPaths, 
