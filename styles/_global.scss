@@ -68,8 +68,6 @@
 //   }
 // }
 
-
-
 body {
   background-color: $primary-bg-color;
   color: $on-primary-text-color;
@@ -100,5 +98,30 @@ a {
   text-decoration: underline;
   &:hover {
     color: $on-primary-link-hover-text-color;
+  }
+}
+
+a,
+button {
+  &:focus {
+    outline: yellow auto 2px;
+    outline-offset: 0.25em;
+  }
+}
+
+.visible-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+
+  &:focus{
+    clip: auto;
+    height: auto;
+    overflow: auto;
+    position: absolute;
+    width: auto;
   }
 }
