@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
         <SkipLink label={skipLabel} sectionId="Main" />
         {logo && logo.link ? (
             <CustomLink link={logo.link}>
-              <CustomImage media={logo.image} layout="fixed" cWidth={100} cHeight={50} />
+              <CustomImage media={logo.image} layout="fixed" cWidth={145} cHeight={69} />
             </CustomLink>
         ) : logo ? (
           <CustomImage media={logo.image} />
