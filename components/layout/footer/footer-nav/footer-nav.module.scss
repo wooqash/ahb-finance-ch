@@ -1,0 +1,44 @@
+@use "@/styles/vars";
+
+.footerNav{
+    a {
+        text-decoration: none;
+        color: vars.$on-primary-text-color;
+        &:focus,
+        &:hover {
+            color: vars.$on-primary-link-text-color;
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__columns{
+        display: flex;
+        
+    }
+
+    &__column-title {
+        color: vars.$on-primary-link-text-color;
+        font-family: 'Metropolis-Bold', Arial, Helvetica, sans-serif;
+        margin: 0 2em;
+        & > a {
+            font-family: inherit;
+            color: inherit;
+            span {
+                font-family: inherit;
+            }
+        }
+    }
+
+    &__menu {
+        margin-top: 1em;
+    }
+
+    &__menu-item {
+        margin: 1em 0;
+    }
+}

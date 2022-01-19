@@ -6,6 +6,7 @@ import { FooterData } from "types/layout/footer-data";
 import { ExtendedPageContextData } from "types/page-context-data";
 import { SocialMediaLinksData } from "types/social-media-links-data";
 import style from "./footer.module.scss";
+import FooterNav from "./footer-nav/footer-nav";
 
 
 type FooterProps = {
@@ -34,58 +35,37 @@ const Footer:React.FC<FooterProps> = (props) => {
                 ""
                 )}
             </div>
-            <div>
+            <div className={style["footer__navbar"]}>
                 {contactInfo && <ContactInfo info={contactInfo} />}
+                {columns && <FooterNav columns={columns} />}
             </div>
-            <div>
-                {columns && <ul>
-                    {columns.map((column) => (
-                        <li key={column.id}>
-                        {column.title ? (
-                            <>
-                            {column.title}
-                            <ul>
-                                {column.links.map((link) => (
-                                <li key={link.id}>
-                                    <CustomLink link={link}>
-                                    <span>{link.label}</span>
-                                    </CustomLink>
-                                </li>
-                                ))}
-                            </ul>
-                            </>
-                        ) : (
-                            <CustomLink link={column.links[0]}>
-                                <span>{column.links[0].label}</span>
+            <div className={style["footer__links"]}>
+                {socialMedia && <ul>
+                    {socialMedia.links.map((smLink) => {
+                        return <li key={smLink.id}>
+                            <CustomLink link={smLink.link}>
+                                <span>{smLink.type}</span>
                             </CustomLink>
-                        )}
+                        </li> 
+                    })}
+                </ul>}
+                {legalLinks && <ul>
+                    {legalLinks.map((legalLink) => {
+                        return <li key={legalLink.id}>
+                            <CustomLink link={legalLink}>
+                                <span>{legalLink.label}</span>
+                            </CustomLink>
                         </li>
-                    ))}
+                    })}
                 </ul>}
             </div>
-            {socialMedia && <ul>
-                {socialMedia.links.map((smLink) => {
-                    return <li key={smLink.id}>
-                        <CustomLink link={smLink.link}>
-                            <span>{smLink.type}</span>
-                        </CustomLink>
-                    </li> 
-                })}
-            </ul>}
-            {legalLinks && <ul>
-                {legalLinks.map((legalLink) => {
-                    return <li key={legalLink.id}>
-                        <CustomLink link={legalLink}>
-                            <span>{legalLink.label}</span>
-                        </CustomLink>
-                    </li>
-                })}
-            </ul>}
-            {copyrightText && <p>{`${copyrightText} ${copyrightYear}`}</p>}
-            {createdBy && <div>
-                <ReactMarkdown>
-                {createdBy}
-              </ReactMarkdown></div>}
+            <div className={style["footer__infobar"]}>
+                {copyrightText && <p>{`${copyrightText} ${copyrightYear}`}</p>}
+                {createdBy && <div>
+                    <ReactMarkdown>
+                    {createdBy}
+                </ReactMarkdown></div>}
+            </div>
         </footer>
     );
 }

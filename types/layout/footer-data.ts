@@ -1,8 +1,7 @@
+import { ContactInfoData } from "types/contact-info-data";
 import { LinkData, LogoLinkData } from "../buttons-data";
-import { ContactInfo } from "../contact-info-data";
 
-
-interface FooterColumnData {
+export interface FooterColumnData {
     id: number | string;
     title?: string;
     links: LinkData[]; 
@@ -10,7 +9,7 @@ interface FooterColumnData {
 
 export interface FooterData {
     columns?: FooterColumnData[];
-    contactInfo?: ContactInfo;
+    contactInfo?: ContactInfoData;
     copyrightText?: string;
     createdBy?: string;
     legalLinks?: LinkData[];
