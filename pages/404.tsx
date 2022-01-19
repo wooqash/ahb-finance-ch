@@ -12,7 +12,6 @@ import Button from "@/components/button";
 import Container from "@/components/container";
 import LangSwitcher from "@/components/lang-switcher";
 import LayoutShort from "@/components/layout-short";
-import MainLogo from "@/components/main-logo";
 import Modal from "@/components/Modal/modal";
 import ModalHeader from "@/components/Modal/modal-header";
 import ModalTitle from "@/components/Modal/modal-title";
@@ -22,6 +21,7 @@ import Spinner from "@/components/spinner";
 import ShareButtons from "@/components/share-buttons";
 
 import rmStyles from "@/components/markdown-styles.module.scss";
+import CustomImage from "@/components/elements/custom-image";
 
 type Custom404Props = {
   content: Custom404PageData;
@@ -87,7 +87,7 @@ const Custom404: React.FC<Custom404Props> = ({ content, preview }) => {
         </Head>
         <Container>
           <LangSwitcher />
-          {mainLogo && <MainLogo logo={mainLogo} />}
+          {mainLogo && <CustomImage media={mainLogo} />}
           <div className="mx-auto my-10 lg:max-w-4xl">
             {mainContent && (
               <ReactMarkdown className={`${rmStyles.markdown}`}>
