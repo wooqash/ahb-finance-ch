@@ -3,10 +3,11 @@ import { ExtendedPageContextData } from 'types/page-context-data';
 
 import { GlobalData } from 'types/global-data';
 
-import Footer from './layout/footer';
+
 import { PageAppearance } from 'types/page-appearance.enum';
 import { DEFAULT_LABELS } from 'utils/default-labels';
 import Navbar from './top-bar/navbar';
+import Footer from './layout/footer/footer';
 
 type LayoutProps = {
     children?: ReactNode;

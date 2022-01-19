@@ -1,9 +1,11 @@
+import ContactInfo from "@/components/layout/footer/contact-info/contact-info";
+import CustomImage from "@/components/elements/custom-image";
+import CustomLink from "@/components/links/custom-link";
 import ReactMarkdown from "react-markdown";
 import { FooterData } from "types/layout/footer-data";
 import { ExtendedPageContextData } from "types/page-context-data";
 import { SocialMediaLinksData } from "types/social-media-links-data";
-import CustomImage from "../elements/custom-image";
-import CustomLink from "../links/custom-link";
+import style from "./footer.module.scss";
 
 
 type FooterProps = {
@@ -20,15 +22,20 @@ const Footer:React.FC<FooterProps> = (props) => {
     const copyrightYear = presentYear > startYear.getFullYear() ? ` - ${presentYear}` : '';
 
     return (
-        <footer>
-            <div>
-                {logo?.image && logo.link && <CustomLink link={logo.link}><CustomImage media={logo.image} /></CustomLink>}
+        <footer className={style.footer}>
+            <div className={style["footer__logo"]}>
+                {logo && logo.link ? (
+                    <CustomLink link={logo.link}>
+                        <CustomImage media={logo.image} layout="fixed" cWidth={192} cHeight={91} />
+                    </CustomLink>
+                ) : logo ? (
+                <CustomImage media={logo.image} />
+                ) : (
+                ""
+                )}
             </div>
             <div>
-                <h4>{contactInfo?.companyName}</h4>
-                <p>{contactInfo?.companyAddress}</p>
-                <p>{contactInfo?.companyPhoneNo}</p>
-                <p>{contactInfo?.companyEmailAddress}</p>
+                {contactInfo && <ContactInfo info={contactInfo} />}
             </div>
             <div>
                 {columns && <ul>

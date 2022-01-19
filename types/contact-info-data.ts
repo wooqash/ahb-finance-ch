@@ -1,4 +1,4 @@
-export interface ContactInfo {
+export interface ContactInfoData {
     id: number | string;
     companyAddress: string;
     companyEmailAddress: string;

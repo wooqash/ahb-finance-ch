@@ -1,0 +1,12 @@
+
+@use "../../../styles/vars";
+
+.footer{
+    border-top: 6px solid vars.$primary-accents-color;
+    background-color: vars.$primary-bg-color;
+    
+    &__logo {
+        text-align: center;
+        padding: 5em 0;
+    }
+}
