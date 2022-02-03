@@ -1,13 +1,23 @@
 @use "@/styles/vars";
 
+$font-family-name: vars.$sans-serif-bold-font;
+$link-color: vars.$on-primary-text-color;
+$active-link-color: vars.$on-primary-link-text-color;
+
 .footerNav{
+    padding: 4rem 0;
+    width: 100%;
+
+    @media only screen and (min-width: 1024px) {
+        padding: 0;
+    }
+
     a {
         text-decoration: none;
-        color: vars.$on-primary-text-color;
+        color: $link-color;
         &:focus,
         &:hover {
-            color: vars.$on-primary-link-text-color;
-            text-decoration: underline;
+            color: $active-link-color;
         }
     }
 
@@ -17,28 +27,44 @@
     }
 
     &__columns{
-        display: flex;
-        
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+        @media only screen and (min-width: 1024px) {
+            display: flex;
+            justify-content: flex-end;
+        }
     }
 
     &__column-title {
-        color: vars.$on-primary-link-text-color;
-        font-family: 'Metropolis-Bold', Arial, Helvetica, sans-serif;
-        margin: 0 2em;
+        color: $active-link-color;
+        font-family: $font-family-name;
+        margin: 1.25rem 0;
+        @media only screen and (min-width: 1024px) {
+            margin: 0;
+        }
+        
         & > a {
             font-family: inherit;
             color: inherit;
             span {
                 font-family: inherit;
+                vertical-align: baseline;
             }
+            &:focus,
+            &:hover {
+                color: $link-color;
+            }
+        }
+        @media only screen and (min-width: 1024px) {
+            margin: 0 1.25rem;
         }
     }
 
     &__menu {
-        margin-top: 1em;
+        margin-top: 1.25rem;
     }
 
     &__menu-item {
-        margin: 1em 0;
+        margin: 1.25rem 0;
     }
 }

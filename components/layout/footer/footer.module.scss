@@ -1,23 +1,79 @@
 
 @use "@/styles/vars";
 
+$bg-color: vars.$primary-bg-color;
+$big-border-size: 6px;
+$big-border-style: solid;
+$big-border-color: vars.$primary-accents-color;
+$big-border: $big-border-size $big-border-style $big-border-color;
+$small-border-size: 1px;
+$small-border-style: solid;
+$small-border-color: rgba(vars.$on-secondary-link-text-color, 0.3);
+$small-border: $small-border-size $small-border-style $small-border-color;
+$infobar-font-color: rgba(vars.$on-secondary-link-text-color, 0.5);
+$active-link-color: vars.$on-primary-text-color;
+
 .footer{
-    border-top: 6px solid vars.$primary-accents-color;
-    background-color: vars.$primary-bg-color;
+    border-top: $big-border;
+    background-color: $bg-color;
+    padding: 1.25rem;
     
     &__logo {
+        max-width: 192px;
         text-align: center;
-        padding: 5em 0;
+        margin: 5rem auto;
     }
 
     &__navbar,
     &__links,
     &__infobar {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        @media only screen and (min-width: 1024px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
     }
 
     &__navbar {
-        padding-bottom: 7em;
+        align-items: flex-start;
+        @media only screen and (min-width: 1024px) {
+            padding-bottom: 7em;
+        }
+    }
+
+    &__links {
+        border-top: $small-border;
+        border-bottom: $small-border;
+        padding: 1.25rem 0;
+        @media only screen and (min-width: 1024px) {
+
+        }
+        a {
+            &:focus,
+            &:hover {
+                color: $active-link-color;
+            }
+        }
+    }
+
+    &__infobar {
+        color: $infobar-font-color;
+        padding: 1.25rem 0 0;
+        a {
+            color: inherit;
+            font-family: 'Metropolis-Bold', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            &:focus,
+            &:hover {
+                color: $active-link-color;
+            }
+        }
+    }
+
+    &__copyrights{
+        margin: 0;
     }
 }

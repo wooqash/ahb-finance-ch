@@ -1,5 +1,7 @@
 @use "@/styles/vars";
 
+$font-family-name: vars.$sans-serif-bold-font;
+
 .contact-info {
     font-style: normal;
     p {
@@ -13,12 +15,11 @@
         &:focus,
         &:hover {
             color: vars.$on-primary-link-text-color;
-            text-decoration: underline;
         }
     }
     &__title {
         color: vars.$on-secondary-link-text-color;
-        font-family: 'Metropolis-Bold', Arial, Helvetica, sans-serif;
+        font-family: $font-family-name;
         
     }
     &__icon {

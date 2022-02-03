@@ -1,0 +1,19 @@
+.sm-list {
+  align-items: center;
+  display: flex;
+  font-size: 1.125rem;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0 1.25rem 1.25rem;
+  @media only screen and (min-width: 1024px) {
+    padding: 0;
+  }
+  li {
+    margin: 0 1.25rem;
+    @media only screen and (min-width: 1024px) {
+      margin: 0 4em 0 0;
+    }
+  }
+
+}
