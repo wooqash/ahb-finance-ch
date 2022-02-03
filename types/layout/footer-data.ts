@@ -1,4 +1,5 @@
 import { ContactInfoData } from "types/contact-info-data";
+import { CreatorData } from "types/creator-data";
 import { LinkData, LogoLinkData } from "../buttons-data";
 
 export interface FooterColumnData {
@@ -11,7 +12,7 @@ export interface FooterData {
     columns?: FooterColumnData[];
     contactInfo?: ContactInfoData;
     copyrightText?: string;
-    createdBy?: string;
+    creators?: CreatorData[];
     legalLinks?: LinkData[];
     logo?: LogoLinkData;
 }
