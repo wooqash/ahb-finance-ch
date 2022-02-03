@@ -1,71 +1,6 @@
 @use "sass:math";
 @use "sass:string";
 
-// $color-gunmetal: #143640;
-// $color-deep-space-sparkle: #3f606b;
-// $color-rich-black-fogra-29: #00101a;
-
-// $color-brown-sugar: #bb7551;
-// $color-light-salmon: #F0A47E;
-// $color-russet: #884927;
-
-// $color-verdigris: #40b2b6;
-// $color-electric-blue: #78E4E8;
-// $color-teal: #008286;
-
-// $color-midnight-green-eagle-green: #104657;
-// $color-copper-rose: #a45f62;
-// $color-white: #ffffff;
-// $color-black: #000000;
-// $color-upsdell-red: #B00020;
-
-// $primary-color: $color-gunmetal;
-// $primary-light-color: $color-deep-space-sparkle;
-// $primary-dark-color: $color-rich-black-fogra-29;
-// $on-primary-text-color: $color-white;
-
-// $secondary-color: $color-brown-sugar;
-// $secondary-light-color: $color-light-salmon;
-// $secondary-dark-color: $color-russet;
-// $on-secondary-text-color: $color-black;
-// $on-secondary-dark-text-color: $color-white;
-
-// $third-color: $color-verdigris;
-// $third-light-color: $color-electric-blue;
-// $third-dark-color: $color-teal;
-// $on-third-text-color: $color-black;
-// $on-third-dark-text-color: $color-white;
-
-// $error-color: $color-upsdell-red;
-
-// $bg-top-decor-img: url('../public/decor_top_opt.png');
-// $bg-bottom-decor-img: url('../public/decor_down_opt.png');
-// $bg-gradient-img: url('../public/circle_gradient_opt.png');
-
-// $background-color: $primary-color;
-// $main-text-color: $on-primary-text-color;
-
-// $main-text-min-font-size: 14px;
-// $main-text-max-font-size: 16px;
-
-// $headers-font-size: (
-//     h1-min-font-size: 40px,
-//     h1-max-font-size: 60px,
-//     h2-min-font-size: 30px,
-//     h2-max-font-size: 40px,
-//     h3-min-font-size: 25px,
-//     h3-max-font-size: 30px,
-//     h4-min-font-size: 20px,
-//     h4-max-font-size: 26px,
-//     h5-min-font-size: 16px,
-//     h5-max-font-size: 22px,
-//     h6-min-font-size: 14px,
-//     h6-max-font-size: 18px,
-// );
-
-// $scrollbar-track-color: $primary-light-color;
-// $scrollbar-thumb-color: $secondary-color;
-
 /******************************************/
 //                 COLORS
 /******************************************/
@@ -124,7 +59,7 @@ $type-ratios: (
 }
 
 // Recommended
-$type-base-size: 1rem;
+$type-base-size: 1.6rem;
 
 // Select by key of map, or use a custom value
 $type-size-ratio: type-ratio("perfectFourth");
@@ -190,90 +125,50 @@ $level-size: $type-base-size;
   @return map-get($type-styles, $key);
 }
 
-// @font-face {
-//   font-family: "Metropolis-Regular";
-//   font-weight: 400;
-//   src: url("../public/metropolis/Metropolis-Regular.otf") format("opentype");
-// }
+@font-face {
+  font-family: 'Metropolis Medium';
+  src: local('Metropolis Medium'), local('Metropolis-Medium'),
+      url('../public/metropolis/Metropolis-Medium.woff2') format('woff2'),
+      url('../public/metropolis/Metropolis-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
-  font-family: "Metropolis-RegularItalic";
-  font-weight: 400;
+  font-family: 'Metropolis Bold';
+  src: local('Metropolis Bold'), local('Metropolis-Bold'),
+      url('../public/metropolis/Metropolis-Bold.woff2') format('woff2'),
+      url('../public/metropolis/Metropolis-Bold.woff') format('woff');
+  font-weight: bold;
   font-style: normal;
-  src: url("../public/metropolis/Metropolis-RegularItalic.otf")
-    format("opentype");
+  font-display: swap;
 }
 
-$font-prefix: "Metropolis-";
-$font-src: "../public/metropolis/";
-
-$type-fonts: (
-    "Thin": "#{$font-prefix}Thin",
-    "Thin Italic": "#{$font-prefix}ThinItalic",
-    "Extra Light": "#{$font-prefix}ExtraLight",
-    "Extra Light Italic": "#{$font-prefix}ExtraLightItalic",
-    "Light": "#{$font-prefix}Light",
-    "Light Italic": "#{$font-prefix}LightItalic",
-    "Regular": "#{$font-prefix}Regular",
-    "Regular Italic": "#{$font-prefix}RegularItalic",
-    "Medium": "#{$font-prefix}Medium",
-    "Medium Italic": "#{$font-prefix}MediumItalic",
-    "Semi-Bold": "#{$font-prefix}SemiBold",
-    "Semi-Bold Italic": "#{$font-prefix}SemiBoldItalic",
-    "Bold": "#{$font-prefix}Bold",
-    "Bold Italic": "#{$font-prefix}BoldItalic",
-    "Extra-Bold": "#{$font-prefix}ExtraBold",
-    "Extra-Bold Italic": "#{$font-prefix}ExtraBoldItalic",
-    "Black": "#{$font-prefix}Black",
-    "Black Italic": "#{$font-prefix}BlackItalic",
-);
-
-@function type-font($key) {
-    @return map-get($type-fonts, $key);
+@font-face {
+  font-family: 'Metropolis Regular';
+  src: local('Metropolis Regular'), local('Metropolis-Regular'),
+      url('../public/metropolis/Metropolis-Regular.woff2') format('woff2'),
+      url('../public/metropolis/Metropolis-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-$font-weights: (
-  "Thin": 100,
-  "Extra Light": 200,
-  "Light": 300,
-  "Regular": 400,
-  "Medium": 500,
-  "Semi-Bold": 600,
-  "Bold": 700,
-  "Extra-Bold": 800,
-  "Black": 900,
-);
-
-@function font-weight($key) {
-    @return map-get($font-weights, $key);
+@font-face {
+  font-family: 'Metropolis Semi Bold';
+  src: local('Metropolis Semi Bold'), local('Metropolis-SemiBold'),
+      url('../public/metropolis/Metropolis-SemiBold.woff2') format('woff2'),
+      url('../public/metropolis/Metropolis-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
-@each $font-id, $font-name in $type-fonts {
-    $font-weight: 400;
-    $font-style: normal;
-
-    @if string.index($font-id, "Italic") {
-        $font-italic-variant: string.slice($font-id, 0, string.index($font-id, "Italic")-2); 
-        
-        $font-weight: font-weight($font-italic-variant);
-        // @debug $font-weight;
-        $font-style: italic;
-    } @else {
-        $font-weight: font-weight($font-id);
-        $font-style: normal;
-    }
-
-    // @debug $font-name;
-    // @debug $font-weight;
-    // @debug $font-style;
-
-    @font-face {
-        font-family: $font-name;
-        font-weight: $font-weight;
-        font-style: $font-style;
-        src: url("#{$font-src}#{$font-name}.otf") format("opentype");
-    }
-}
-
+$sans-serif-fonts:  Verdana, Arial, sans-serif;
+$sans-serif-regular-font: "Metropolis Regular", $sans-serif-fonts;
+$sans-serif-bold-font: "Metropolis Bold", $sans-serif-fonts;
+$sans-serif-semi-bold-font: "Metropolis Semi Bold", $sans-serif-fonts;
+$sans-serif-medium-font: "Metropolis Medium", $sans-serif-fonts;
 
 
