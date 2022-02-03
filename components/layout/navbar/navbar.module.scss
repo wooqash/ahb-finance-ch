@@ -1,0 +1,146 @@
+@use "@/styles/vars";
+
+$navbar-font-family-name: vars.$sans-serif-medium-font;
+$dark-theme-navbar-bg-color: vars.$primary-bg-color;
+$dark-theme-navbar-font-color: vars.$on-primary-link-text-color;
+$dark-theme-navbar-hover-font-color: vars.$on-primary-text-color;
+$light-theme-navbar-bg-color: vars.$secondary-bg-color;
+$light-theme-navbar-font-color: vars.$on-secondary-text-color;
+$light-theme-navbar-hover-font-color: vars.$on-secondary-link-text-color;
+$mobile-menu-button-color: vars.$on-primary-link-text-color;
+$mobile-menu-border-color: vars.$on-primary-link-text-color;
+
+.navbar {
+    font-family: $navbar-font-family-name;;
+    font-size: 1.125rem;
+    height: 5rem;
+    left: 0;
+    overflow: hidden;
+    padding: 1.25rem;
+    position: fixed;
+    top: 0;
+    transition: 0.5s ease-out all;
+    width: 100%;
+    z-index: 5;
+
+    &--open {
+        height: 100vh;
+    }
+
+    &--dark {
+        background-color: $dark-theme-navbar-bg-color;
+        color: $dark-theme-navbar-font-color;
+        a:hover,
+        a:focus {
+            color: $dark-theme-navbar-hover-font-color;
+        }
+        button {
+            color: $dark-theme-navbar-font-color;
+            &[aria-expanded="true"],
+            &:hover,
+            &:focus {
+                color: $dark-theme-navbar-hover-font-color;
+            }
+        }
+    }
+
+    &--light {
+        background-color: $light-theme-navbar-bg-color;
+        color: $light-theme-navbar-font-color;
+        a:hover,
+        a:focus {
+            color: $light-theme-navbar-hover-font-color;
+        }
+        button {
+            color: $light-theme-navbar-font-color;
+            &[aria-expanded="true"],
+            &:hover,
+            &:focus {
+                color: $light-theme-navbar-hover-font-color;
+            }
+        }
+    }
+
+    &--sticky {
+        
+        @media only screen and (min-width: 1024px) {
+            
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        display: flex;
+        justify-content: space-between;
+        height: auto;
+        overflow: visible;
+
+        &--sticky {
+            background-color: $light-theme-navbar-bg-color;
+            color: $dark-theme-navbar-bg-color;
+            padding: 1rem;
+            .navbar__logo {
+                max-width: 99px;
+            }
+            a:hover,
+            a:focus {
+                color: $light-theme-navbar-hover-font-color;
+            }
+            button {
+                color: $light-theme-navbar-font-color;
+                &[aria-expanded="true"],
+                &:hover,
+                &:focus {
+                    color: $light-theme-navbar-hover-font-color;
+                }
+            }
+        }
+    }
+
+    &__logo {
+        max-width: 84px;
+        @media only screen and (min-width: 1024px) {
+            max-width: 143px;
+        }
+    }
+
+    &__menubar {
+        border-top: 1px solid $mobile-menu-border-color;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 6.25rem);
+        justify-content: space-between;
+        margin-top: 1.25rem;
+        
+        @media only screen and (min-width: 1024px) {
+            border: 0;
+            flex-direction: row;
+            height: auto;
+            margin: 0;
+        }
+    }
+
+    &__menubar-other-links {
+        @media only screen and (min-width: 1024px) {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__mobile-menu-button {
+        align-items: center;
+        background: none;
+        border: 0;
+        color: $mobile-menu-button-color;
+        display: flex;
+        font-size: 3.125rem;
+        justify-content: center;
+        padding: 0;
+        position: absolute;
+        right: 1.25rem;
+        top: 1rem;
+
+        @media only screen and (min-width: 1024px) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.dropdown {
+  &__button {
+    align-items: center;
+    background: none;
+    border: none;
+    color: inherit;
+    display: flex;
+    font-family: inherit;
+    font-size: inherit;
+    hyphens: none;
+    overflow-wrap: normal;
+    padding: 0;
+    width: 100%;
+
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--open {
+      .dropdown__button-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    @media only screen and (min-width: 1024px) {
+      width: auto;
+    }
+  }
+
+  &__button-icon {
+    margin-left: 0.5em;
+    vertical-align: middle;
+    transition: 0.3s all ease-out;
+  }
+}

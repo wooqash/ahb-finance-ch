@@ -1,0 +1,38 @@
+@use "@/styles/vars";
+
+$menu-item-border-color: rgba(vars.$primary-accents-color, 0.2);
+
+.mainmenu {
+  font-family: inherit;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media only screen and (min-width: 1024px) {
+      align-items: center;
+      display: flex;
+      padding: 0 1em;
+  }
+  
+  &__item {
+    border-bottom: 1px solid $menu-item-border-color;
+    padding: 1.25rem 0;
+    hyphens: none;
+    overflow-wrap: normal;
+
+    &--dropdown {
+        position: relative;
+    }
+    @media only screen and (min-width: 1024px) {
+      border: 0;
+      margin: 0 1em;
+      padding: 0;
+    }
+  }
+
+  &__link {
+      color: inherit;
+      display: inline-block;
+      text-decoration: none;
+  }
+}
