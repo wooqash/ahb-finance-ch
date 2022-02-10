@@ -2,9 +2,10 @@ import { MenuItemData } from "types/elements/menu-item-data";
 import style from "./main-menu.module.scss";
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 import { LinkData } from "types/buttons-data";
+
+import CustomLink from "@/components/links/custom-link";
 import DropdownButton from "../dropdown-button/dropdown-button";
 import DropdownMenu from "../dropdown-menu/dropdown-menu";
-import CustomLink from "@/components/links/custom-link";
 
 type MainMenuProps = {
   menuId: string;

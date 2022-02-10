@@ -53,7 +53,6 @@ const Navbar: React.FC<NavbarProps> = (props) => {
   };
 
   return (
-    <>
       <nav
         className={`${style.navbar} ${
           mobileMenuIsShown ? style["navbar--open"] : ""
@@ -64,44 +63,46 @@ const Navbar: React.FC<NavbarProps> = (props) => {
         } ${style[stickyClass]}`}
         aria-label="Main menu"
       >
-        <SkipLink label={skipLabel} sectionId="Main" />
-        {logo &&  (
-          <div className={style.navbar__logo}>
-            {logoAlt && (appearance === PageAppearance.light || stickyClass) ? <Logo data={logoAlt} /> : <Logo data={logo} /> }
+        <div className={style.navbar__wrapper}>
+          <SkipLink label={skipLabel} sectionId="Main" />
+          {logo &&  (
+            <div className={style.navbar__logo}>
+              {logoAlt && (appearance === PageAppearance.light || stickyClass) ? <Logo data={logoAlt} /> : <Logo data={logo} /> }
+            </div>
+          )}
+          <div className={style.navbar__menubar}>
+            <MainMenu
+              menuId={`MainMenu`}
+              menuItems={menuItems}
+            />
+            <div className={style["navbar__menubar-other-links"]}>
+              {socialMedia && (
+                <SocialMediaLinks
+                  customClasses={style["sm-list"]}
+                  links={socialMedia.links}
+                />
+              )}
+              {pageContext.localizedPaths && (
+                <LocaleSwitch pageContext={pageContext} />
+              )}
+            </div>
           </div>
-        )}
-        <div className={style.navbar__menubar}>
-          <MainMenu
-            menuId={`MainMenu`}
-            menuItems={menuItems}
-          />
-          <div className={style["navbar__menubar-other-links"]}>
-            {socialMedia && (
-              <SocialMediaLinks
-                customClasses={style["sm-list"]}
-                links={socialMedia.links}
-              />
-            )}
-            {pageContext.localizedPaths && (
-              <LocaleSwitch pageContext={pageContext} />
-            )}
-          </div>
-        </div>
 
-        <button
-          className={style["navbar__mobile-menu-button"]}
-          title="open menu"
-          onClick={
-            !mobileMenuIsShown
-              ? handleOpenMobileMenuButton
-              : handleCloseMobileMenuButton
-          }
-        >
-          {!mobileMenuIsShown && <MdMenu />}
-          {mobileMenuIsShown && <MdClose />}
-        </button>
+          <button
+            className={style["navbar__mobile-menu-button"]}
+            title="open menu"
+            onClick={
+              !mobileMenuIsShown
+                ? handleOpenMobileMenuButton
+                : handleCloseMobileMenuButton
+            }
+          >
+            {!mobileMenuIsShown && <MdMenu />}
+            {mobileMenuIsShown && <MdClose />}
+          </button>
+        </div>
       </nav>
-    </>
+
   );
 };
 

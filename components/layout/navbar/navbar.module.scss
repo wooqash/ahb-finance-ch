@@ -9,6 +9,7 @@ $light-theme-navbar-font-color: vars.$on-secondary-text-color;
 $light-theme-navbar-hover-font-color: vars.$on-secondary-link-text-color;
 $mobile-menu-button-color: vars.$on-primary-link-text-color;
 $mobile-menu-border-color: vars.$on-primary-link-text-color;
+$page-wrapper-max-size: vars.$page-wrapper-max-size;
 
 .navbar {
     font-family: $navbar-font-family-name;;
@@ -28,7 +29,7 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
     }
 
     &--dark {
-        background-color: $dark-theme-navbar-bg-color;
+        // background-color: $dark-theme-navbar-bg-color;
         color: $dark-theme-navbar-font-color;
         a:hover,
         a:focus {
@@ -41,6 +42,9 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
             &:focus {
                 color: $dark-theme-navbar-hover-font-color;
             }
+        }
+        &.navbar--open {
+            background-color: $dark-theme-navbar-bg-color;
         }
     }
 
@@ -59,6 +63,10 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
                 color: $light-theme-navbar-hover-font-color;
             }
         }
+
+        &.navbar--open {
+            background-color: $light-theme-navbar-bg-color;
+        }
     }
 
     &--sticky {
@@ -69,11 +77,7 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
     }
 
     @media only screen and (min-width: 1024px) {
-        display: flex;
-        justify-content: space-between;
         height: auto;
-        overflow: visible;
-
         &--sticky {
             background-color: $light-theme-navbar-bg-color;
             color: $dark-theme-navbar-bg-color;
@@ -93,6 +97,17 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
                     color: $light-theme-navbar-hover-font-color;
                 }
             }
+        }
+    }
+
+    &__wrapper {
+        
+        @media only screen and (min-width: 1024px) {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: $page-wrapper-max-size;
+            overflow: visible;
         }
     }
 
