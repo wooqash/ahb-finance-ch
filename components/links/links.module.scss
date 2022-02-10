@@ -1,0 +1,60 @@
+@use '../styles/vars';
+
+.button {
+    color: vars.$button-text-color;
+    font-family: vars.$sans-serif-medium-font;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+    padding: 1.125rem;
+
+    &--primary{
+        background-color: vars.$button-bg-color;
+        clip-path: polygon(30% 0%, 100% 0, 100% 30%, 102% 70%, 90% 100%, 30% 100%, 0 100%, 0 0);
+    }
+    
+    &--secondary-light {
+        color: inherit;
+    }
+    &--secondary-dark {
+        color: vars.$on-primary-link-text-color;
+        &.button:focus, 
+        &.button:hover {
+            color: vars.$on-primary-link-hover-text-color;
+        }
+    }
+
+    &__content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__caption {
+        text-transform: uppercase;
+        font-size: 1.125rem;
+        letter-spacing: 0.0675rem;
+    }
+
+    &__icon {
+        margin-left: 2rem;
+        font-size: 1.5rem;
+        display: flex;
+        position: relative;
+        left: -5px;
+    }
+
+    &:hover {
+        font-family: vars.$sans-serif-semi-bold-font;
+        color: vars.$button-text-color;
+
+        .button__caption {
+            letter-spacing: 0.06rem;
+        }
+
+        .button__icon {
+            left: 0px;
+        }
+    }
+}
+
