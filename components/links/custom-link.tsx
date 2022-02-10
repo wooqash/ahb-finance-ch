@@ -3,6 +3,8 @@ import React from "react";
 import { ButtonLinkData, LinkData } from "types/buttons-data";
 import VisuallyHidden from "../helpers/visually-hidden";
 
+import style from "./links.module.scss";
+
 type CustomLinkProps = {
   id?: string;
   link: LinkData | ButtonLinkData;
@@ -50,6 +52,7 @@ const CustomLink = React.forwardRef<HTMLAnchorElement, CustomLinkProps>((props, 
 
   return (
     <a
+
       id={`MenuLink${id}`}
       href={link.url}
       { ...target }
