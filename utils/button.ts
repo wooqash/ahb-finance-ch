@@ -1,24 +1,25 @@
 import { ButtonType } from "types/buttons-data";
 
-export function getButtonAppearance(type: ButtonType, background: string) {
-    if (type === 'primary') {
-      if (background === 'light') {
-        // Dark primary button on a light background
-        return 'dark'
-      }
-      // Fully white primary button on a dark background
-      return 'white'
-    }
+export function getButtonAppearance(type: ButtonType, theme: string) {
+    // if (type === 'primary') {
+    //   // if (theme === 'light') {
+    //   //   // Dark primary button on a light theme
+    //   //   return 'dark'
+    //   // }
+    //   // // Fully white primary button on a dark theme
+    //   // return 'white'
+
+    // }
     if (type === 'secondary') {
-      if (background === 'light') {
-        // Dark outline primary button on a light background
-        return 'dark-outline'
+      if (theme === 'light') {
+        // Dark outline primary button on a light theme
+        return 'secondary-light'
       }
-      // White outline primary button on a dark background
-      return 'white-outline'
+      // White outline primary button on a dark theme
+      return 'secondary-dark'
     }
   
     // Shouldn't happen, but default to dark button just in case
-    return 'dark'
+    return 'primary'
 }
   
