@@ -4,7 +4,7 @@ $navbar-font-family-name: vars.$sans-serif-medium-font;
 $dark-theme-navbar-bg-color: vars.$primary-color;
 $dark-theme-navbar-font-color: vars.$on-primary-link-text-color;
 $dark-theme-navbar-hover-font-color: vars.$on-primary-text-color;
-$light-theme-navbar-bg-color: vars.$secondary-bg-color;
+$light-theme-navbar-bg-color: vars.$white-color;
 $light-theme-navbar-font-color: vars.$on-secondary-text-color;
 $light-theme-navbar-hover-font-color: vars.$on-secondary-link-text-color;
 $mobile-menu-button-color: vars.$on-primary-link-text-color;
@@ -12,7 +12,7 @@ $mobile-menu-border-color: vars.$on-primary-link-text-color;
 $page-wrapper-max-size: vars.$page-wrapper-max-size;
 
 .navbar {
-    font-family: $navbar-font-family-name;;
+    font-family: $navbar-font-family-name;
     font-size: 1.125rem;
     height: 5rem;
     left: 0;
