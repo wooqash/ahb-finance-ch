@@ -198,3 +198,15 @@ Alternatively, you can deploy using our template by clicking on the Deploy butto
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/cms-strapi&project-name=cms-strapi&repository-name=cms-strapi&env=STRAPI_PREVIEW_SECRET,NEXT_PUBLIC_STRAPI_API_URL&envDescription=Required%20to%20connect%20the%20app%20with%20Strapi&envLink=https://vercel.link/cms-strapi-env)
 # ahb-frontend-com
 Localization page for AHB project
+
+
+## Accessible menu
+- https://www.smashingmagazine.com/2017/11/building-accessible-menu-systems/
+- https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-1/menubar-1.html
+- https://sparksuite.github.io/react-accessible-dropdown-menu-hook/docs/design/return-object/
+
+## Fluid font size
+- https://moderncss.dev/generating-font-size-css-rules-and-creating-a-fluid-type-scale/
+
+## Naming conventions
+- https://andreferrazdev.medium.com/a-naming-convention-for-ui-components-77f4fb8797c
