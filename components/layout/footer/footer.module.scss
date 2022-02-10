@@ -1,21 +1,9 @@
 
 @use "@/styles/vars";
 
-$bg-color: vars.$primary-color;
-$big-border-size: 6px;
-$big-border-style: solid;
-$big-border-color: vars.$primary-accents-color;
-$big-border: $big-border-size $big-border-style $big-border-color;
-$small-border-size: 1px;
-$small-border-style: solid;
-$small-border-color: rgba(vars.$on-secondary-link-text-color, 0.3);
-$small-border: $small-border-size $small-border-style $small-border-color;
-$infobar-font-color: rgba(vars.$on-secondary-link-text-color, 0.5);
-$active-link-color: vars.$on-primary-text-color;
-
 .footer{
-    border-top: $big-border;
-    background-color: $bg-color;
+    border-top: 6px solid vars.$secondary-color;
+    background-color: vars.$primary-color;
     padding: 1.25rem;
     
     &__logo {
@@ -44,8 +32,8 @@ $active-link-color: vars.$on-primary-text-color;
     }
 
     &__links {
-        border-top: $small-border;
-        border-bottom: $small-border;
+        border-top: 1px solid rgba(vars.$secondary-color, 0.3);
+        border-bottom: 1px solid rgba(vars.$secondary-color, 0.3);
         padding: 1.25rem 0;
         @media only screen and (min-width: 1024px) {
 
@@ -53,13 +41,13 @@ $active-link-color: vars.$on-primary-text-color;
         a {
             &:focus,
             &:hover {
-                color: $active-link-color;
+                color: vars.$white-color;
             }
         }
     }
 
     &__infobar {
-        color: $infobar-font-color;
+        color: rgba(vars.$secondary-color, 0.5);
         padding: 1.25rem 0 0;
         a {
             color: inherit;
@@ -68,7 +56,7 @@ $active-link-color: vars.$on-primary-text-color;
             text-decoration: none;
             &:focus,
             &:hover {
-                color: $active-link-color;
+                color: vars.$white-color;
             }
         }
     }

@@ -4,7 +4,7 @@ html {
 
 body {
   background-color: $primary-color;
-  color: $on-primary-text-color;
+  color: $white-color;
   line-height: 1.5;
 }
 
@@ -38,10 +38,10 @@ h6 {
 }
 
 a {
-  color: $on-primary-link-text-color;
+  color: $secondary-color;
   text-decoration: underline;
   &:hover {
-    color: $on-primary-link-hover-text-color;
+    color: $white-color;
   }
   & > * {
     vertical-align: middle;

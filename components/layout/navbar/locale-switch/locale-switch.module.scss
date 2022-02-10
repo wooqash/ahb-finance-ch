@@ -1,8 +1,5 @@
 @use "@/styles/vars";
 
-$active-item-border-color: vars.$on-primary-link-text-color;
-$active-item-bg-color: rgba(vars.$on-primary-link-text-color, 0.1);
-
 .locale-switch {
     list-style: none;
     margin: 0;
@@ -19,8 +16,8 @@ $active-item-bg-color: rgba(vars.$on-primary-link-text-color, 0.1);
     &__link {
         padding: 0.5rem;
         &--active {
-            border: 1px solid $active-item-border-color;
-            background-color: $active-item-bg-color;
+            border: 1px solid vars.$secondary-color;
+            background-color: rgba(vars.$secondary-color, 0.1);
         }
     }
 

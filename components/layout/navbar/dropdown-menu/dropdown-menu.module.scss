@@ -1,8 +1,5 @@
 @use "@/styles/vars";
 
-$link-color: vars.$on-primary-link-text-color;
-$link-hover-color: vars.$on-primary-link-hover-text-color;
-
 .dropdown-menu {
   background: vars.$primary-color;
   opacity: 0;
@@ -11,7 +8,7 @@ $link-hover-color: vars.$on-primary-link-hover-text-color;
   will-change: transform;
   
   @media only screen and (min-width: 1024px) {
-    border-top: 1px solid vars.$primary-accents-color;
+    border-top: 1px solid vars.$secondary-color;
     clip: auto;
     left: 0;
     margin: 1.5rem auto auto;
@@ -24,7 +21,6 @@ $link-hover-color: vars.$on-primary-link-hover-text-color;
   }
 
   &--visible {
-    // height: auto;
     opacity: 1;
     padding: 0.8rem 1rem;
     transform: translateY(0);
@@ -32,7 +28,6 @@ $link-hover-color: vars.$on-primary-link-hover-text-color;
     visibility: visible;
     @media only screen and (min-width: 1024px) {
       transform: translateY(0.25rem);
-      // height: initial;
     }
   }
 
@@ -44,7 +39,7 @@ $link-hover-color: vars.$on-primary-link-hover-text-color;
 
     &:hover,
     &:focus {
-      color: $link-hover-color;
+      color: vars.$white-color;
     }
   }
 }

@@ -1,18 +1,7 @@
 @use "@/styles/vars";
 
-$navbar-font-family-name: vars.$sans-serif-medium-font;
-$dark-theme-navbar-bg-color: vars.$primary-color;
-$dark-theme-navbar-font-color: vars.$on-primary-link-text-color;
-$dark-theme-navbar-hover-font-color: vars.$on-primary-text-color;
-$light-theme-navbar-bg-color: vars.$white-color;
-$light-theme-navbar-font-color: vars.$on-secondary-text-color;
-$light-theme-navbar-hover-font-color: vars.$on-secondary-link-text-color;
-$mobile-menu-button-color: vars.$on-primary-link-text-color;
-$mobile-menu-border-color: vars.$on-primary-link-text-color;
-$page-wrapper-max-size: vars.$page-wrapper-max-size;
-
 .navbar {
-    font-family: $navbar-font-family-name;
+    font-family: vars.$sans-serif-medium-font;
     font-size: 1.125rem;
     height: 5rem;
     left: 0;
@@ -29,43 +18,42 @@ $page-wrapper-max-size: vars.$page-wrapper-max-size;
     }
 
     &--dark {
-        // background-color: $dark-theme-navbar-bg-color;
-        color: $dark-theme-navbar-font-color;
+        color: vars.$secondary-color;
         a:hover,
         a:focus {
-            color: $dark-theme-navbar-hover-font-color;
+            color: vars.$white-color;
         }
         button {
-            color: $dark-theme-navbar-font-color;
+            color: vars.$secondary-color;
             &[aria-expanded="true"],
             &:hover,
             &:focus {
-                color: $dark-theme-navbar-hover-font-color;
+                color: vars.$white-color;
             }
         }
         &.navbar--open {
-            background-color: $dark-theme-navbar-bg-color;
+            background-color:  vars.$primary-color;
         }
     }
 
     &--light {
-        background-color: $light-theme-navbar-bg-color;
-        color: $light-theme-navbar-font-color;
+        background-color: vars.$white-color;
+        color: vars.$primary-color;
         a:hover,
         a:focus {
-            color: $light-theme-navbar-hover-font-color;
+            color: vars.$secondary-color;
         }
         button {
-            color: $light-theme-navbar-font-color;
+            color: vars.$primary-color;
             &[aria-expanded="true"],
             &:hover,
             &:focus {
-                color: $light-theme-navbar-hover-font-color;
+                color: vars.$secondary-color;
             }
         }
 
         &.navbar--open {
-            background-color: $light-theme-navbar-bg-color;
+            background-color: vars.$white-color;
         }
     }
 
@@ -79,22 +67,22 @@ $page-wrapper-max-size: vars.$page-wrapper-max-size;
     @media only screen and (min-width: 1024px) {
         height: auto;
         &--sticky {
-            background-color: $light-theme-navbar-bg-color;
-            color: $dark-theme-navbar-bg-color;
+            background-color: vars.$white-color;
+            color:  vars.$primary-color;
             padding: 1rem;
             .navbar__logo {
                 max-width: 99px;
             }
             a:hover,
             a:focus {
-                color: $light-theme-navbar-hover-font-color;
+                color: vars.$secondary-color;
             }
             button {
-                color: $light-theme-navbar-font-color;
+                color: vars.$primary-color;
                 &[aria-expanded="true"],
                 &:hover,
                 &:focus {
-                    color: $light-theme-navbar-hover-font-color;
+                    color: vars.$secondary-color;
                 }
             }
         }
@@ -106,7 +94,7 @@ $page-wrapper-max-size: vars.$page-wrapper-max-size;
             display: flex;
             justify-content: space-between;
             margin: 0 auto;
-            max-width: $page-wrapper-max-size;
+            max-width: vars.$page-wrapper-max-size;
             overflow: visible;
         }
     }
@@ -119,7 +107,7 @@ $page-wrapper-max-size: vars.$page-wrapper-max-size;
     }
 
     &__menubar {
-        border-top: 1px solid $mobile-menu-border-color;
+        border-top: 1px solid vars.$secondary-color;
         display: flex;
         flex-direction: column;
         height: calc(100vh - 6.25rem);
@@ -145,7 +133,7 @@ $page-wrapper-max-size: vars.$page-wrapper-max-size;
         align-items: center;
         background: none;
         border: 0;
-        color: $mobile-menu-button-color;
+        color: vars.$secondary-color;
         display: flex;
         font-size: 3.125rem;
         justify-content: center;

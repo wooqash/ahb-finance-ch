@@ -1,9 +1,5 @@
 @use "@/styles/vars";
 
-$font-family-name: vars.$sans-serif-bold-font;
-$link-color: vars.$on-primary-text-color;
-$active-link-color: vars.$on-primary-link-text-color;
-
 .footerNav{
     padding: 4rem 0;
     width: 100%;
@@ -14,10 +10,10 @@ $active-link-color: vars.$on-primary-link-text-color;
 
     a {
         text-decoration: none;
-        color: $link-color;
+        color: vars.$white-color;
         &:focus,
         &:hover {
-            color: $active-link-color;
+            color: vars.$secondary-color;
         }
     }
 
@@ -36,8 +32,8 @@ $active-link-color: vars.$on-primary-link-text-color;
     }
 
     &__column-title {
-        color: $active-link-color;
-        font-family: $font-family-name;
+        color: vars.$secondary-color;
+        font-family: vars.$sans-serif-bold-font;
         margin: 1.25rem 0;
         @media only screen and (min-width: 1024px) {
             margin: 0;
@@ -52,7 +48,7 @@ $active-link-color: vars.$on-primary-link-text-color;
             }
             &:focus,
             &:hover {
-                color: $link-color;
+                color: vars.$white-color;
             }
         }
         @media only screen and (min-width: 1024px) {

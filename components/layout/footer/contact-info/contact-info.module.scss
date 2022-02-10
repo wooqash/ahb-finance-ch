@@ -11,14 +11,14 @@ $font-family-name: vars.$sans-serif-bold-font;
     }
     a {
         text-decoration: none;
-        color: vars.$on-primary-text-color;
+        color: vars.$white-color;
         &:focus,
         &:hover {
-            color: vars.$on-primary-link-text-color;
+            color: vars.$secondary-color;
         }
     }
     &__title {
-        color: vars.$on-secondary-link-text-color;
+        color: vars.$secondary-color;
         font-family: $font-family-name;
         
     }

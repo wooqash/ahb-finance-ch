@@ -1,7 +1,7 @@
 @use '../styles/vars';
 
 .button {
-    color: vars.$button-text-color;
+    color: vars.$primary-color;
     font-family: vars.$sans-serif-medium-font;
     text-decoration: none;
     display: inline-block;
@@ -9,7 +9,7 @@
     padding: 1.125rem;
 
     &--primary{
-        background-color: vars.$button-bg-color;
+        background-color: vars.$secondary-color;
         clip-path: polygon(30% 0%, 100% 0, 100% 30%, 102% 70%, 90% 100%, 30% 100%, 0 100%, 0 0);
     }
     
@@ -17,10 +17,10 @@
         color: inherit;
     }
     &--secondary-dark {
-        color: vars.$on-primary-link-text-color;
+        color: vars.$secondary-color;
         &.button:focus, 
         &.button:hover {
-            color: vars.$on-primary-link-hover-text-color;
+            color: vars.$white-color;
         }
     }
 
@@ -46,7 +46,7 @@
 
     &:hover {
         font-family: vars.$sans-serif-semi-bold-font;
-        color: vars.$button-text-color;
+        color: vars.$primary-color;
 
         .button__caption {
             letter-spacing: 0.06rem;

@@ -1,7 +1,5 @@
 @use "@/styles/vars";
 
-$menu-item-border-color: rgba(vars.$primary-accents-color, 0.2);
-
 .mainmenu {
   font-family: inherit;
   list-style: none;
@@ -15,7 +13,7 @@ $menu-item-border-color: rgba(vars.$primary-accents-color, 0.2);
   }
   
   &__item {
-    border-bottom: 1px solid $menu-item-border-color;
+    border-bottom: 1px solid rgba(vars.$secondary-color, 0.2);
     padding: 1.25rem 0;
     hyphens: none;
     overflow-wrap: normal;

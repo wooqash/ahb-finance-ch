@@ -1,11 +1,9 @@
 @use "@/styles/vars";
 
-$border-color: vars.$on-primary-link-text-color;
-
 .sm-list {
     align-items: center;
-    border-bottom: 1px solid $border-color;
-    border-top: 1px solid $border-color;
+    border-bottom: 1px solid vars.$secondary-color;
+    border-top: 1px solid vars.$secondary-color;
     display: flex;
     font-size: 1rem;
     justify-content: space-around;
@@ -28,7 +26,7 @@ $border-color: vars.$on-primary-link-text-color;
             content: "";
             width: 1px;
             height: 100%;
-            background-color: $border-color;
+            background-color: vars.$secondary-color;
             position: absolute;
             top: 0;
         }
