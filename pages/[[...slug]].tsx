@@ -24,6 +24,7 @@ type DynamicPageData = {
   global: GlobalData;
   pageContext: ExtendedPageContextData;
   appearance: PageAppearance;
+  title: string;
 };
 
 const DynamicPage: React.FC<DynamicPageData> = ({
@@ -34,6 +35,7 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   global,
   pageContext,
   appearance,
+  title,
 }) => {
   const router = useRouter();
 
@@ -48,17 +50,18 @@ const DynamicPage: React.FC<DynamicPageData> = ({
   }
 
   console.log(global);
+  console.log(appearance);
   
   // console.log(sections, seo, preview, global, pageContext);
 
   return (
-      <Layout pageContext={pageContext} global={global} appearance={appearance}>
+      <Layout pageContext={pageContext} global={global} appearance={appearance} >
         <Seo seo={seo} pageContext={pageContext} />
-        {/* <Sections sections={sections} preview={preview} articles={articles} form={global.form} /> */}
-        <h1>Heading 1</h1>
+        <Sections sections={sections} preview={preview} articles={articles} form={global.form} pageName={title} />
+        {/* <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
+        <h4>Heading 4</h4> */}
       </Layout>
   );
 };
@@ -110,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return { props: {} };
   }
 
-  const { contentSections, seo, localizations, slug, appearance } = pageData;
+  const { contentSections, seo, localizations, slug, appearance, title } = pageData;
 
   const otherLocalizationPages = await getPageSlugs(pageData, preview);
 
@@ -140,6 +143,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       seo,
       sections: contentSections,
       articles,
+      title,
       global: globalLocale,
       appearance,
       pageContext: {
