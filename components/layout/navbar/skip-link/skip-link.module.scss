@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 
 $link-color: vars.$on-primary-text-color;
-$bg-color: vars.$primary-bg-color;
+$bg-color: vars.$primary-color;
 
 .skip-link {
     background-color: $bg-color;

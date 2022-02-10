@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: $primary-bg-color;
+  background-color: $primary-color;
   color: $on-primary-text-color;
   line-height: 1.5;
 }
@@ -94,12 +94,3 @@ button {
   margin: 0 auto;
 }
 
-@keyframes moveDown {
-  from {
-      transform: translateY(0);
-  }
-
-  to {
-      transform: translateY(1rem);
-  }
-}

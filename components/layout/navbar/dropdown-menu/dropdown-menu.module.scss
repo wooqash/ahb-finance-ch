@@ -4,7 +4,7 @@ $link-color: vars.$on-primary-link-text-color;
 $link-hover-color: vars.$on-primary-link-hover-text-color;
 
 .dropdown-menu {
-  background: vars.$primary-bg-color;
+  background: vars.$primary-color;
   opacity: 0;
   transition: transform 0.2s, opacity 0.2s, visibility 0s linear 0.2s;
   visibility: hidden;
