@@ -88,3 +88,18 @@ button {
     display: block;
   }
 }
+
+.page-wrapper {
+  max-width: $page-wrapper-max-size;
+  margin: 0 auto;
+}
+
+@keyframes moveDown {
+  from {
+      transform: translateY(0);
+  }
+
+  to {
+      transform: translateY(1rem);
+  }
+}
