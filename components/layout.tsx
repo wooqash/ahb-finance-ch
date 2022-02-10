@@ -9,11 +9,10 @@ import { DEFAULT_LABELS } from 'utils/default-labels';
 
 import Navbar from './layout/navbar/navbar';
 import Footer from './layout/footer/footer';
-
-import style from "./layout.module.scss";
+import Main from './layout/main';
 
 type LayoutProps = {
-    children?: ReactNode;
+    children: ReactNode;
     global: GlobalData;
     pageContext: ExtendedPageContextData;
     appearance: PageAppearance;
@@ -26,7 +25,7 @@ const Layout:React.FC<LayoutProps> = (props) => {
     return (
         <>
             <Navbar navbar={mainNav} socialMedia={socialMediaLinks} skipLabel={skipToMainContentLabel} pageContext={pageContext} appearance={appearance} />
-            <main id="Main" className={style["main-content"]}>{children}</main>
+            <Main>{children}</Main>
             <Footer footer={footer} socialMedia={socialMediaLinks} pageContext={pageContext} />
         </>
     )
