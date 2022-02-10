@@ -59,16 +59,18 @@ const Section: React.FC<SectionProps> =  (prop) => {
 };
 
 const Sections: React.FC<SectionsProps> = (props) => {
-  const { sections, articles, form, preview } = props;
+  const { sections, articles, form, preview, pageName } = props;
 
   return (
     <>
       {sections.map((section) => (
+        
         <Section
           sectionData={section}
           articles={articles}
           form={form}
           key={`${section.__component}${section.id}`}
+          pageName={pageName}
         />
       ))}
     </>
