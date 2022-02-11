@@ -1,0 +1,46 @@
+@use '../styles/vars';
+
+.column {
+    align-content: flex-start;
+    display: grid;
+    justify-content: center;
+    margin: 0 1.25rem;
+    text-align: center;
+    width: 100%;
+
+    @media only screen and (min-width: vars.$desktop-size) {
+        grid-template-rows: repeat(auto-fill, minmax(110px, 1fr));
+        margin: 0 3.625rem;
+        width: calc(33% - 7.25rem);
+    }
+
+    &__icon,
+    &__text {
+        margin: 1.25rem auto;
+    }
+
+    &__icon {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    &__title {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        &::after {
+            background-color: vars.$secondary-color;
+            bottom: -0.65em;
+            content: "";
+            height: 1px;
+            left: 50%;
+            margin: 0 auto;
+            position: absolute;
+            transform: translateX(-50%);
+            width: 62px;
+        }
+    }
+}

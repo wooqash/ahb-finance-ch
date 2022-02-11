@@ -1,0 +1,55 @@
+@use '../styles/vars';
+
+.section {
+    background-color: vars.$white-color;
+    color: vars.$primary-color;
+    padding: 0 1.25rem;
+    position: relative;
+    
+    &__wrapper {
+        margin: 0 auto;
+        padding: 5rem 0;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: vars.$page-wrapper-max-size;
+            padding: 8rem 0;
+        }
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__columns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 350px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: initial;
+        }
+    }
+
+    &__top-triangle{
+        left: 0;
+        max-width: 166px;
+        position: absolute;
+        top: -80px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: 330px;
+            top: -120px;
+        }
+    }
+
+    &__bottom-triangle{
+        bottom: -80px;
+        max-width: 175px;
+        position: absolute;
+        right: -30px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -90px;
+            max-width: 256px;
+            right: -20px;
+        }
+    }
+}
