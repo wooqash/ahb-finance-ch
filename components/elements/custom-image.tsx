@@ -12,7 +12,7 @@ type CustomImageProps = {
 };
 
 const CustomImage: React.FC<CustomImageProps> = (props) => {
-  const { media, layout = "intrinsic", isBgImage, cWidth, cHeight } = props;
+  const { media, layout, isBgImage, cWidth, cHeight } = props;
   const { url, alternativeText} = media;
   const width = cWidth || media.width;
   const height = cHeight || media.height;
@@ -22,12 +22,6 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
     return url;
   };
 
-  if (layout === "intrinsic") {
-    return (
-      <Image loader={loader} src={url} alt={alternativeText || ""} {...media} />
-    );
-  }
-  
   // The image has a fixed width and height
   if (width && height && layout === "fixed") {
     return (
@@ -41,12 +35,16 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
       )
   }
 
-  // The image is responsive
+  if (layout === "responsive") {
+    return (
+      <Image loader={loader} src={url} alt={alternativeText || ""} layout="responsive" objectFit="contain" {...media} />
+    );
+  }
+
+  // The default image layout is "intrinsic"
   return (
     <Image
       loader={loader}
-      layout="responsive"
-      objectFit="contain"
       src={url}
       alt={alternativeText || ""}
       {...media}
