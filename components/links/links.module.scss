@@ -15,9 +15,11 @@
     
     &--secondary-light {
         color: inherit;
+        padding-left: 0;
     }
     &--secondary-dark {
         color: vars.$secondary-color;
+        padding-left: 0;
         &.button:focus, 
         &.button:hover {
             color: vars.$white-color;
