@@ -1,0 +1,30 @@
+@use '../styles/vars';
+
+.section {
+    display: flex;
+    flex-direction: column-reverse;
+    @media only screen and (min-width: vars.$desktop-size) {
+        display: block;
+        position: relative;
+    }
+    &__left-side {
+        margin: 0 auto;
+        padding: 4rem 1.25rem 5rem;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: vars.$page-wrapper-max-size;
+            padding: 10rem 40rem 10rem 0;
+        }
+    }
+    &__side-image {
+        position: relative;
+        width: 100%;
+        height: 100vw;
+        @media only screen and (min-width: vars.$desktop-size) {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+}

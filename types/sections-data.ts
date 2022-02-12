@@ -5,9 +5,10 @@ import { OfferData } from "types/elements/offer-data";
 import { CollabolatorItemData } from "types/elements/collabolator-item-data";
 import { PublicationItemData } from "types/elements/publication-item-data";
 import { TileData } from "types/elements/tile-data";
-import { ButtonData, ButtonLinkData } from "types/buttons-data";
+import { ButtonData, ButtonLinkData, LinkData } from "types/buttons-data";
 import { ArticleData } from "./blog-data";
 import { NewsletterModalInfoData } from "./newsletter-modal-info-data";
+import { Media } from "./media";
 
 export enum SectionType {
     HERO = "HERO",
@@ -19,7 +20,8 @@ export enum SectionType {
     TESTIMONIALS = "TESTIMONIALSGROUP",
     PUBLICATIONS = "PUBLICATIONSGROUP",
     NEWSLETTER = "NEWSLETTERFORM",
-    BLOG ="BLOG"
+    BLOG ="BLOG",
+    ABOUT = "ABOUT_SECTION"
 }
 
 export interface SectionData {
@@ -89,4 +91,12 @@ export interface NewsletterForm extends SectionData {
     modalInfo: NewsletterModalInfoData,
 }
 
-export type SectionsData = AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | CollabolatorsGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
+export interface AboutSectionData extends SectionData {
+    type: SectionType.ABOUT,
+    title: string,
+    description: string,
+    readMoreLink?: ButtonLinkData,
+    sideImage?: Media;
+}
+
+export type SectionsData = AboutSectionData | AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | CollabolatorsGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
