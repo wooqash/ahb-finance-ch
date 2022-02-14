@@ -6,20 +6,28 @@
     text-decoration: none;
     display: inline-block;
     line-height: 1;
-    padding: 1.125rem;
+    
 
     &--primary{
-        background-color: vars.$secondary-color;
-        clip-path: polygon(30% 0%, 100% 0, 100% 30%, 102% 70%, 90% 100%, 30% 100%, 0 100%, 0 0);
+        border: 20px solid vars.$secondary-color;
+        border-image: 1 url('data:image/svg+xml, \
+        <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" fill="%233ecfeb">\
+        <polygon points="0,0 0,0 2,0 3,0 3,2 2,3 1,3 0,3" />\
+        </svg>');
+        background: vars.$secondary-color;
+        background-clip: padding-box;
+    }
+
+    &--secondary-light,
+    &--secondary-dark {
+        padding: 1.125rem 1.125rem 1.125rem 0;
     }
     
     &--secondary-light {
         color: inherit;
-        padding-left: 0;
     }
     &--secondary-dark {
         color: vars.$secondary-color;
-        padding-left: 0;
         &.button:focus, 
         &.button:hover {
             color: vars.$white-color;
