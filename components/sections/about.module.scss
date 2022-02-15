@@ -5,7 +5,9 @@
     flex-direction: column-reverse;
     @media only screen and (min-width: vars.$desktop-size) {
         display: block;
+        padding: 0 1.25rem;
         position: relative;
+
     }
     &__left-side {
         margin: 0 auto;
@@ -25,6 +27,6 @@
             position: absolute;
             right: 0;
             top: 0;
-        }
+        }        
     }
 }
