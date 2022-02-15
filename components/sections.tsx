@@ -44,8 +44,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
     //   return <FaqGroup data={sectionData} />;
     case SectionType.HERO:
       return <Hero data={sectionData} pageName={pageName} />;
-    // case SectionType.OFFERS:
-    //   return <OffersGroup data={sectionData} />;
+    case SectionType.OFFERS:
+      return <OffersGroup data={sectionData} />;
     // case SectionType.COLLABOLATORS:
     //   return <CollabolatorsGroup data={sectionData} />;
     case SectionType.RICHTEXTWITHCTA:

@@ -2,6 +2,8 @@ import { OfferData } from "types/elements/offer-data";
 import { getButtonAppearance } from "utils/button";
 import ButtonLink from "../links/button-link";
 
+import style from "./offer.module.scss";
+
 type OfferProps = {
   data: OfferData;
 };
@@ -11,22 +13,27 @@ const Offer: React.FC<OfferProps> = (props) => {
   const { groupName, offer, moreBtn } = data;
 
   return (
-    <div>
-      <h3>{groupName}</h3>
+    <div className={style.group}>
+      <h3 className={style["group__title"]}>{groupName}</h3>
       {offer ? (
-        <ul>
+        <ul className={style["group__list"]}>
           {offer.map((item) => {
-            return <li key={item.id}>{item.title}</li>;
+            return (
+              <li key={item.id} className={style["group__list-item"]}>
+                {item.title}
+              </li>
+            );
           })}
         </ul>
       ) : (
         ""
       )}
-
-      <ButtonLink
-        button={moreBtn}
-        appearance={getButtonAppearance(moreBtn.type, "light")}
-      />
+      <div className={style["group__button-wrapper"]}>
+        <ButtonLink
+          button={moreBtn}
+          appearance={getButtonAppearance(moreBtn.type, "light")}
+        />
+      </div>
     </div>
   );
 };
