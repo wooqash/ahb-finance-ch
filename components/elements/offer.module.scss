@@ -1,0 +1,41 @@
+@use '../styles/vars';
+
+.group {
+    align-content: space-between;
+    display: grid;
+    margin: 2rem 0;
+    width: 100%;
+
+    @media only screen and (min-width: vars.$desktop-size) {
+        grid-auto-columns: 100%;
+        grid-auto-rows: minmax(40px, auto);
+        margin: 0 2.35rem;
+        width: calc(50% - 4.7rem);
+    }
+
+    &__title {
+        font-family: vars.$sans-serif-bold-font;
+    }
+
+    &__list {
+        list-style: none;
+
+        &-item{
+            margin: 0.7rem 0;
+            position: relative;
+            &:before {
+                background-image: url("../../public/icons/list-arrow-right.svg");
+                content: "";
+                height: 12px;
+                left: -40px;
+                position: absolute;
+                top: 5px;
+                width: 18px;
+            }
+        }
+    }
+
+    &__button-wrapper {
+        padding-left: 40px;
+    }
+}

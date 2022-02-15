@@ -1,0 +1,93 @@
+@use '../styles/vars';
+
+.section {
+    background-color: vars.$white-color;
+    color: vars.$primary-color;
+    position: relative;
+   
+
+    &__wrapper {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 1.25rem;
+        @media only screen and (min-width: vars.$desktop-size) {
+            flex-direction: row;
+            max-width: vars.$page-wrapper-max-size;
+            padding: 8rem 1.25rem;
+        }
+    }
+
+    &__headline {
+        margin: 16vw 0 2vw;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin: 0 3.375rem 0 0;
+            min-width: 380px;
+            width: calc(35% - 3.375rem);
+        }
+    }
+
+    &__watermark {
+        display: block;
+        left: 50%;
+        width: 215px;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        @media only screen and (min-width: vars.$desktop-size) {
+            width: 344px;
+        }
+    }
+
+    &__title {
+        color: vars.$secondary-color;
+        font-family: vars.$sans-serif-extra-bold-font;
+        font-size: 3.75rem;
+        margin: 0;
+        @media only screen and (min-width: vars.$desktop-size) {
+            font-size: 5.125rem;
+        }
+    }
+
+    &__offers-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        @media only screen and (min-width: vars.$desktop-size) {
+            width: 65%;
+
+        }
+    }
+
+    &__top-triangle{
+        max-width: 153px;
+        position: absolute;
+        right: 0;
+        top: -80px;
+        z-index: 3;
+        @media only screen and (min-width: vars.$desktop-size) {
+            left: 0;
+            max-width: 330px;
+            right: auto;
+            top: -90px;
+        }
+    }
+
+    &__bottom-triangle{
+        bottom: -90px;
+        max-width: 184px;
+        position: absolute;
+        right: 20px;
+        z-index: 3;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -90px;
+            max-width: 256px;
+            right: -20px;
+        }
+    }
+}
