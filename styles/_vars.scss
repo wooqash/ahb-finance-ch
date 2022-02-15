@@ -76,12 +76,23 @@ $less-important-color: $pewter-blue;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Metropolis ExtraBold';
+  src: local('Metropolis ExtraBold'), local('Metropolis-ExtraBold'),
+      url('../public/metropolis/Metropolis-ExtraBold.woff2') format('woff2'),
+      url('../public/metropolis/Metropolis-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 $sans-serif-fonts:  Verdana, Arial, sans-serif;
 $sans-serif-light-font: "Metropolis Light", $sans-serif-fonts;
 $sans-serif-regular-font: "Metropolis Regular", $sans-serif-fonts;
 $sans-serif-medium-font: "Metropolis Medium", $sans-serif-fonts;
 $sans-serif-semi-bold-font: "Metropolis Semi Bold", $sans-serif-fonts;
 $sans-serif-bold-font: "Metropolis Bold", $sans-serif-fonts;
+$sans-serif-extra-bold-font: "Metropolis Extra Bold", $sans-serif-fonts;
 
 /******************************************/
 //                  LAYOUT
