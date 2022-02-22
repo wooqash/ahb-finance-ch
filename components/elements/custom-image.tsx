@@ -29,7 +29,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
     );
   }
 
-  if (isBgImage) {
+  if (isBgImage || layout === "fill") {
       return (
         <Image loader={loader} src={url} alt={alternativeText || ""} layout="fill" objectFit="cover" />
       )
