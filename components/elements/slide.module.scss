@@ -1,0 +1,29 @@
+@use '../styles/vars';
+
+.item {
+    width: 100%;
+    height: 100%;
+
+    &__title {
+        font-family: vars.$sans-serif-semi-bold-font;
+        font-size: 1.375rem;
+        font-weight: 500;
+        margin: 1.25rem 0 0;
+    }
+
+    &__image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__link{
+        color: vars.$white-color;
+        text-decoration: none;
+
+        &:focus,
+        &:hover {
+            color: vars.$secondary-color;
+        }
+    }
+}
