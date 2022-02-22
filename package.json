@@ -29,6 +29,7 @@
     "react-toggle": "^4.1.2",
     "remark": "^13.0.0",
     "remark-html": "11.0.2",
+    "swiper": "^8.0.6",
     "yup": "^0.32.9"
   },
   "devDependencies": {
