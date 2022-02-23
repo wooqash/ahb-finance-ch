@@ -11,6 +11,8 @@ import Spinner from "../spinner";
 import Button from "../links/button";
 import { getButtonAppearance } from "utils/button";
 
+import style from "./newsletter-form.module.scss";
+
 type NewsletterFromProps = {
   data: NewsletterForm;
   form: FormsData;
@@ -22,8 +24,6 @@ const NewsletterFrom: React.FC<NewsletterFromProps> = (props) => {
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [modalHasEntered, setModalHasEntered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
-  console.log(form);
 
   const activateModal = () => {
     setModalActive(true);
@@ -55,15 +55,17 @@ const NewsletterFrom: React.FC<NewsletterFromProps> = (props) => {
   };
 
   return (
-    <section>
-      {title && <h2>{title}</h2>}
-      {cta && (
-        <Button
-          button={cta}
-          appearance={cta ? getButtonAppearance(cta.type, "light") : ""}
-          handleClick={activateModal}
-        />
-      )}
+    <section className={`${style.section}`}>
+      <div className={style.section__wrapper}>
+        {title && <h2 className={style.section__title}>{title}</h2>}
+        {cta && (
+          <Button
+            button={cta}
+            appearance={getButtonAppearance(cta.type, "dark")}
+            handleClick={activateModal}
+          />
+        )}
+      </div>
       <AriaModal
         mounted={modalActive}
         onEnter={onModalEnter}
@@ -94,7 +96,7 @@ const NewsletterFrom: React.FC<NewsletterFromProps> = (props) => {
             ></ModalNewsletter>
           </ModalContent>
         </Modal>
-      </AriaModal>
+      </AriaModal>      
       {loading && <Spinner />}
     </section>
   );
