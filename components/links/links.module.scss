@@ -55,8 +55,9 @@
     }
 
     &:hover {
-        font-family: vars.$sans-serif-semi-bold-font;
         color: vars.$primary-color;
+        cursor: pointer;
+        font-family: vars.$sans-serif-semi-bold-font;
 
         .button__caption {
             letter-spacing: 0.06rem;
