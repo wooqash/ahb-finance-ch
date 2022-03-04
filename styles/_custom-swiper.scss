@@ -1,37 +1,44 @@
+.swiper-button-prev,
+.swiper-button-next {
+  background-position: center;
+  background-repeat: no-repeat;
+  //   bottom: 0;
+  height: 12px;
+  margin-top: 0;
+  padding: 16px;
+  //   top: auto;
+  width: 18px;
+  z-index: 11;
+  &::after {
+    font-family: inherit;
+    font-size: 0;
+  }
+  &:focus,
+  &:hover {
+    background-color: rgba($secondary-color, 0.1);
+    border-radius: 50px;
+  }
+}
+
+.swiper-button-prev {
+  background-image: url(../public/icons/nav-arrow-left.svg);
+  left: 0px;
+}
+.swiper-button-next {
+  background-image: url(../public/icons/nav-arrow-right.svg);
+  right: 0px;
+}
+
 .blog {
   .swiper {
     padding: 50px 0;
   }
   .swiper-button-prev,
   .swiper-button-next {
-    background-position: center;
-    background-repeat: no-repeat;
     bottom: 0;
-    height: 12px;
-    margin-top: 0;
-    padding: 16px;
     top: auto;
-    width: 18px;
-    z-index: 11;
-    &::after {
-      font-family: inherit;
-      font-size: 0;
-    }
-    &:focus,
-    &:hover {
-      background-color: rgba($secondary-color, 0.1);
-      border-radius: 50px;
-    }
   }
 
-  .swiper-button-prev {
-    background-image: url(../public/icons/nav-arrow-left.svg);
-    left: 0px;
-  }
-  .swiper-button-next {
-    background-image: url(../public/icons/nav-arrow-right.svg);
-    right: 0px;
-  }
   .swiper-slide {
     align-items: center;
     display: flex;
@@ -50,5 +57,36 @@
     border-radius: 0;
     height: 4px;
     width: 26px;
+  }
+}
+
+.publication-group {
+  .swiper-pagination-fraction {
+    display: none;
+    @media only screen and (min-width: $desktop-size) {
+      bottom: 25%;
+      color: $primary-color;
+      display: block;
+      font-size: 0.875rem;
+      left: auto;
+      right: 4%;
+      width: auto;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 20%;
+  }
+  @media only screen and (min-width: $desktop-size) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      top: 70%;
+    }
+
+    .swiper-button-prev {
+      left: auto;
+      right: 8%;
+    }
   }
 }

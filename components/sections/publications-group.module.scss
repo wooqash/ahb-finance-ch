@@ -1,0 +1,38 @@
+@use "../styles/vars";
+
+.section {
+  padding: 0 1.25rem;
+  position: relative;
+
+  &__wrapper {
+    margin: 0 auto;
+    padding: 4rem 0 5.5rem;
+    position: relative;
+    @media only screen and (min-width: vars.$desktop-size) {
+      max-width: vars.$page-wrapper-max-size;
+      padding: 9.25rem 0 1rem;
+    }
+  }
+
+  &__image-pad {
+    background-color: vars.$accent-color;
+    top: 25%;
+    height: 45vw;
+    left: 50%;
+    margin: 0 auto;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 75%;
+    z-index: 0;
+    @media only screen and (min-width: vars.$desktop-size) {
+      position: absolute;
+      right: 0;
+      left: 60%;
+      top: 50%;
+      margin: 0;
+      transform: translatey(-40%);
+      width: 100vw;
+      height: 55%;
+    }
+  }
+}

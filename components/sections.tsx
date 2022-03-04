@@ -33,13 +33,13 @@ type SectionProps = {
 const Section: React.FC<SectionProps> =  (prop) => {
   const { sectionData, articles, form, pageName } = prop;
 
-  console.log(sectionData);
+  // console.log(sectionData.type);
 
   switch (sectionData.type) {
     case SectionType.ADVANTAGES:
       return <AdvantagesGroup data={sectionData} />;
-    // case SectionType.BLOG:
-    //   return <Blog data={sectionData} articles={articles} />;
+    case SectionType.BLOG:
+      return <Blog data={sectionData} articles={articles} />;
     // case SectionType.FAQS:
     //   return <FaqGroup data={sectionData} />;
     case SectionType.HERO:
@@ -52,10 +52,10 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <RichTextWithCta data={sectionData} pageName={pageName} />;
     // case SectionType.TESTIMONIALS:
     //   return <TestimonialsGroup data={sectionData} />;
-    // case SectionType.PUBLICATIONS:
-    //   return <PublicationsGroup data={sectionData} />
-    // case SectionType.NEWSLETTER:
-    //   return form ? <NewsletterFrom data={sectionData} form={form} /> : <></>
+    case SectionType.PUBLICATIONS:
+      return <PublicationsGroup data={sectionData} />
+    case SectionType.NEWSLETTER:
+      return form ? <NewsletterFrom data={sectionData} form={form} /> : <></>
     case SectionType.ABOUT:
       return <About data={sectionData} />;
     default:

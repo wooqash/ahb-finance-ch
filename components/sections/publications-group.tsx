@@ -1,20 +1,23 @@
 import { PublicationsGroupData } from "types/sections-data";
-import Publication from "../elements/publication";
+import PublicationSlider from "../elements/publication-slider";
+
+import style from "./publications-group.module.scss";
 
 type PublicationsGroupProps = {
-    data: PublicationsGroupData,
-}
- 
-const PublicationsGroup:React.FC<PublicationsGroupProps> = (props) => {
-    const { data } = props;
-    return (
-        <section>
-           <h2>{data.title}</h2>
-           {data.publications.map((publication)=>{
-               return <Publication data={publication} key={publication.id} />
-           })}
-        </section>
-    );
-}
- 
+  data: PublicationsGroupData;
+};
+
+const PublicationsGroup: React.FC<PublicationsGroupProps> = (props) => {
+  const { data } = props;
+  return (
+    <section className={`publication-group ${style.section}`}>
+      <div className={style.section__wrapper}>
+        <h2 className={style.section__title}>{data.title}</h2>
+        <PublicationSlider data={data} />
+        <div className={style["section__image-pad"]}></div>
+      </div>
+    </section>
+  );
+};
+
 export default PublicationsGroup;
