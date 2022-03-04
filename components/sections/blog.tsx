@@ -1,8 +1,7 @@
 import { ArticleData } from "types/blog-data";
 import { BlogData } from "types/sections-data";
 import { getButtonAppearance } from "utils/button";
-import Card from "../elements/card";
-import BlogSlider from "../elements/blog-slider";
+import { BlogSlider, BlogCard } from "../elements/blog-slider";
 import ButtonLink from "../links/button-link";
 import useDeviceDetect from "@/lib/useDeviceDetect";
 
@@ -37,7 +36,7 @@ const Blog: React.FC<BlogProps> = (props) => {
             {isMobile && (
               <div className={style.section__blogCards}>
                 {articles.map((article) => (
-                  <Card article={article} key={article.id} />
+                  <BlogCard article={article} key={article.id} />
                 ))}
               </div>
             )}
