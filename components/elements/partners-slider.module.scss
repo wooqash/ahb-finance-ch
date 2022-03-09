@@ -1,0 +1,70 @@
+@use "../styles/vars";
+
+.partner-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.partner {
+    @media only screen and (min-width: vars.$desktop-size) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        position: relative;
+        max-width: 48%;
+    }
+    &__description {
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin-left: calc(117px + 1.875rem);
+        }
+    }
+
+    &__image {
+        height: 90px;
+        margin-right: 1.875rem;
+        overflow: hidden;
+        width: 90px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            height: 230px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 117px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin-left: calc(117px + 1.875rem);
+        }
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        @media only screen and (min-width: vars.$desktop-size) {
+            align-items: flex-start;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    &__name,
+    &__company { margin: 0; }
+    
+    &__name {
+        font-weight: bold;
+    }
+
+    &__company-logo {
+        height: 20px;
+        margin-top: 1rem;
+        max-width: 105px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin-top: 0;
+        }
+    }
+}

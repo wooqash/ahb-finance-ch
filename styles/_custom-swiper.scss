@@ -29,6 +29,13 @@
   right: 0px;
 }
 
+.swiper-pagination-bullet {
+  background: $secondary-color;
+  border-radius: 0;
+  height: 4px;
+  width: 26px;
+}
+
 .blog {
   .swiper {
     padding: 50px 0;
@@ -88,5 +95,22 @@
       left: auto;
       right: 8%;
     }
+  }
+}
+
+.partners-group {
+  .swiper {
+    padding-bottom: 4rem;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    bottom: 0;
+    top: auto;
+  }
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    bottom: 6px;
   }
 }

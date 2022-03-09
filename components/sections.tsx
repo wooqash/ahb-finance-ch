@@ -7,7 +7,7 @@ import Blog from "./sections/blog";
 import FaqGroup from "./sections/faq-group";
 import Hero from "./sections/hero";
 import OffersGroup from "./sections/offers-group";
-import CollabolatorsGroup from "./sections/collabolators-group";
+import PartnersGroup from "./sections/partners-group";
 import PublicationsGroup from "./sections/publications-group";
 import RichTextWithCta from "./sections/rich-text-with-cta";
 import TestimonialsGroup from "./sections/testimonials-group";
@@ -46,8 +46,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <Hero data={sectionData} pageName={pageName} />;
     case SectionType.OFFERS:
       return <OffersGroup data={sectionData} />;
-    // case SectionType.COLLABOLATORS:
-    //   return <CollabolatorsGroup data={sectionData} />;
+    case SectionType.PARTNERS:
+      return <PartnersGroup data={sectionData} />;
     case SectionType.RICHTEXTWITHCTA:
       return <RichTextWithCta data={sectionData} pageName={pageName} />;
     // case SectionType.TESTIMONIALS:

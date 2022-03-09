@@ -2,7 +2,7 @@
 import { AdvantageData } from "types/elements/advantage-data";
 import { FaqItemData } from "types/elements/faq-item-data";
 import { OfferData } from "types/elements/offer-data";
-import { CollabolatorItemData } from "types/elements/collabolator-item-data";
+import { PartnerItemData } from "types/elements/partner-item-data";
 import { PublicationItemData } from "types/elements/publication-item-data";
 import { TileData } from "types/elements/tile-data";
 import { ButtonData, ButtonLinkData, LinkData } from "types/buttons-data";
@@ -15,7 +15,7 @@ export enum SectionType {
     ADVANTAGES = "ADVANTAGESGROUP",
     FAQS = "FAQGROUP",
     OFFERS = "OFFERSGROUP",
-    COLLABOLATORS = "COLLABOLATORSGROUP",
+    PARTNERS = "PARTNERSGROUP",
     RICHTEXTWITHCTA = "RICHTEXTWITHCTA",
     TESTIMONIALS = "TESTIMONIALSGROUP",
     PUBLICATIONS = "PUBLICATIONSGROUP",
@@ -59,10 +59,10 @@ export interface OffersGroupData extends SectionData{
     offerGroups: OfferData[],
 };
 
-export interface CollabolatorsGroupData extends SectionData{
-    type: SectionType.COLLABOLATORS,
+export interface PartnersGroupData extends SectionData{
+    type: SectionType.PARTNERS,
     title?: string,
-    collabolators: CollabolatorItemData[],
+    partners: PartnerItemData[],
 };
 
 export interface RichtextWithCtaData extends SectionData{
@@ -99,4 +99,4 @@ export interface AboutSectionData extends SectionData {
     sideImage?: Media;
 }
 
-export type SectionsData = AboutSectionData | AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | CollabolatorsGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
+export type SectionsData = AboutSectionData | AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
