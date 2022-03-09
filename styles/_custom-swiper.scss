@@ -2,11 +2,9 @@
 .swiper-button-next {
   background-position: center;
   background-repeat: no-repeat;
-  //   bottom: 0;
   height: 12px;
   margin-top: 0;
   padding: 16px;
-  //   top: auto;
   width: 18px;
   z-index: 11;
   &::after {
@@ -56,14 +54,7 @@
   .swiper-pagination-bullets.swiper-pagination-horizontal,
   .swiper-pagination-custom,
   .swiper-pagination-fraction {
-    bottom: 0;
-  }
-
-  .swiper-pagination-bullet {
-    background: $secondary-color;
-    border-radius: 0;
-    height: 4px;
-    width: 26px;
+    bottom: 6px;
   }
 }
 
