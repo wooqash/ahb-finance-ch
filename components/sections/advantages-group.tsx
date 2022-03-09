@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 import { AdvantagesGroupData } from "types/sections-data";
 import Advantage from "../elements/advantage";
 
 import style from "./advantages-group.module.scss";
-import TopTriangle from 'public/images/adv-top-triangle.svg';
-import BottomTriangle from 'public/images/adv-bottom-triangle.svg';
+import TopTriangle from "public/images/adv-top-triangle.svg";
+import BottomTriangle from "public/images/adv-bottom-triangle.svg";
 
 type AdvantagesGroupProps = {
   data: AdvantagesGroupData;
@@ -23,12 +23,12 @@ const AdvantagesGroup: React.FC<AdvantagesGroupProps> = (props) => {
             <Advantage advantage={advantage} key={advantage.id} />
           ))}
         </div>
-      </div>
-      <div className={style["section__top-triangle"]}>
-        <Image src={TopTriangle} alt="" />
-      </div>
-      <div className={style["section__bottom-triangle"]}>
-        <Image src={BottomTriangle} alt="" />
+        <div className={style["section__top-triangle"]}>
+          <Image src={TopTriangle} alt="" />
+        </div>
+        <div className={style["section__bottom-triangle"]}>
+          <Image src={BottomTriangle} alt="" />
+        </div>
       </div>
     </section>
   );

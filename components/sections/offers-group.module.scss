@@ -3,7 +3,7 @@
 .section {
     background-color: vars.$white-color;
     color: vars.$primary-color;
-    position: relative;
+    
    
 
     &__wrapper {
@@ -13,11 +13,12 @@
         justify-content: center;
         margin: 0 auto;
         padding: 1.25rem;
+        position: relative;
         @media only screen and (min-width: vars.$desktop-size) {
             flex-direction: row;
             max-width: vars.$page-wrapper-max-size;
             padding: 8rem 1.25rem;
-        }
+        }        
     }
 
     &__headline {
@@ -75,6 +76,9 @@
             max-width: 330px;
             right: auto;
             top: -90px;
+        }
+        @media only screen and (min-width: vars.$larger-desktop-size) {
+            left: -70px;
         }
     }
 

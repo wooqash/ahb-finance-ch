@@ -4,11 +4,12 @@
     background-color: vars.$white-color;
     color: vars.$primary-color;
     padding: 0 1.25rem;
-    position: relative;
+    
     
     &__wrapper {
         margin: 0 auto;
         padding: 5rem 0;
+        position: relative;
         @media only screen and (min-width: vars.$desktop-size) {
             max-width: vars.$page-wrapper-max-size;
             padding: 8rem 0;
@@ -40,6 +41,9 @@
             max-width: 330px;
             top: -120px;
         }
+        @media only screen and (min-width: vars.$larger-desktop-size) {
+            left: -150px;
+        }
     }
 
     &__bottom-triangle{
@@ -51,6 +55,8 @@
         @media only screen and (min-width: vars.$desktop-size) {
             bottom: -90px;
             max-width: 256px;
+        }
+        @media only screen and (min-width: vars.$larger-desktop-size) {
             right: -20px;
         }
     }

@@ -30,12 +30,12 @@ const OffersGroup: React.FC<OffersGroupProps> = (props) => {
             })}
           </div>
         )}
-      </div>
-      <div className={style["section__top-triangle"]}>
-        <Image src={TopTriangle} alt="" />
-      </div>
-      <div className={style["section__bottom-triangle"]}>
-        <Image src={BottomTriangle} alt="" />
+        <div className={style["section__top-triangle"]}>
+          <Image src={TopTriangle} alt="" />
+        </div>
+        <div className={style["section__bottom-triangle"]}>
+          <Image src={BottomTriangle} alt="" />
+        </div>
       </div>
     </section>
   );
