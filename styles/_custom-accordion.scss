@@ -1,0 +1,72 @@
+.accordion {
+    margin: 2.5rem 0;
+    @media only screen and (min-width: $desktop-size) {
+        margin: 2.85rem 0;
+    }
+
+    &__item {
+        // background: $white;
+
+        // background: linear-gradient(-45deg, transparent 15px, $white 0);
+        border: 1px solid $additional-color;
+        // border-image: 1 url('data:image/svg+xml, \
+        // <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" >\
+        // <polygon points="0,0 0,0 2,0 3,0 3,2 2,3 1,3 0,3" fill="%23ffffff" />\
+        // </svg>');
+        // // background: $additional-color;
+        // background-clip: padding-box;
+        margin: 1.25rem 0;
+        position: relative;
+        // outline: 1px solid $additional-color;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            z-index: 1;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            right: 6px;
+            width: 1px;
+            height: 22px;
+            background-color: $additional-color;
+            z-index: 2;
+            transform: rotate(45deg);
+        }
+    }
+
+    &__button {
+        align-items: center;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        font-size: 1.125rem;
+        padding: .9rem 1.375rem;
+        
+    }
+    &__button[aria-expanded="true"] .button__icon {
+        transform: rotate(90deg);
+    }
+
+    &__panel {
+        border-top: 1px solid $additional-color;
+        margin: 0 3.375rem;
+        padding: 1.125rem 0;
+
+    }
+
+    .button__icon {
+        margin-right: 1.25rem;
+        transition: transform 0.3s ease-out;
+        transform: rotate(0deg);
+    }
+}
+
+
+
