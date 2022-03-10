@@ -9,7 +9,9 @@
     
 
     &--primary{
-        border: 20px solid vars.$secondary-color;
+        border: .8rem solid vars.$secondary-color;
+        border-left-width: 1.125rem;
+        border-right-width: 1.125rem;
         border-image: 1 url('data:image/svg+xml, \
         <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" fill="%233ecfeb">\
         <polygon points="0,0 0,0 2,0 3,0 3,2 2,3 1,3 0,3" />\
