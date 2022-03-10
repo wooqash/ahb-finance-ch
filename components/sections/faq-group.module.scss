@@ -1,0 +1,33 @@
+@use "../styles/vars";
+
+.section{
+    background-color: vars.$white-color;
+    color: vars.$primary-color;
+    padding: 0 1.25rem;
+    &__wrapper {
+        margin: 0 auto;
+        padding: 4rem 0;
+        position: relative;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: vars.$page-wrapper-max-size;
+            padding: 8.5rem 0;
+        }
+    }
+
+    &__bottom-triangle{
+        display: none;
+        max-width: 175px;
+        position: absolute;
+        z-index: 3;
+        @media only screen and (min-width: vars.$desktop-size) {
+            display: block;
+            top: 40px;
+            right: 0;
+            max-width: 256px;
+        }
+        @media only screen and (min-width: vars.$larger-desktop-size) {
+            top: 35px;
+            right: -110px;
+        }
+    }
+}
