@@ -9,7 +9,6 @@ import BottomTriangle from "public/images/adv-bottom-triangle.svg";
 
 type AdvantagesGroupProps = {
   data: AdvantagesGroupData;
-  // children: React.ReactChild;
 };
 
 const AdvantagesGroup: React.FC<AdvantagesGroupProps> = (props) => {

@@ -40,8 +40,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <AdvantagesGroup data={sectionData} />;
     case SectionType.BLOG:
       return <Blog data={sectionData} articles={articles} />;
-    // case SectionType.FAQS:
-    //   return <FaqGroup data={sectionData} />;
+    case SectionType.FAQS:
+      return <FaqGroup data={sectionData} />;
     case SectionType.HERO:
       return <Hero data={sectionData} pageName={pageName} />;
     case SectionType.OFFERS:
