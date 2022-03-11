@@ -5,11 +5,21 @@
     border-top: 6px solid vars.$secondary-color;
     background-color: vars.$primary-color;
     padding: 1.25rem;
+
+    &__container {
+        margin: 0 auto;
+        padding: 4rem 0 0;
+        position: relative;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: vars.$page-wrapper-max-size;
+            padding: 5rem 0 0;
+        }
+    }
     
     &__logo {
         max-width: 192px;
         text-align: center;
-        margin: 5rem auto;
+        margin: 0 auto 5rem;
     }
 
     &__navbar,

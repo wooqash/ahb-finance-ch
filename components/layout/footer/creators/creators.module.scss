@@ -8,12 +8,15 @@
 }
 
 .element {
+    align-items: center;
+    display: flex;
     margin: 0 0.25em;
     span{
         vertical-align: middle;
     }
     &__link {
         font-weight: bold;
+        margin: 0 0.25em;
         &:hover,
         &:focus {
             text-decoration: none;

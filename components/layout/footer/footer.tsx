@@ -26,31 +26,33 @@ const Footer: React.FC<FooterProps> = (props) => {
 
   return (
     <footer className={style.footer}>
-      {logo && (
-        <div className={style.footer__logo}>
-          <Logo data={logo} />
+      <div className={style.footer__container}>
+        {logo && (
+          <div className={style.footer__logo}>
+            <Logo data={logo} />
+          </div>
+        )}
+        <div className={style["footer__navbar"]}>
+          {contactInfo && <ContactInfo info={contactInfo} />}
+          {columns && <FooterNav columns={columns} />}
         </div>
-      )}
-      <div className={style["footer__navbar"]}>
-        {contactInfo && <ContactInfo info={contactInfo} />}
-        {columns && <FooterNav columns={columns} />}
-      </div>
-      <div className={style["footer__links"]}>
-        {socialMedia && (
-          <SocialMediaLinks
-            customClasses={style["sm-list"]}
-            links={socialMedia.links}
-          />
-        )}
-        {legalLinks && <LegalLinks links={legalLinks} />}
-      </div>
-      <div className={style["footer__infobar"]}>
-        {copyrightText && (
-          <p
-            className={style["footer__copyrights"]}
-          >{`${copyrightText} ${copyrightYear}`}</p>
-        )}
-        {creators && <Creators creators={creators} />}
+        <div className={style["footer__links"]}>
+          {socialMedia && (
+            <SocialMediaLinks
+              customClasses={style["sm-list"]}
+              links={socialMedia.links}
+            />
+          )}
+          {legalLinks && <LegalLinks links={legalLinks} />}
+        </div>
+        <div className={style["footer__infobar"]}>
+          {copyrightText && (
+            <p
+              className={style["footer__copyrights"]}
+            >{`${copyrightText} ${copyrightYear}`}</p>
+          )}
+          {creators && <Creators creators={creators} />}
+        </div>
       </div>
     </footer>
   );

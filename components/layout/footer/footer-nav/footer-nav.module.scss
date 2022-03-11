@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 
 .footerNav{
-    padding: 4rem 0;
+    padding: 2rem 0;
     width: 100%;
 
     @media only screen and (min-width: 1024px) {
@@ -61,6 +61,7 @@
     }
 
     &__menu-item {
+        font-family: vars.$sans-serif-regular-font;
         margin: 1.25rem 0;
     }
 }
