@@ -6,7 +6,7 @@
   padding: 0;
   margin: 0;
 
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: vars.$desktop-size) {
       align-items: center;
       display: flex;
       padding: 0 1em;
@@ -21,7 +21,7 @@
     &--dropdown {
         position: relative;
     }
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: vars.$desktop-size) {
       border: 0;
       margin: 0 1em;
       padding: 0;
@@ -29,7 +29,7 @@
   }
 
   &__link {
-      color: inherit;
+      // color: inherit;
       display: inline-block;
       text-decoration: none;
   }

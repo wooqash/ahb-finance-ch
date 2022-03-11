@@ -1,150 +1,173 @@
 @use "@/styles/vars";
 
 .navbar {
-    font-family: vars.$sans-serif-medium-font;
-    font-size: 1.125rem;
-    height: 5rem;
-    left: 0;
-    overflow: hidden;
-    padding: 1.25rem;
-    position: fixed;
-    top: 0;
-    transition: 0.5s ease-out all;
-    width: 100%;
-    z-index: 5;
+  font-family: vars.$sans-serif-medium-font;
+  font-size: 1.125rem;
+  height: 5rem;
+  left: 0;
+  overflow: hidden;
+  padding: 1.25rem;
+  position: fixed;
+  top: 0;
+  transition: 0.5s ease-out all;
+  width: 100%;
+  z-index: 5;
+  @media only screen and (min-width: vars.$desktop-size) {
+    height: auto;
+    overflow: visible;
+  }
 
-    &--open {
-        height: 100vh;
+  &--open {
+    height: 100vh;
+    &.navbar--sticky button {
+      color: vars.$secondary-color;
+      &:hover,
+      &:focus {
+        color: vars.$white;
+      }
     }
+    &.navbar__menubar {
+      color: inherit;
+    }
+  }
 
-    &--dark {
+  &--dark {
+    color: vars.$secondary-color;
+    a:hover,
+    a:focus {
+      color: vars.$white-color;
+    }
+    button {
+      color: vars.$secondary-color;
+      &[aria-expanded="true"],
+      &:hover,
+      &:focus {
+        color: vars.$white-color;
+      }
+    }
+    &.navbar--open {
+      background-color: vars.$primary-color;
+    }
+  }
+
+  &--light {
+    background-color: vars.$white-color;
+    color: vars.$primary-color;
+    a:hover,
+    a:focus {
+      color: vars.$secondary-color;
+    }
+    button {
+      color: vars.$primary-color;
+      &[aria-expanded="true"],
+      &:hover,
+      &:focus {
         color: vars.$secondary-color;
-        a:hover,
-        a:focus {
-            color: vars.$white-color;
-        }
-        button {
-            color: vars.$secondary-color;
-            &[aria-expanded="true"],
-            &:hover,
-            &:focus {
-                color: vars.$white-color;
-            }
-        }
-        &.navbar--open {
-            background-color:  vars.$primary-color;
-        }
+      }
     }
 
-    &--light {
-        background-color: vars.$white-color;
+    &.navbar--open {
+      background-color: vars.$white-color;
+    }
+  }
+
+  &--sticky {
+    background-color: vars.$white-color;
+    button {
+      color: vars.$primary-color;
+      &:hover,
+      &:focus {
+        color: vars.$secondary-color;
+      }
+    }
+    @media only screen and (min-width: vars.$desktop-size) {
+      background-color: vars.$white-color;
+      color: vars.$primary-color;
+      padding: 1rem;
+
+      .navbar__logo {
+        max-width: 99px;
+      }
+
+      a {
         color: vars.$primary-color;
-        a:hover,
-        a:focus {
+        &:hover,
+        &:focus {
             color: vars.$secondary-color;
         }
-        button {
-            color: vars.$primary-color;
-            &[aria-expanded="true"],
-            &:hover,
-            &:focus {
-                color: vars.$secondary-color;
-            }
+      }
+
+      button {
+        color: vars.$primary-color;
+        &[aria-expanded="true"],
+        &:hover,
+        &:focus {
+          color: vars.$secondary-color;
         }
 
-        &.navbar--open {
-            background-color: vars.$white-color;
+        & + div {
+            background: vars.$white;
         }
+      }
     }
+  }
 
-    &--sticky {
-        
-        @media only screen and (min-width: 1024px) {
-            
-        }
+  &__wrapper {
+    @media only screen and (min-width: vars.$desktop-size) {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: vars.$page-wrapper-max-size;
+      overflow: visible;
     }
+  }
 
-    @media only screen and (min-width: 1024px) {
-        height: auto;
-        overflow: visible;
-        &--sticky {
-            background-color: vars.$white-color;
-            color:  vars.$primary-color;
-            padding: 1rem;
-            .navbar__logo {
-                max-width: 99px;
-            }
-            a:hover,
-            a:focus {
-                color: vars.$secondary-color;
-            }
-            button {
-                color: vars.$primary-color;
-                &[aria-expanded="true"],
-                &:hover,
-                &:focus {
-                    color: vars.$secondary-color;
-                }
-            }
-        }
+  &__logo {
+    max-width: 84px;
+    @media only screen and (min-width: vars.$desktop-size) {
+      max-width: 143px;
     }
+  }
 
-    &__wrapper {
-        
-        @media only screen and (min-width: 1024px) {
-            display: flex;
-            justify-content: space-between;
-            margin: 0 auto;
-            max-width: vars.$page-wrapper-max-size;
-            overflow: visible;
-        }
+  &__menubar {
+    border-top: 1px solid vars.$secondary-color;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 6.25rem);
+    justify-content: space-between;
+    margin-top: 1.25rem;
+
+    @media only screen and (min-width: vars.$desktop-size) {
+      border: 0;
+      flex-direction: row;
+      height: auto;
+      margin: 0;
     }
+  }
 
-    &__logo {
-        max-width: 84px;
-        @media only screen and (min-width: 1024px) {
-            max-width: 143px;
-        }
+  &__menubar-other-links {
+    @media only screen and (min-width: vars.$desktop-size) {
+      display: flex;
+      align-items: center;
     }
+  }
 
-    &__menubar {
-        border-top: 1px solid vars.$secondary-color;
-        display: flex;
-        flex-direction: column;
-        height: calc(100vh - 6.25rem);
-        justify-content: space-between;
-        margin-top: 1.25rem;
-        
-        @media only screen and (min-width: 1024px) {
-            border: 0;
-            flex-direction: row;
-            height: auto;
-            margin: 0;
-        }
+  &__mobile-menu-button {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: vars.$secondary-color;
+    cursor: pointer;
+    display: flex;
+    font-size: 3.125rem;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    right: 1.25rem;
+    top: 1rem;
+
+    @media only screen and (min-width: vars.$desktop-size) {
+      display: none;
     }
-
-    &__menubar-other-links {
-        @media only screen and (min-width: 1024px) {
-            display: flex;
-            align-items: center;
-        }
-    }
-
-    &__mobile-menu-button {
-        align-items: center;
-        background: none;
-        border: 0;
-        color: vars.$secondary-color;
-        display: flex;
-        font-size: 3.125rem;
-        justify-content: center;
-        padding: 0;
-        position: absolute;
-        right: 1.25rem;
-        top: 1rem;
-
-        @media only screen and (min-width: 1024px) {
-            display: none;
-        }
-    }
+  }
 }

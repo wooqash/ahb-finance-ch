@@ -21,7 +21,7 @@
         }
     }
 
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: vars.$desktop-size) {
         padding: 0 1rem;
     }
 }

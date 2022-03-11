@@ -7,7 +7,7 @@
   visibility: hidden;
   will-change: transform;
   
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: vars.$desktop-size) {
     border-top: 1px solid vars.$secondary-color;
     clip: auto;
     left: 0;
@@ -26,7 +26,7 @@
     transform: translateY(0);
     transition: transform 0.2s, opacity 0.2s, visibility linear;
     visibility: visible;
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: vars.$desktop-size) {
       transform: translateY(0.25rem);
     }
   }

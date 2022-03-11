@@ -19,8 +19,8 @@ const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
       } `}
     >
       {label}
-      <span>
-        <MdKeyboardArrowDown className={style["dropdown__button-icon"]} />
+      <span className={style["dropdown__button-icon"]}>
+        <MdKeyboardArrowDown />
       </span>
     </button>
   );

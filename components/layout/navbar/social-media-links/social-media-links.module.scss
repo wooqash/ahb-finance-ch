@@ -12,14 +12,17 @@
     padding: 1.25rem;
     position: relative;
     
-    a { color: inherit; }
-
     li {
         margin: 0 0.5em;
         line-height: 1;
+
+        a {
+            align-items: center;
+            display: flex;
+        }
     }
 
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: vars.$desktop-size) {
         border: 0;
         &::before,
         &::after {

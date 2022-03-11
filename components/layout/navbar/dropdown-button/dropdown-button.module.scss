@@ -1,3 +1,5 @@
+@use "@/styles/vars";
+
 .dropdown {
   &__button {
     align-items: center;
@@ -12,7 +14,6 @@
     padding: 0;
     width: 100%;
 
-
     &:hover {
       cursor: pointer;
     }
@@ -23,7 +24,7 @@
       }
     }
 
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: vars.$desktop-size) {
       width: auto;
     }
   }
