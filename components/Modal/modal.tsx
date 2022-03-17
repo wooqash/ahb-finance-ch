@@ -1,24 +1,49 @@
+import Image from "next/image";
 import React, { ReactNode, MouseEvent } from "react";
+import { MdClose } from "react-icons/md";
+
+import style from "./Modal.module.scss";
+
+import Watermark from "public/images/wartermark-pig-modal.svg";
 
 type ModalProps = {
-    isActive: boolean;
-    children?: ReactNode;
-    id?: string;
-    // content: NewsletterSubscribeDialogData | { title: string};
-    // form?: FormsData;
-    // logo?: Media | null;
-    onClose?: (e: MouseEvent<HTMLElement>) => void;
-}
+  isActive: boolean;
+  children?: ReactNode;
+  id?: string;
+  onClose?: (e: MouseEvent<HTMLElement>) => void;
+};
 
-const Modal:React.FC<ModalProps> = ({isActive, children, id, onClose}) => {
-        return (
-        <div id={id} className={`${isActive ? 'modal--unfoldingIn' : 'modal--unfoldingOut'} fixed w-full h-full top-0 left-0 flex items-center justify-center z-40 transform scale-0`}>
-            <div className={`absolute w-full h-full bg-gray-900 opacity-75`} onClick={onClose}></div>
-            <div className={`${isActive ? 'modal-content--unfoldingIn' : 'modal-content--unfoldingOut'} max-w-full md:max-w-2xl xl:max-w-screen-lg flex flex-col max-h-90 bg-midnight-green-eagle-green rounded border-white border border-solid shadow-lg z-50 my-10`}>
-                {children}
-            </div>
+const Modal: React.FC<ModalProps> = ({ isActive, children, id, onClose }) => {
+    console.log(isActive);
+  return (
+    <div
+      id={id}
+      className={`${style.dialog}`}
+    >
+      <div className={`${style.dialog__overlay} ${
+            isActive ? style["dialog__overlay--show"] : style["dialog__overlay--hide"]
+          }`} onClick={onClose}></div>
+      <div
+        className={`${style.dialog__content} ${
+            isActive ? style["dialog--scaleUp"] : style["dialog--scaleDown"]
+          }`}
+      >
+        <button
+          id="ModalCloseButton"
+          aria-label="close"
+          name="ModalCloseButton"
+          onClick={onClose}
+          className={style["dialog__close-btn"]}
+        >
+          <MdClose />
+        </button>
+        <div className={style["dialog__content-container"]}>{children}</div>
+        <div className={style.dialog__watermark}>
+          <Image src={Watermark} alt={`transparent pig watermark`} />
         </div>
-    );
-}
- 
+      </div>
+    </div>
+  );
+};
+
 export default Modal;
