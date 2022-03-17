@@ -9,10 +9,8 @@ import Hero from "./sections/hero";
 import OffersGroup from "./sections/offers-group";
 import PartnersGroup from "./sections/partners-group";
 import PublicationsGroup from "./sections/publications-group";
-import RichTextWithCta from "./sections/rich-text-with-cta";
-import TestimonialsGroup from "./sections/testimonials-group";
-import NewsletterFrom from "./sections/newsletter-form";
 import { FormsData } from "types/forms-data";
+import NewsletterSection from "./NewsletterSection/NewsletterSection";
 
 type SectionsProps = {
   sections: SectionsData[];
@@ -33,8 +31,6 @@ type SectionProps = {
 const Section: React.FC<SectionProps> =  (prop) => {
   const { sectionData, articles, form, pageName } = prop;
 
-  // console.log(sectionData.type);
-
   switch (sectionData.type) {
     case SectionType.ADVANTAGES:
       return <AdvantagesGroup data={sectionData} />;
@@ -48,14 +44,10 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return <OffersGroup data={sectionData} />;
     case SectionType.PARTNERS:
       return <PartnersGroup data={sectionData} />;
-    case SectionType.RICHTEXTWITHCTA:
-      return <RichTextWithCta data={sectionData} pageName={pageName} />;
-    // case SectionType.TESTIMONIALS:
-    //   return <TestimonialsGroup data={sectionData} />;
     case SectionType.PUBLICATIONS:
       return <PublicationsGroup data={sectionData} />
     case SectionType.NEWSLETTER:
-      return form ? <NewsletterFrom data={sectionData} form={form} /> : <></>
+      return form ? <NewsletterSection data={sectionData} form={form} /> : <></>
     case SectionType.ABOUT:
       return <About data={sectionData} />;
     default:
