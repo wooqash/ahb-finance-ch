@@ -36,7 +36,7 @@ const Blog: React.FC<BlogProps> = (props) => {
             {isMobile && (
               <div className={style.section__blogCards}>
                 {articles.map((article) => (
-                  <BlogCard article={article} key={article.id} />
+                  <BlogCard article={article} key={`BlogCard${article.id}`} />
                 ))}
               </div>
             )}

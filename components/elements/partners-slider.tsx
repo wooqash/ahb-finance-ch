@@ -97,8 +97,8 @@ const PartnersSlider: React.FC<PartnersSliderProps> = (props) => {
           }}
         >
           {data.partners.map((partner) => (
-            <SwiperSlide key={data.id}>
-              <PartnersSlide data={partner} key={data.id} />
+            <SwiperSlide key={`Mobile${partner.id}`}>
+              <PartnersSlide data={partner} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -123,8 +123,8 @@ const PartnersSlider: React.FC<PartnersSliderProps> = (props) => {
           }}
         >
           {data.partners.map((partner) => (
-            <SwiperSlide key={data.id}>
-              <PartnersSlide data={partner} key={data.id} />
+            <SwiperSlide key={`Desktop${partner.id}`}>
+              <PartnersSlide data={partner} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -132,7 +132,7 @@ const PartnersSlider: React.FC<PartnersSliderProps> = (props) => {
       {!isMobile && data.partners.length <=2 && (
         <div className={style["partner-container"]}>
           {data.partners.map((partner) => (
-              <PartnersSlide data={partner} key={data.id} />
+              <PartnersSlide data={partner} key={partner.id} />
           ))}
         </div>
       )}

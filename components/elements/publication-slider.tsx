@@ -61,8 +61,8 @@ const PublicationSlider: React.FC<PublicationSliderProps> = (props) => {
       pagination={{ clickable: true, type: "fraction" }}
     >
       {data.publications.map((publication) => (
-        <SwiperSlide key={data.id}>
-          <PublicationSlide data={publication} key={data.id} />
+        <SwiperSlide key={`Publication${publication.id}`}>
+          <PublicationSlide data={publication} />
         </SwiperSlide>
       ))}
     </Swiper>
