@@ -10,4 +10,6 @@ export interface FormsData {
     namePlaceholderMsg: string;
     emailPlaceholderMsg: string;
     unhandledExeptionLabel: string;
+    ariaValidMsg: string;
+    ariaInvalidMsg: string;
 }
