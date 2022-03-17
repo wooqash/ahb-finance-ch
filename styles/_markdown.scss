@@ -1,0 +1,11 @@
+.markdown-styles {
+    blockquote, dl, dd, hr, figure, p, pre {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    &.awarded {
+        color: $secondary-color;
+        font-size: 1.125rem;
+        text-align: center;
+    }
+}
