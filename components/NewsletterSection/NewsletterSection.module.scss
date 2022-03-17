@@ -1,0 +1,30 @@
+@use '../styles/vars';
+
+.section {
+    border-top: 2px solid vars.$secondary-color;
+    border-bottom: 2px solid vars.$secondary-color;
+    padding: 3.25rem 1.25rem;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @media only screen and (min-width: vars.$desktop-size) {
+            flex-direction: row;
+            justify-content: space-between;
+            max-width: vars.$page-wrapper-max-size;
+            margin: 0 auto;
+        }
+    }
+
+    &__title {
+        color: vars.$secondary-color;
+        text-align: center;
+
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin-bottom: 0;
+        }
+    }
+}
