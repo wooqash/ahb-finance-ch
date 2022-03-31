@@ -11,6 +11,7 @@ import PartnersGroup from "./sections/partners-group";
 import PublicationsGroup from "./sections/publications-group";
 import { FormsData } from "types/forms-data";
 import NewsletterSection from "./NewsletterSection/NewsletterSection";
+import ServicesSection from "./ServicesSection/ServicesSection";
 
 type SectionsProps = {
   sections: SectionsData[];
@@ -50,6 +51,8 @@ const Section: React.FC<SectionProps> =  (prop) => {
       return form ? <NewsletterSection data={sectionData} form={form} /> : <></>
     case SectionType.ABOUT:
       return <About data={sectionData} />;
+    case SectionType.SERVICES:
+        return <ServicesSection data={sectionData} />;
     default:
       let x: never = sectionData;
       return <></>;
