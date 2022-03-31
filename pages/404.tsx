@@ -12,11 +12,8 @@ import Button from "@/components/button";
 import Container from "@/components/container";
 import LangSwitcher from "@/components/lang-switcher";
 import LayoutShort from "@/components/layout-short";
-import Modal from "@/components/Modal/modal";
-import ModalHeader from "@/components/Modal/modal-header";
-import ModalTitle from "@/components/Modal/modal-title";
-import ModalContent from "@/components/Modal/modal-content";
-import ModalNewsletter from "@/components/Modal/contents/modal-newsletter";
+import Modal from "@/components/Modal/Modal";
+import ModalNewsletter from "@/components/NewsletterModal/NewsletterModal";
 import Spinner from "@/components/spinner";
 import ShareButtons from "@/components/share-buttons";
 

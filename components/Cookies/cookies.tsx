@@ -13,11 +13,7 @@ import { CookieInfoData } from "types/cookie-info-data";
 import { CookieType, CookieTypeSum, CookieGroupsFlags } from "types/cookies";
 
 import Button from "@/components/button";
-import Modal from "@/components/Modal/modal";
-import ModalHeader from "@/components/Modal/modal-header";
-import ModalTitle from "@/components/Modal/modal-title";
-import ModalContent from "@/components/Modal/modal-content";
-import ModalFooter from "@/components/Modal/modal-footer";
+import Modal from "@/components/Modal/Modal";
 import ModalCookieInfo from "@/components/Modal/contents/modal-cookie-info";
 import CookieBanner from "@/components/Cookies/cookie-banner";
 
