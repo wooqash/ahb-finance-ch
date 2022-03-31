@@ -1,0 +1,136 @@
+@use "../styles/vars";
+
+.section {
+  padding: 0 1.25rem;
+
+  &__wrapper {
+    margin: 0 auto;
+    padding: 6.5rem 0;
+    @media only screen and (min-width: vars.$desktop-size) {
+      max-width: vars.$page-wrapper-max-size;
+      padding: 8.5rem 0;
+    }
+  }
+
+  &__heading {
+    position: relative;
+  }
+
+  &__content {
+    margin: 3.75rem 0 10rem;
+    position: relative;
+    @media only screen and (min-width: vars.$desktop-size) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 2.125rem;
+        grid-row-gap: 0px;
+        margin: 3.75rem 0 6.8rem;
+    }
+  }
+
+  &__shadow-title {
+    color: vars.$secondary-color;
+    font-family: vars.$sans-serif-bold-font;
+    font-size: 3.6rem;
+    left: -1.25rem;
+    opacity: 0.1;
+    position: absolute;
+    top: -3.4rem;
+    @media only screen and (min-width: vars.$desktop-size) {
+        font-size: 12.6rem;
+        left: -14rem;
+        top: -12rem;
+    }
+  }
+
+  &:nth-child(n+1) {
+    .top-triangle--odd { display: none; }
+    .bottom-triangle--odd { display: none; }
+    .top-triangle--even { display: block; }
+    .bottom-triangle--even { display: block; }
+  }
+
+  &:nth-child(2n) {
+    .top-triangle--odd { display: block; }
+    .bottom-triangle--odd { display: block; }
+    .top-triangle--even { display: none; }
+    .bottom-triangle--even { display: none; }
+  }
+
+ 
+
+  &__services {
+      position: relative;
+  }
+}
+
+.content__intro {
+  color: vars.$secondary-color;
+  font-size: 1.125rem;
+  position: relative;
+
+  hr {
+    border-color: vars.$secondary-color;
+    margin: 2.375rem 0;
+  }
+}
+
+.services__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+.top-triangle {
+    position: absolute;
+
+    &--odd {
+        bottom: -160px;
+        left: -90px;
+        max-width: 173px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -60px;
+            left: -180px;
+            max-width: 195px;
+        }
+    }
+
+    &--even {
+        bottom: -70px;
+        max-width: 36px;
+        right: 0;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -20px;
+            left: -70px;
+            right: auto;
+        }
+    }
+}
+
+.bottom-triangle {
+    position: absolute;
+
+    &--odd {
+        bottom: -190px;
+        max-width: 210px;
+        right: -50px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -330px;
+            max-width: 393px;
+            right: -220px;
+        }
+    }
+
+    &--even {
+        bottom: -130px;
+        left: 0;
+        max-width: 123px;
+        @media only screen and (min-width: vars.$desktop-size) {
+            bottom: -150px;
+            left: auto;
+            max-width: 171px;
+            right: -190px;
+        }
+    }
+}
