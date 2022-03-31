@@ -8,6 +8,7 @@ import { TileData } from "types/elements/tile-data";
 import { ButtonData, ButtonLinkData, LinkData } from "types/buttons-data";
 import { ArticleData } from "./blog-data";
 import { NewsletterModalInfoData } from "./newsletter-modal-info-data";
+import { ServiceData } from "./service-data";
 import { Media } from "./media";
 
 export enum SectionType {
@@ -21,7 +22,8 @@ export enum SectionType {
     PUBLICATIONS = "PUBLICATIONSGROUP",
     NEWSLETTER = "NEWSLETTERFORM",
     BLOG ="BLOG",
-    ABOUT = "ABOUT_SECTION"
+    ABOUT = "ABOUT_SECTION",
+    SERVICES = "SERVICES"
 }
 
 export interface SectionData {
@@ -50,6 +52,7 @@ export interface FaqGroupData extends SectionData{
 export interface HeroData extends SectionData{
     type: SectionType.HERO,
     title: string,
+    description?: string,
     cta?: ButtonLinkData[],
 };
 
@@ -99,4 +102,16 @@ export interface AboutSectionData extends SectionData {
     sideImage?: Media;
 }
 
-export type SectionsData = AboutSectionData | AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm;
+
+export interface ServicesSectionData extends SectionData {
+    serviceId: string,
+    type: SectionType.SERVICES,
+    title: string,
+    shadowTitle?: string,
+    intro?: string,
+    description?: string,
+    servicesHeading?: string,
+    services: ServiceData[],
+}
+
+export type SectionsData = AboutSectionData | AdvantagesGroupData | BlogData | FaqGroupData | HeroData | OffersGroupData | PartnersGroupData | RichtextWithCtaData | TestimonialsGroupData | PublicationsGroupData | NewsletterForm | ServicesSectionData;
