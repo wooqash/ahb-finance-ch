@@ -75,13 +75,15 @@ const LocaleSwitch:React.FC<LocaleSwitchProps> = (props) => {
           ) {
             // Redirect to locale page if locale mismatch
             const localePage = await getLocalizedPage(localeCookie, pageContext);
+
+            console.log(localeCookie);
     
             if (localePage) {
-                router.push(
-                    `${localizePath({ ...pageContext, ...localePage })}`,
-                    `${localizePath({ ...pageContext, ...localePage })}`,
-                    { locale: localePage.locale }
-                );
+                // router.push(
+                //     `${localizePath({ ...pageContext, ...localePage })}`,
+                //     `${localizePath({ ...pageContext, ...localePage })}`,
+                //     { locale: localePage.locale }
+                // );
             }
             
           }
