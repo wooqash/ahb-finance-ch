@@ -1,5 +1,15 @@
 @use '../styles/vars';
 
+@keyframes moveDown {
+    from {
+        transform: translate(-8px, 0);
+    }
+  
+    to {
+        transform: translate(-8px, 1rem);
+    }
+  }
+
 .section {
     height: 100vh;
     width: 100%;
@@ -8,20 +18,43 @@
     &__wrapper {
         align-items: center;
         display: flex;
+        flex-direction: column;
         height: 100%;
-        justify-content: center;
+        justify-content: flex-start;
         margin: 0 auto;
         position: relative;
         width: 100%;
         @media only screen and (min-width: vars.$desktop-size) {
-            justify-content: flex-start;
+            flex-direction: row;
+            justify-content: space-between;
             max-width: vars.$page-wrapper-max-size;
         }
     }
 
     &__caption {
+        margin-top: 7.5rem;
         position: relative;
         z-index: 2;
+        @media only screen and (min-width: vars.$desktop-size) {
+            margin-top: 0;
+            margin-left: 6.25rem;
+            max-width: 50%;
+        }
+    }
+
+    &__description {
+        padding-bottom: 1.25rem;
+        position: relative;
+
+        &:after {
+            background-color: vars.$secondary-color;
+            bottom: 0;
+            content: "";
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 60px;
+        }
     }
     
     &__buttons-wrapper{
@@ -31,7 +64,32 @@
         max-width: 70%;
     }
 
+    &__watermark {
+        display: block;
+        max-width: 280px;
+        z-index: 2;
+        @media only screen and (min-width: vars.$desktop-size) {
+            max-width: 315px;
+        }
+    }
+
+    .scroll-down-icon {
+        animation: moveDown 3s linear infinite;
+        bottom: 2rem;
+        left: 50%;
+        position: absolute;
+    }
+
     &--home {
+        .section__wrapper {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section__caption {
+            margin-top: 0;
+        }
+
         .section__title {
             font-family: vars.$sans-serif-light-font;
             font-size: 2.875rem;
@@ -42,20 +100,13 @@
         }
 
         .section__watermark {
-            display: block;
             max-width: 267px;
             position: absolute;
             top: 50%;
             transform: translateY(-90%);
-            z-index: 2;
         }
 
-        .scroll-down-icon {
-            animation: moveDown 3s linear infinite;
-            bottom: 2rem;
-            left: 50%;
-            position: absolute;
-        }
+        
 
         @media only screen and (min-width: vars.$desktop-size) {
             .section__title {
@@ -83,14 +134,22 @@
         }
         
     }
+
+    &--offer {
+        .section__wrapper {
+            @media only screen and (min-width: vars.$desktop-size) {
+                align-items: flex-start;
+                padding-top: 11.375rem;
+            }
+        }
+
+        .section__watermark {
+            margin-top: 2.6rem;
+            @media only screen and (min-width: vars.$desktop-size) {
+                margin-top: 0;
+            }
+        }
+    }
 }
 
-@keyframes moveDown {
-    from {
-        transform: translate(-8px, 0);
-    }
-  
-    to {
-        transform: translate(-8px, 1rem);
-    }
-  }
+
