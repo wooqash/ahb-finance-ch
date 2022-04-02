@@ -35,16 +35,17 @@
         margin-top: 7.5rem;
         position: relative;
         z-index: 2;
-        @media only screen and (min-width: vars.$desktop-size) {
-            margin-top: 0;
-            margin-left: 6.25rem;
-            max-width: 50%;
-        }
     }
 
     &__description {
         padding-bottom: 1.25rem;
         position: relative;
+
+        @media only screen and (min-width: vars.$desktop-size) {
+            font-family: vars.$sans-serif-light-font;
+            font-size: 1.375rem;
+            line-height: 1.9;
+        }
 
         &:after {
             background-color: vars.$secondary-color;
@@ -54,6 +55,9 @@
             left: 0;
             position: absolute;
             width: 60px;
+            @media only screen and (min-width: vars.$desktop-size) {
+                width: 125px;
+            }
         }
     }
     
@@ -84,6 +88,9 @@
         .section__wrapper {
             align-items: center;
             justify-content: center;
+            @media only screen and (min-width: vars.$desktop-size) {
+                justify-content: flex-start;
+            }
         }
 
         .section__caption {
@@ -143,10 +150,19 @@
             }
         }
 
+        .section__caption {
+            @media only screen and (min-width: vars.$desktop-size) {
+                margin-left: 5.875rem;
+                margin-top: 0;
+                max-width: 43%;
+            }
+        }
+
         .section__watermark {
             margin-top: 2.6rem;
             @media only screen and (min-width: vars.$desktop-size) {
                 margin-top: 0;
+                margin-right: 5.1875rem;
             }
         }
     }
